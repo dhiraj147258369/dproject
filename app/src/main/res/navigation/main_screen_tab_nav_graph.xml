@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_screen_tab_nav_graph"
+    app:startDestination="@id/tablesTabFragment">
+
+    <fragment
+        android:id="@+id/tablesTabFragment"
+        android:name="com.rsl.youresto.ui.tab_specific.TablesTabFragment"
+        android:label="fragment_tables_tab"
+        tools:layout="@layout/fragment_tables_tab" />
+
+    <fragment android:id="@+id/quickServiceFragment2"
+        android:name="com.rsl.youresto.ui.main_screen.quick_service.QuickServiceFragment"
+        android:label="QuickServiceFragment"
+        tools:layout="@layout/fragment_quick"/>
+
+    <fragment android:id="@+id/pendingOrderFragment2"
+        android:name="com.rsl.youresto.ui.main_screen.pending_order.PendingOrderFragment"
+        tools:layout="@layout/fragment_pending_order"
+        android:label="PendingOrderFragment"/>
+
+    <fragment android:id="@+id/favoriteItemsFragment2"
+        android:name="com.rsl.youresto.ui.main_screen.favorite_items.FavoriteItemsFragment"
+        tools:layout="@layout/fragment_favorite_items"
+        android:label="FavoriteItemsFragment"/>
+
+    <fragment android:id="@+id/settingsFragment2"
+        android:name="com.rsl.youresto.ui.main_screen.app_settings.SettingsFragment"
+        tools:layout="@layout/fragment_settings"
+        android:label="fragment_settings"/>
+
+    <fragment
+        android:id="@+id/orderHistoryFragment"
+        tools:layout="@layout/fragment_order_history"
+        android:name="com.rsl.youresto.ui.tab_specific.OrderHistoryFragment"
+        android:label="OrderHistoryFragment" />
+    <fragment
+        android:id="@+id/quickServiceTabFragment"
+        android:name="com.rsl.youresto.ui.tab_specific.QuickServiceTabFragment"
+        android:label="fragment_quick_service_tab"
+        tools:layout="@layout/fragment_quick_service_tab" />
+
+</navigation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/quick_service_tab_nav"
+    app:startDestination="@id/quickServiceFragment3">
+
+    <fragment
+        android:id="@+id/quickServiceFragment3"
+        android:name="com.rsl.youresto.ui.main_screen.quick_service.QuickServiceFragment"
+        android:label="QuickServiceFragment" />
+</navigation>

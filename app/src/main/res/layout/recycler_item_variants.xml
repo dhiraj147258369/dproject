@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="genericProduct"
+                  type="com.rsl.youresto.data.database_download.models.IngredientsModel"/>
+    </data>
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_generic_products"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            app:cardCornerRadius="2dp"
+            app:cardBackgroundColor="@color/colorWhite"
+    >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <CheckBox
+                    android:id="@+id/check_box_variant"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="@{genericProduct.mIngredientName}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/text_view_variant_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Farm House Small"/>
+
+            <TextView
+                    android:id="@+id/text_view_variant_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{@string/string_currency_sign + String.format("%.2f", genericProduct.mIngredientPrice)}'
+                    android:textSize="14sp"
+                    android:layout_marginEnd="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="$10"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

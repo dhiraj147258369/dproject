@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/checkout_dialog_nav_graph"
+    app:startDestination="@id/checkoutCalculationFragment2">
+
+
+    <fragment
+        android:id="@+id/checkoutCalculationFragment2"
+        android:name="com.rsl.youresto.ui.main_screen.checkout.calculation_checkout.CheckoutCalculationFragment"
+        android:label="CheckoutCalculationFragment" />
+</navigation>

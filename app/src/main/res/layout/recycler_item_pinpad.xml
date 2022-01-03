@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="pinPad" type="com.rsl.youresto.ui.main_screen.checkout.payment_options.card.PinPadModel"/>
+        <variable name="adapter"
+                  type="com.rsl.youresto.ui.main_screen.checkout.payment_options.card.PinPadRecyclerAdapter"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{v -> adapter.onPinPadSelected(pinPad)}"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
+
+        <TextView
+                android:id="@+id/text_view_pin_pad"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Muira 991"
+                android:text="@{pinPad.pinPadName}"
+                android:textColor="@color/colorPrimary"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_pin_pad"
+                android:background="@color/colorGrey"
+                android:layout_height="1dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

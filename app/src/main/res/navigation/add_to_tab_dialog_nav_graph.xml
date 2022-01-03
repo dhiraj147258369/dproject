@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/add_to_tab_dialog_nav_graph"
+    app:startDestination="@id/addToTabFragment2">
+
+    <fragment
+        android:id="@+id/addToTabFragment2"
+        android:name="com.rsl.youresto.ui.main_screen.tables_and_tabs.add_to_tab.AddToTabFragment"
+        android:label="AddToTabFragment" />
+</navigation>

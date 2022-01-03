@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="locationModel" type="com.rsl.youresto.data.database_download.models.LocationModel"/>
+        <variable name="locationAdapter" type="com.rsl.youresto.ui.server_login.LocationRecyclerAdapter"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:onClick="@{v -> locationAdapter.onLocationClicked(locationModel)}"
+            android:background="@drawable/background_white_border_light_blue"
+            android:padding="1dp"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/text_view_location_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:gravity="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorBlack"
+                android:background="?android:attr/selectableItemBackground"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Location Name"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

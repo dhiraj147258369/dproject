@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/edit_cart_dialog_nav_graph"
+    app:startDestination="@id/editCartProductFragment2">
+
+    <fragment
+        android:id="@+id/editCartProductFragment2"
+        android:name="com.rsl.youresto.ui.main_screen.tables_and_tabs.edit_cart_product.EditCartProductFragment"
+        android:label="EditCartProductFragment" />
+
+</navigation>

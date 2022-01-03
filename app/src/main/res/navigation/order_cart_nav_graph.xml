@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/order_cart_nav_graph"
+    app:startDestination="@id/orderHistoryCartFragment2">
+
+    <fragment
+        android:id="@+id/orderHistoryCartFragment2"
+        tools:layout="@layout/fragment_order_history_cart"
+        android:name="com.rsl.youresto.ui.main_screen.order_history.order_history_cart.OrderHistoryCartFragment"
+        android:label="OrderHistoryCartFragment" />
+</navigation>

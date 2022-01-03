@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main_screen.checkout.payment_options.PaymentFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/text_view_cash_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pay"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_view_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_cash_label"
+                android:text="Change:" />
+
+            <Spinner
+                app:layout_constraintTop_toBottomOf="@+id/text_view_cash_label"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:id="@+id/paymentMethods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/text_view_sign"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/background_smoky_black_with_left_corners"
+                android:gravity="center"
+                android:text="@string/string_currency_sign"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/paymentMethods" />
+
+            <EditText
+                android:id="@+id/edit_text_cash_value"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:background="@drawable/background_white_with_right_corners"
+                android:hint="Enter Amount"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:maxLength="10"
+                android:layout_marginEnd="12dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_view_sign"
+                app:layout_constraintTop_toTopOf="@+id/text_view_sign" />
+
+            <ImageView
+                android:id="@+id/image_view_cancel_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_cancel_black_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_text_cash_value"
+                app:layout_constraintEnd_toEndOf="@+id/edit_text_cash_value"
+                app:layout_constraintTop_toTopOf="@+id/edit_text_cash_value" />
+
+            <Button
+                android:id="@+id/button_cash_proceed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Proceed"
+                app:layout_constraintEnd_toEndOf="@+id/edit_text_cash_value"
+                app:layout_constraintStart_toStartOf="@+id/text_view_sign"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_cash_value" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_currency_notes"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                tools:listitem="@layout/recycler_item_currency_note"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_view_change" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            android:layout_width="48dp"
+            android:layout_height="48dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

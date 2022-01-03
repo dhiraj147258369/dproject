@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/checkout_process_nav_graph" app:startDestination="@id/checkoutCalculationFragment">
+    <fragment android:id="@+id/checkoutCalculationFragment"
+              android:name="com.rsl.youresto.ui.main_screen.checkout.calculation_checkout.CheckoutCalculationFragment"
+              android:label="CheckoutCalculationFragment">
+        <action android:id="@+id/action_checkoutCalculationFragment_to_paymentMethodFragment"
+                app:destination="@id/paymentMethodFragment"
+                app:enterAnim="@anim/item_animation_slide_enter_from_right"
+                app:exitAnim="@anim/item_animation_slide_exit_to_left"/>
+        <action android:id="@+id/action_checkoutCalculationFragment_to_discountFragment"
+                app:destination="@id/discountFragment" app:enterAnim="@anim/item_animation_slide_enter_from_right"
+                app:exitAnim="@anim/item_animation_slide_exit_to_left"/>
+    </fragment>
+    <fragment android:id="@+id/cashFragment"
+              android:name="com.rsl.youresto.ui.main_screen.checkout.payment_options.cash.CashFragment"
+              android:label="CashFragment">
+        <argument android:name="REMAINING_AMOUNT" app:argType="float" android:defaultValue="0.0"/>
+    </fragment>
+    <fragment android:id="@+id/paymentMethodFragment"
+              android:name="com.rsl.youresto.ui.main_screen.checkout.payment_options.PaymentMethodFragment"
+              android:label="PaymentMethodFragment">
+        <argument android:name="GROUP_NAME" app:argType="string"/>
+        <action android:id="@+id/action_paymentMethodFragment_to_cashFragment" app:destination="@id/cashFragment"
+                app:enterAnim="@anim/item_animation_enter_from_bottom" app:exitAnim="@anim/item_animation_exit_to_top"/>
+        <action android:id="@+id/action_paymentMethodFragment_to_tipFragment" app:destination="@id/tipFragment"
+                app:enterAnim="@anim/item_animation_enter_from_bottom" app:exitAnim="@anim/item_animation_exit_to_top"/>
+        <action android:id="@+id/action_paymentMethodFragment_to_yoyoWalletFragment"
+                app:destination="@id/yoyoWalletFragment"
+                app:enterAnim="@anim/item_animation_enter_from_bottom" app:exitAnim="@anim/item_animation_exit_to_top"/>
+        <action android:id="@+id/action_paymentMethodFragment_to_serviceChargeFragment"
+                app:destination="@id/serviceChargeFragment"
+                app:enterAnim="@anim/item_animation_enter_from_bottom" app:exitAnim="@anim/item_animation_exit_to_top"/>
+        <action android:id="@+id/action_paymentMethodFragment_to_cardFragment" app:destination="@id/cardFragment"
+                app:enterAnim="@anim/item_animation_enter_from_bottom" app:exitAnim="@anim/item_animation_exit_to_top"/>
+    </fragment>
+    <fragment android:id="@+id/cardFragment"
+              android:name="com.rsl.youresto.ui.main_screen.checkout.payment_options.card.CardFragment"
+              android:label="CardFragment"
+    />
+    <fragment android:id="@+id/yoyoWalletFragment"
+              android:name="com.rsl.youresto.ui.main_screen.checkout.payment_options.wallet.YoyoWalletFragment"
+              android:label="YoyoWalletFragment"/>
+    <fragment android:id="@+id/tipFragment"
+              android:name="com.rsl.youresto.ui.main_screen.checkout.payment_options.tip.TipFragment"
+              android:label="TipFragment"/>
+    <fragment android:id="@+id/discountFragment"
+              android:name="com.rsl.youresto.ui.main_screen.checkout.payment_options.discount.DiscountFragment"
+              android:label="DiscountFragment">
+        <action android:id="@+id/action_discountFragment_to_paymentMethodFragment2"
+                app:destination="@id/paymentMethodFragment" app:enterAnim="@anim/item_animation_slide_enter_from_left"
+                app:exitAnim="@anim/item_animation_slide_exit_to_right"/>
+    </fragment>
+    <fragment android:id="@+id/serviceChargeFragment"
+              android:name="com.rsl.youresto.ui.main_screen.checkout.payment_options.service_charge.ServiceChargeFragment"
+              android:label="ServiceChargeFragment"/>
+</navigation>

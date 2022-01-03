@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.rsl.youresto.R"/>
+        <import type="androidx.core.content.ContextCompat"/>
+        <variable name="tableGroup"
+                  type="com.rsl.youresto.data.tables.models.LocalTableGroupModel"/>
+        <variable name="tableGroupAdapter" type="com.rsl.youresto.ui.main_screen.tables_and_tabs.seat_selection.TableGroupRecyclerAdapter"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundResource="@{tableGroup.selected ? R.color.colorLightGrey2 : R.color.colorBlueGrey}"
+            android:padding="8dp"
+    >
+
+        <LinearLayout
+                android:id="@+id/view_group_color_container"
+                android:layout_width="31dp"
+                android:layout_height="31dp"
+                android:background="@drawable/background_white_border_black"
+                app:backgroundResource="@{tableGroup.selected ? R.color.colorGrey : R.color.colorBlack}"
+                android:onClick="@{v-> tableGroupAdapter.onGroupClicked(tableGroup)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                    android:id="@+id/text_view_group"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:text="@{tableGroup.MGroupName}"
+                    tools:text="A"
+                    android:textColor="@{tableGroup.selected ? ContextCompat.getColor(context, R.color.colorWhite) : ContextCompat.getColor(context, R.color.colorBlack)}"
+                    app:backgroundResource="@{tableGroup.MGroupName.equals(`A`) ? R.color.colorPrimary : tableGroup.MGroupName.equals(`B`) ? R.color.colorPrimaryDark : tableGroup.MGroupName.equals(`C`) ? R.color.colorLightBlue : tableGroup.MGroupName.equals(`D`) ? R.color.colorRed : R.color.colorGreen}"
+            />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

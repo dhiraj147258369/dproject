@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="serviceCharge"
+                  type="com.rsl.youresto.ui.main_screen.checkout.payment_options.service_charge.ServiceChargeFragment"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            tools:context=".ui.main_screen.checkout.payment_options.service_charge.ServiceChargeFragment">
+
+        <TextView
+                android:id="@+id/text_view_service_charge_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service Charge"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/text_view_service_charge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                custom:layout_constraintStart_toStartOf="parent"
+                custom:layout_constraintTop_toBottomOf="@+id/text_view_service_charge_label"
+                tools:text="Service Charge:" />
+
+        <belka.us.androidtoggleswitch.widgets.ToggleSwitch
+                android:id="@+id/toggle_switch_service_charge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                custom:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_service_charge"
+                custom:activeBgColor="@color/colorPrimary"
+                custom:activeTextColor="@android:color/white"
+                custom:inactiveBgColor="@color/colorBlueGrey"
+                custom:inactiveTextColor="@android:color/black"
+                custom:separatorColor="@color/gray_very_light"
+                custom:textToggleLeft="%"
+                custom:textToggleRight="@string/string_currency_sign"
+                custom:toggleWidth="0dp" />
+
+        <TextView
+                android:id="@+id/text_view_sign"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/background_smoky_black_with_left_corners"
+                android:gravity="center"
+                android:text="%"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/toggle_switch_service_charge"
+                app:layout_constraintTop_toBottomOf="@+id/toggle_switch_service_charge" />
+
+        <EditText
+                android:id="@+id/edit_text_service_charge_value"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:background="@drawable/background_white_with_right_corners"
+                android:hint="Enter Service Charge Percentage"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:onTextChanged="@{( text, start, count, after) -> serviceCharge.onTextChanged(text)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_view_sign"
+                app:layout_constraintTop_toTopOf="@+id/text_view_sign" />
+
+        <Button
+                android:id="@+id/button_apply_service_charge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Apply"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/toggle_switch_service_charge"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_service_charge_value" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

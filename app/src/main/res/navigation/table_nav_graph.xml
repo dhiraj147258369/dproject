@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/table_nav_graph"
+    app:startDestination="@id/tablesFragment2">
+
+    <fragment
+        android:id="@+id/tablesFragment2"
+        android:name="com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.TablesFragment"
+        android:label="fragment_tables"
+        tools:layout="@layout/fragment_tables" />
+
+    <fragment
+        android:id="@+id/seatSelectionFragment"
+        android:name="com.rsl.youresto.ui.main_screen.tables_and_tabs.seat_selection.SeatSelectionFragment"
+        android:label="fragment_seat_selection"
+        tools:layout="@layout/fragment_seat_selection" />
+
+</navigation>

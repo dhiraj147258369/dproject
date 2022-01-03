@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="kitchenModel"
+            type="com.rsl.youresto.data.database_download.models.KitchenModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkbox_kitchen_printer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="start"
+            android:paddingTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text="@{kitchenModel.MSelectedKitchenPrinterName.contains(`NO_TYPE`) ? kitchenModel.MKitchenName : kitchenModel.MKitchenName + `: ` + kitchenModel.MSelectedKitchenPrinterName}"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_constraintEnd_toStartOf="@+id/linear_spinner1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Kitchen Printer" />
+
+        <TextView
+            android:id="@+id/text_view_network_ip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkbox_kitchen_printer"
+            tools:text="123.133.2.2" />
+
+        <TextView
+            android:id="@+id/text_view_logwood_server_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_network_ip"
+            tools:text="123.133.2.2" />
+
+        <LinearLayout
+            android:id="@+id/linear_spinner1"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/background_white_border_black"
+            android:gravity="center"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/button_printer_edit"
+            app:layout_constraintTop_toTopOf="@+id/checkbox_kitchen_printer">
+
+            <Spinner
+                android:id="@+id/spinner_kitchen_paper_size"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:dropDownHorizontalOffset="15dp"
+                android:dropDownVerticalOffset="35dp"
+                android:imeOptions="flagNoExtractUi"
+                android:selection="@{kitchenModel.MSelectedKitchenPrinterSize == 50 ? 0 : 1}"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_printer_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/background_primary_without_border"
+            android:gravity="center"
+            android:text="Edit"
+            android:textColor="#FFF"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/checkbox_kitchen_printer" />
+
+        <View
+            android:id="@+id/horizontal_line_2"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginTop="8dp"
+            android:background="#ffd300"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_logwood_server_id" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

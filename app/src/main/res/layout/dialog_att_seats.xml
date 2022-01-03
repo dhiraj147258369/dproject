@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:background="@android:color/transparent"
+            android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:padding="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@color/colorWhite"
+        >
+
+            <TextView
+                    android:id="@+id/text_view_seat_select_label"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="Select Seats"
+                    android:padding="4dp"
+                    android:background="@drawable/background_primary_without_border"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_seats_att_main"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_height="0dp"
+                    android:layout_margin="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/view_primary_block"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_seat_select_label"
+                    tools:listitem="@layout/recycler_item_seat_att_main"
+            />
+
+            <View
+                    android:id="@+id/view_primary_block"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/background_primary_border_black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/linear_layout_bottom"
+            />
+
+            <TextView
+                    android:id="@+id/text_view_current_selection"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_primary_block"
+                    android:layout_marginStart="8dp"
+                    android:text="Current Selection"
+                    app:layout_constraintStart_toEndOf="@+id/view_primary_block"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <View
+                    android:id="@+id/view_green_block"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/background_green_border_black"
+                    app:layout_constraintStart_toEndOf="@+id/text_view_current_selection"
+                    app:layout_constraintBottom_toTopOf="@+id/linear_layout_bottom"
+            />
+
+            <TextView
+                    app:layout_constraintBottom_toBottomOf="@+id/view_green_block"
+                    android:layout_marginStart="8dp"
+                    android:text="Already Paid"
+                    app:layout_constraintStart_toEndOf="@+id/view_green_block"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                    android:id="@+id/linear_layout_bottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:orientation="horizontal"
+                    android:background="@drawable/background_primary_without_border"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/text_view_cancel"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="Cancel"
+                        android:layout_marginEnd="8dp"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textStyle="bold"
+                        android:padding="4dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorWhite"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/text_view_proceed"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="Proceed"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:layout_marginStart="8dp"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textStyle="bold"
+                        android:padding="4dp"
+                        android:textColor="@color/colorWhite"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

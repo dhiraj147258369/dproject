@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/printer_settings_nav_graph"
+    app:startDestination="@id/printerSettingFragment">
+
+    <fragment
+        android:id="@+id/printerSettingFragment"
+        android:name="com.rsl.youresto.ui.main_screen.app_settings.printer_settings.PrinterSettingFragment"
+        tools:layout="@layout/fragment_printer_setting"
+        android:label="PrinterSettingFragment" />
+</navigation>

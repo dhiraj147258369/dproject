@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/navigate_checkout_details"
+            android:icon="@drawable/ic_bill"
+            android:title="@string/details"/>
+
+    <item
+            android:id="@+id/navigate_payment_method"
+            android:icon="@drawable/ic_payment"
+            android:title="@string/payment"/>
+
+    <item
+            android:id="@+id/navigate_discount"
+            android:icon="@drawable/ic_discount"
+            android:title="@string/discount"/>
+</menu>

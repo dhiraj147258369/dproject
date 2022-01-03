@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="ingredient" type="com.rsl.youresto.data.database_download.models.IngredientsModel"/>
+        <variable name="position" type="Integer"/>
+        <variable name="adapter"
+                  type="com.rsl.youresto.ui.main_screen.tables_and_tabs.add_to_tab.tabs.modifier_2.VariantModifierATTRecyclerAdapter"/>
+    </data>
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_generic_products"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp" android:padding="4dp"
+            app:cardBackgroundColor="@color/colorWhite" app:cardCornerRadius="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:id="@+id/linear_layout_ingredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                        android:id="@+id/text_view_ingredient_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:text="@{ingredient.MIngredientName}"
+                        app:layout_constraintEnd_toStartOf="@+id/image_view_qty_minus"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Farm House Small"/>
+
+                <ImageView
+                        android:id="@+id/image_view_qty_minus"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:onClick="@{v->adapter.onMinusClicked(ingredient, position)}"
+                        android:src="@drawable/ic_minus_primary_24dp"
+                        app:layout_constraintEnd_toStartOf="@+id/text_view_ingredient_quantity"
+                        app:layout_constraintTop_toTopOf="@+id/image_view_qty_plus"/>
+
+                <TextView
+                        android:id="@+id/text_view_ingredient_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:padding="4dp"
+                        android:text="@{String.valueOf(ingredient.MIngredientQuantity)}"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorBlack"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/image_view_qty_minus"
+                        app:layout_constraintEnd_toStartOf="@+id/image_view_qty_plus"
+                        app:layout_constraintTop_toTopOf="@+id/image_view_qty_plus"
+                        tools:text="1"/>
+
+                <ImageView
+                        android:id="@+id/image_view_qty_plus"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:onClick="@{v->adapter.onPlusClicked(ingredient, position)}"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_add_box_primary_24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/text_view_unit_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:singleLine="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_layout_ingredients"
+                    tools:text="$2.0"/>
+
+            <TextView
+                    android:id="@+id/text_view_total_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:singleLine="true"
+                    android:visibility="@{ingredient.selected ? View.VISIBLE : View.GONE}"
+                    android:textColor="@color/colorGreen"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linear_layout_ingredients"
+                    tools:text="$2.0"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

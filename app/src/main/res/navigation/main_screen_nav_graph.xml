@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/main_screen_nav_graph"
+            app:startDestination="@id/tablesFragment">
+
+    <fragment android:id="@+id/tablesFragment"
+              android:name="com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.TablesFragment"
+              android:label="fragment_tables" tools:layout="@layout/fragment_tables">
+        <action android:id="@+id/action_tablesFragment_to_seatSelectionFragment"
+                app:destination="@id/seatSelectionFragment" app:enterAnim="@anim/item_animation_slide_enter_from_right"
+                app:exitAnim="@anim/item_animation_slide_exit_to_left"
+        />
+        <action android:id="@+id/action_tablesFragment_to_mainProductFragment"
+                app:destination="@id/mainProductFragment" app:enterAnim="@anim/item_animation_slide_enter_from_right"
+                app:exitAnim="@anim/item_animation_slide_exit_to_left"/>
+        <action android:id="@+id/action_tablesFragment_to_seatsCheckoutFragment"
+                app:destination="@id/seatsCheckoutFragment"/>
+    </fragment>
+    <fragment android:id="@+id/seatSelectionFragment"
+              android:name="com.rsl.youresto.ui.main_screen.tables_and_tabs.seat_selection.SeatSelectionFragment"
+              android:label="fragment_seat_selection" tools:layout="@layout/fragment_seat_selection">
+        <argument android:name="tableID" app:argType="string" android:defaultValue="null"/>
+        <action android:id="@+id/action_seatSelectionFragment_to_mainProductFragment"
+                app:destination="@id/mainProductFragment" app:enterAnim="@anim/item_animation_slide_enter_from_right"
+                app:exitAnim="@anim/item_animation_slide_exit_to_left"/>
+        <action android:id="@+id/action_seatSelectionFragment_to_tablesFragment" app:destination="@id/tablesFragment"
+                app:enterAnim="@anim/item_animation_slide_enter_from_left"
+                app:exitAnim="@anim/item_animation_slide_exit_to_right"/>
+        <argument android:name="intentFrom" app:argType="string"/>
+    </fragment>
+    <fragment android:id="@+id/settingsFragment"
+              android:name="com.rsl.youresto.ui.main_screen.app_settings.SettingsFragment"
+              android:label="fragment_settings">
+        <action android:id="@+id/action_settingsFragment_to_selectPrinterFragment"
+                app:destination="@id/selectPrinterFragment" app:enterAnim="@anim/item_animation_enter_from_bottom"
+                app:exitAnim="@anim/item_animation_exit_to_top"/>
+        <action android:id="@+id/action_settingsFragment_to_tablesFragment" app:destination="@id/tablesFragment"/>
+        <action android:id="@+id/action_settingsFragment_to_quickServiceFragment"
+                app:destination="@id/quickServiceFragment"/>
+        <argument android:name="openTab" app:argType="integer" android:defaultValue="0"/>
+    </fragment>
+    <fragment android:id="@+id/selectPrinterFragment"
+              android:name="com.rsl.youresto.ui.main_screen.app_settings.printer_settings.SelectPrinterFragment"
+              android:label="SelectPrinterFragment">
+        <action android:id="@+id/action_selectPrinterFragment_to_logwoodSettingFragment"
+                app:destination="@id/logwoodSettingFragment"
+                app:enterAnim="@anim/item_animation_slide_enter_from_right"
+                app:exitAnim="@anim/item_animation_slide_exit_to_left"/>
+        <action android:id="@+id/action_selectPrinterFragment_to_settingsFragment"
+                app:destination="@id/settingsFragment" app:enterAnim="@anim/item_animation_enter_from_top"
+                app:exitAnim="@anim/item_animation_exit_to_bottom"/>
+    </fragment>
+    <fragment android:id="@+id/logwoodSettingFragment"
+              android:name="com.rsl.youresto.ui.main_screen.app_settings.printer_settings.logwood_setting.LogWoodSettingFragment"
+              android:label="LogwoodSettingFragment">
+        <action android:id="@+id/action_logwoodSettingFragment_to_settingsFragment"
+                app:destination="@id/settingsFragment" app:enterAnim="@anim/item_animation_enter_from_top"
+                app:exitAnim="@anim/item_animation_exit_to_bottom"/>
+        <action android:id="@+id/action_logwoodSettingFragment_to_selectPrinterFragment"
+                app:destination="@id/selectPrinterFragment" app:enterAnim="@anim/item_animation_slide_enter_from_left"
+                app:exitAnim="@anim/item_animation_slide_exit_to_right"/>
+    </fragment>
+    <fragment android:id="@+id/favoriteItemsFragment"
+              android:name="com.rsl.youresto.ui.main_screen.favorite_items.FavoriteItemsFragment"
+              android:label="FavoriteItemsFragment">
+        <action android:id="@+id/action_favoriteItemsFragment_to_quickServiceFragment"
+                app:destination="@id/quickServiceFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/mainProductFragment"
+              android:name="com.rsl.youresto.ui.main_screen.main_product_flow.MainProductFragment"
+              android:label="fragment_main_product" tools:layout="@layout/fragment_main_product">
+        <action android:id="@+id/action_mainProductFragment_to_addToTabFragment"
+                app:destination="@id/addToTabFragment" app:enterAnim="@anim/item_animation_enter_from_bottom"
+                app:exitAnim="@anim/item_animation_exit_to_top"/>
+        <action android:id="@+id/action_mainProductFragment_to_cartGroupFragment"
+                app:destination="@id/cartGroupFragment" app:enterAnim="@anim/item_animation_slide_enter_from_right"
+                app:exitAnim="@anim/item_animation_slide_exit_to_left"/>
+        <action android:id="@+id/action_mainProductFragment_to_seatSelectionFragment"
+                app:destination="@+id/seatSelectionFragment"
+                app:enterAnim="@anim/item_animation_slide_enter_from_left"
+                app:exitAnim="@anim/item_animation_slide_exit_to_right"/>
+        <argument android:name="groupId" app:argType="string" app:nullable="true" android:defaultValue="A"/>
+        <argument android:name="categoryId" app:argType="string" app:nullable="true" android:defaultValue="A"/>
+        <action android:id="@+id/action_mainProductFragment_to_tablesFragment" app:destination="@id/tablesFragment"
+                app:enterAnim="@anim/item_animation_slide_enter_from_left"
+                app:exitAnim="@anim/item_animation_slide_exit_to_right"/>
+        <argument android:name="intentFrom" app:argType="string" app:nullable="true" android:defaultValue="A"/>
+    </fragment>
+    <fragment android:id="@+id/addToTabFragment"
+              android:name="com.rsl.youresto.ui.main_screen.tables_and_tabs.add_to_tab.AddToTabFragment"
+              android:label="AddToTabFragment">
+        <argument android:name="groupId" app:argType="string"/>
+        <argument android:name="categoryId" app:argType="string"/>
+        <argument android:name="productId" app:argType="string"/>
+        <action android:id="@+id/action_addToTabFragment_to_cartFragment" app:destination="@id/cartFragment"/>
+        <action android:id="@+id/action_addToTabFragment_to_mainProductFragment"
+                app:destination="@id/mainProductFragment"
+                app:exitAnim="@anim/item_animation_exit_to_bottom" app:enterAnim="@anim/item_animation_enter_from_top"/>
+        <action android:id="@+id/action_addToTabFragment_to_quickServiceFragment"
+                app:destination="@id/quickServiceFragment" app:enterAnim="@anim/item_animation_enter_from_top"
+                app:exitAnim="@anim/item_animation_exit_to_bottom"/>
+    </fragment>
+    <fragment android:id="@+id/quickServiceFragment"
+              android:name="com.rsl.youresto.ui.main_screen.quick_service.QuickServiceFragment"
+              android:label="QuickServiceFragment">
+        <action android:id="@+id/action_quickServiceFragment_to_addToTabFragment"
+                app:destination="@id/addToTabFragment" app:enterAnim="@anim/item_animation_enter_from_bottom"
+                app:exitAnim="@anim/item_animation_exit_to_top"/>
+        <action android:id="@+id/action_quickServiceFragment_to_cartGroupFragment"
+                app:destination="@id/cartGroupFragment" app:enterAnim="@anim/item_animation_slide_enter_from_right"
+                app:exitAnim="@anim/item_animation_slide_exit_to_left"/>
+        <argument android:name="groupId" app:argType="string" android:defaultValue="A"/>
+        <argument android:name="categoryId" android:defaultValue="A"/>
+    </fragment>
+    <fragment android:id="@+id/cartFragment" android:name="com.rsl.youresto.ui.main_screen.cart.CartGroupFragment"
+              android:label="CartFragment">
+    </fragment>
+    <fragment android:id="@+id/cartGroupFragment" android:name="com.rsl.youresto.ui.main_screen.cart.CartGroupFragment"
+              android:label="CartGroupFragment">
+        <argument android:name="groupName" app:argType="string" android:defaultValue="NULL"/>
+        <action android:id="@+id/action_cartGroupFragment_to_seatsCheckoutFragment"
+                app:destination="@id/seatsCheckoutFragment"
+                app:enterAnim="@anim/item_animation_slide_enter_from_right"
+                app:exitAnim="@anim/item_animation_slide_exit_to_left"/>
+        <argument android:name="openFrom" app:argType="string"/>
+        <action android:id="@+id/action_cartGroupFragment_to_pendingOrderFragment"
+                app:destination="@id/pendingOrderFragment" app:enterAnim="@anim/item_animation_slide_enter_from_right"
+                app:exitAnim="@anim/item_animation_slide_exit_to_left"/>
+        <action android:id="@+id/action_cartGroupFragment_to_editCartProductFragment"
+                app:destination="@id/editCartProductFragment" app:enterAnim="@anim/item_animation_enter_from_bottom"
+                app:exitAnim="@anim/item_animation_exit_to_top"/>
+        <action android:id="@+id/action_cartGroupFragment_to_quickServiceFragment"
+                app:destination="@id/quickServiceFragment" app:enterAnim="@anim/item_animation_slide_enter_from_left"
+                app:exitAnim="@anim/item_animation_slide_exit_to_right"/>
+        <action android:id="@+id/action_cartGroupFragment_to_mainProductFragment"
+                app:destination="@id/mainProductFragment" app:enterAnim="@anim/item_animation_slide_enter_from_left"
+                app:exitAnim="@anim/item_animation_slide_exit_to_right"/>
+        <action
+                android:id="@+id/action_cartGroupFragment_to_repeatOrderFragment"
+                app:destination="@id/repeatOrderFragment" />
+    </fragment>
+    <fragment android:id="@+id/seatsCheckoutFragment"
+              android:name="com.rsl.youresto.ui.main_screen.checkout.seats_checkout.SeatsCheckoutFragment"
+              android:label="SeatsCheckoutFragment">
+        <argument android:name="groupName" app:argType="string" android:defaultValue="NULL"/>
+        <action android:id="@+id/action_seatsCheckoutFragment_to_checkoutFragment"
+                app:destination="@id/checkoutFragment" app:enterAnim="@anim/item_animation_slide_enter_from_right"
+                app:exitAnim="@anim/item_animation_slide_exit_to_left"/>
+        <action android:id="@+id/action_seatsCheckoutFragment_to_cartGroupFragment"
+                app:destination="@id/cartGroupFragment" app:exitAnim="@anim/item_animation_slide_exit_to_right"
+                app:enterAnim="@anim/item_animation_slide_enter_from_left"/>
+        <action android:id="@+id/action_seatsCheckoutFragment_to_tablesFragment" app:destination="@id/tablesFragment"/>
+        <argument android:name="intentFrom" app:argType="string" app:nullable="true"/>
+    </fragment>
+    <fragment android:id="@+id/checkoutFragment"
+              android:name="com.rsl.youresto.ui.main_screen.checkout.CheckoutFragment"
+              android:label="CheckoutFragment">
+        <action android:id="@+id/action_checkoutFragment_to_seatsCheckoutFragment"
+                app:destination="@id/seatsCheckoutFragment" app:enterAnim="@anim/item_animation_slide_enter_from_left"
+                app:exitAnim="@anim/item_animation_slide_exit_to_right"/>
+        <argument android:name="checkoutRowId" app:argType="integer"/>
+        <argument android:name="groupName" app:argType="string"/>
+        <action android:id="@+id/action_checkoutFragment_to_cartGroupFragment" app:destination="@id/cartGroupFragment"/>
+    </fragment>
+    <fragment android:id="@+id/pendingOrderFragment"
+              android:name="com.rsl.youresto.ui.main_screen.pending_order.PendingOrderFragment"
+              android:label="PendingOrderFragment">
+        <action android:id="@+id/action_pendingOrderFragment_to_cartGroupFragment"
+                app:destination="@id/cartGroupFragment" app:enterAnim="@anim/item_animation_slide_enter_from_left"
+                app:exitAnim="@anim/item_animation_slide_exit_to_right"/>
+        <action android:id="@+id/action_pendingOrderFragment_to_tablesFragment" app:destination="@id/tablesFragment"/>
+        <action android:id="@+id/action_pendingOrderFragment_to_quickServiceFragment"
+                app:destination="@id/quickServiceFragment"/>
+    </fragment>
+    <fragment android:id="@+id/editCartProductFragment"
+              android:name="com.rsl.youresto.ui.main_screen.tables_and_tabs.edit_cart_product.EditCartProductFragment"
+              android:label="EditCartProductFragment">
+        <argument android:name="cartProductId" app:argType="string"/>
+        <action android:id="@+id/action_editCartProductFragment_to_cartGroupFragment"
+                app:destination="@id/cartGroupFragment" app:enterAnim="@anim/item_animation_enter_from_top"
+                app:exitAnim="@anim/item_animation_exit_to_bottom"/>
+        <argument android:name="groupName" app:argType="string"/>
+    </fragment>
+    <fragment android:id="@+id/orderHistoryListFragment"
+        tools:layout="@layout/fragment_order_history_list"
+              android:name="com.rsl.youresto.ui.main_screen.order_history.order_history_list.OrderHistoryListFragment"
+              android:label="OrderHistoryListFragment">
+        <action android:id="@+id/action_orderHistoryListFragment_to_orderHistoryCartFragment"
+                app:destination="@id/orderHistoryCartFragment"
+                app:enterAnim="@anim/item_animation_slide_enter_from_right"
+                app:exitAnim="@anim/item_animation_slide_exit_to_left"/>
+        <action android:id="@+id/action_orderHistoryListFragment_to_tablesFragment"
+                app:destination="@id/tablesFragment"/>
+        <argument android:name="INTENT_FROM" app:argType="string"/>
+    </fragment>
+    <fragment android:id="@+id/orderHistoryCartFragment"
+              android:name="com.rsl.youresto.ui.main_screen.order_history.order_history_cart.OrderHistoryCartFragment"
+              android:label="OrderHistoryCartFragment">
+        <argument android:name="mID" app:argType="integer" android:defaultValue="0"/>
+        <action android:id="@+id/action_orderHistoryCartFragment_to_orderHistoryListFragment2"
+                app:destination="@id/orderHistoryListFragment"
+                app:enterAnim="@anim/item_animation_slide_enter_from_left"
+                app:exitAnim="@anim/item_animation_slide_exit_to_right"/>
+    </fragment>
+    <fragment
+            android:id="@+id/repeatOrderFragment"
+            android:name="com.rsl.youresto.ui.main_screen.cart.RepeatOrderFragment"
+            android:label="RepeatOrderFragment" >
+        <argument
+                android:name="groupName"
+                app:argType="string"
+                android:defaultValue="NULL" />
+        <action
+                android:id="@+id/action_repeatOrderFragment_to_cartGroupFragment"
+                app:destination="@id/cartGroupFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.rsl.youresto.R" />
+        <variable name="group" type="com.rsl.youresto.data.tables.models.LocalTableGroupModel"/>
+        <variable name="position" type="Integer"/>
+        <variable name="adapter"
+                  type="com.rsl.youresto.ui.main_screen.tables_and_tabs.add_to_tab.SeatsATTRecyclerAdapter"/>
+
+    </data>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:onClick="@{v -> adapter.onGroupSelected(position)}"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/text_view_seat_group_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center"
+                android:textColor="@{group.selected ? @color/colorWhite : @color/colorBlack}"
+                android:textStyle="bold"
+                android:text='@{"Group " + group.MGroupName}'
+                app:backgroundResource="@{group.selected ? R.drawable.background_black_border_black : R.drawable.background_white_border_black}"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Group A"
+        />
+
+        <CheckBox
+                android:id="@+id/check_box_all"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_seat_group_name"
+                app:layout_constraintStart_toStartOf="@+id/text_view_seat_group_name"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_seat_group_name"
+                android:text="All"
+                android:enabled="@{group.selected}"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_seats_att"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/recycler_item_seat_att"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_seat_group_name"
+                app:layout_constraintTop_toBottomOf="@+id/check_box_all"
+                app:layout_constraintStart_toStartOf="@+id/text_view_seat_group_name"
+        />
+
+    </LinearLayout>
+</layout>

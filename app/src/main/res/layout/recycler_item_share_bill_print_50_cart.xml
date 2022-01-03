@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="cartProductModel" type="com.rsl.youresto.data.cart.models.CartProductModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+        <LinearLayout
+                android:id="@+id/linear_layout_ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                    android:id="@+id/text_view_product_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@{cartProductModel.MProductName}"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+                    tools:text="Products" />
+
+            <TextView
+                    android:id="@+id/text_view_quantity_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:text="@{String.valueOf(cartProductModel.MProductQuantity)}"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+                    tools:text="QTY" />
+
+            <TextView
+                    android:id="@+id/text_view_price_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.4"
+                    android:gravity="center"
+                    android:text='@{String.format("%.2f",cartProductModel.MProductUnitPrice)}'
+                    android:textSize="12sp"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+                    tools:text="Price" />
+
+            <TextView
+                    android:id="@+id/text_view_total_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.4"
+                    android:gravity="center"
+                    android:text='@{String.format("%.2f",cartProductModel.MProductTotalPrice)}'
+                    android:textSize="12sp"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+                    tools:text="Total" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_ingredients_main_bill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear_layout_ingredients" />
+
+        <LinearLayout
+                android:id="@+id/linear_layout_special_instruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_view_ingredients_main_bill">
+
+            <TextView
+                    android:id="@+id/text_view_special_instruction_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="italic"
+                    tools:text="Type name" />
+
+            <TextView
+                    android:id="@+id/text_view_special_instruction_qty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:textColor="@color/colorBlack" />
+
+            <TextView
+                    android:id="@+id/text_view_special_instruction_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="1.00" />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="center" />
+
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/text_view_seats_main_bill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:textSize="12sp"
+                android:textColor="@color/colorBlack"
+                app:layout_constraintStart_toStartOf="@+id/recycler_view_ingredients_main_bill"
+                app:layout_constraintTop_toBottomOf="@+id/linear_layout_special_instruction"
+                tools:text="(S1, S2)" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

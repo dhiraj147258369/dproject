@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/printer_settings_dialog_nav"
+    app:startDestination="@id/selectPrinterFragment2">
+
+    <fragment
+        android:id="@+id/selectPrinterFragment2"
+        android:name="com.rsl.youresto.ui.main_screen.app_settings.printer_settings.SelectPrinterFragment"
+        android:label="SelectPrinterFragment" />
+</navigation>

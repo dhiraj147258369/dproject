@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_cash_payment"
+        android:title="Cash"
+        android:icon="@drawable/ic_cash_white"/>
+
+    <item android:id="@+id/menu_card_payment"
+          android:title="Card"
+          android:icon="@drawable/ic_credit_card_white"/>
+
+    <item android:id="@+id/menu_wallet_payment"
+          android:title="Wallet"
+          android:icon="@drawable/ic_wallet_white"/>
+
+    <item android:id="@+id/menu_tip_payment"
+          android:title="Tip"
+          android:icon="@drawable/ic_bill"/>
+
+</menu>

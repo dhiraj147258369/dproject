@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.rsl.youresto.R"/>
+        <import type="androidx.core.content.ContextCompat"/>
+        <variable name="seat" type="com.rsl.youresto.data.tables.models.LocalTableSeatModel"/>
+        <variable name="seatAdapter"
+                  type="com.rsl.youresto.ui.main_screen.tables_and_tabs.seat_selection.TableSeatRecyclerAdapter"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="41dp"
+        android:layout_height="46dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/background_white_border_black"
+        android:onClick="@{v -> seatAdapter.onSeatClicked(seat)}"
+        android:padding="1dp">
+
+        <TextView
+                android:id="@+id/text_view_guest_no"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
+                android:textColor="@{seat.selected ? ContextCompat.getColor(context, R.color.colorWhite) : ContextCompat.getColor(context, R.color.colorBlack)}"
+                android:text="@{String.valueOf(seat.MSeatNO)}"
+                app:backgroundResource="@{seat.mGroup.equals(`A`) ? R.color.colorPrimary : seat.mGroup.equals(`B`) ? R.color.colorPrimaryDark : seat.mGroup.equals(`C`) ? R.color.colorLightBlue : seat.mGroup.equals(`D`) ? R.color.colorRed : seat.mGroup.equals(`E`) ? R.color.colorGreen : R.color.colorWhite}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

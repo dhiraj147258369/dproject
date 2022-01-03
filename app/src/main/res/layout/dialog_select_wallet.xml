@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="34dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingTop="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="44dp">
+
+            <TextView
+                    android:id="@+id/text_view_select_wallet_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Wallet"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+            <Button
+                    android:id="@+id/button_yoyo_wallet"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:background="@drawable/yoyo"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_select_wallet_label"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            <Button
+                    android:id="@+id/button_paytm_wallet"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:layout_marginStart="24dp"
+                    android:background="@drawable/paytm_wallet"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_select_wallet_label"
+                    app:layout_constraintStart_toEndOf="@+id/button_yoyo_wallet"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

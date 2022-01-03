@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="report" type="com.rsl.youresto.data.database_download.models.ReportModel"/>
+        <variable name="adapter" type="com.rsl.youresto.ui.main_screen.order_history.order_history_list.OrderHistoryListAdapter"/>
+    </data>
+    <LinearLayout
+            android:id="@+id/linear_layout_order_history"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{v -> adapter.onOrderClick(report)}"
+            android:layout_marginTop="4dp">
+
+        <TextView
+                android:id="@+id/text_view_order_no"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                tools:text="2019051101"
+                android:text="@{report.MCartNO}"
+                android:textColor="@color/colorBlack"
+                android:background="@color/colorWhite"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+        <TextView
+                android:id="@+id/text_view_user"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:gravity="center"
+                android:text="@{report.MServerName}"
+                android:background="@color/colorWhite"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:text="Vishal"
+                android:layout_weight="1"/>
+
+        <TextView
+                android:id="@+id/text_view_time"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                tools:text="11-05-2019 15:30"
+                android:background="@color/colorWhite"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+    </LinearLayout>
+</layout>

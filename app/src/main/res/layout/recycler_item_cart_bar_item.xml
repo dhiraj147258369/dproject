@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="cartBarModel" type="com.rsl.youresto.data.main_product.models.CartBarModel" />
+        <variable name="adapter" type="com.rsl.youresto.ui.main_screen.main_product_flow.CartBarGroupAdapter" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="@{v -> adapter.onGroupClicked(cartBarModel)}">
+
+        <View
+                android:id="@+id/view_vertical_line"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/colorWhite"
+                app:layout_constraintTop_toTopOf="@+id/text_view_cart_count"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_cart_count"/>
+
+        <TextView
+                android:id="@+id/text_view_group_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="@+id/text_view_cart_count"
+                app:layout_constraintStart_toEndOf="@+id/view_vertical_line"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_cart_count"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:text="@{cartBarModel.MGroupName}"
+                tools:text="G1"/>
+
+        <TextView
+                android:id="@+id/text_view_cart_count"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_view_group_name"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/shape_round_white_background"
+                android:text="@{String.valueOf(cartBarModel.MCartItemsCount)}"
+                tools:text="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

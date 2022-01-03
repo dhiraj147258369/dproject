@@ -1,0 +1,135 @@
+<resources>
+
+    <!--App Level-->
+    <string name="app_name">YouCloudResto</string>
+    <!--    <string name="string_currency_sign">\u00a3</string>-->
+    <string name="string_currency_sign">₹</string>
+
+    <!--content description for imageViews-->
+    <string name="orda_pos_logo_description">orda_pos_logo</string>
+
+    <!--Main Login Screen-->
+    <string name="orda_pos_continue_to_login_label">
+        Please login to your business\' YouCloudResto account to continue
+    </string>
+    <string name="login_text_view_label">login</string>
+    <string name="login_to_ordapos_label">Login to YouCloudResto</string>
+    <string name="login_info_text">Please enter your username and password to continue</string>
+    <string name="str_main_login_proceed">PROCEED</string>
+    <string name="str_username">Username</string>
+    <string name="str_password">Password</string>
+    <string name="str_forgot_password">Forgot Password?</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--Database Download-->
+    <string name="str_downloading_necessary_data">Downloading necessary data</string>
+    <string name="string_select_location_label">Select Location</string>
+    <string name="string_selected_location_label">Selected Location</string>
+    <string name="str_forgot_pin">Forgot Pin?</string>
+    <string name="str_change_location_label">Change Location</string>
+
+
+    <!--Drawer Menu-->
+    <string name="drawer_menu_tables_and_tab">Tables and Tab</string>
+    <string name="drawer_menu_delivery">Delivery</string>
+    <string name="drawer_menu_quick_service">Quick Service</string>
+    <string name="drawer_menu_pending_orders">Pending Orders</string>
+    <string name="drawer_menu_favorite_items">Favorite Items</string>
+    <string name="app_settings">App Settings</string>
+    <string name="reset_terminal">Reset Terminal</string>
+    <string name="reports">Reports</string>
+    <string name="manager">Manager</string>
+    <string name="String_end_of_shift_navigation">End of Shift</string>
+    <string name="str_search_tables">Search Tables</string>
+
+    <!--Seat Selection Dialog-->
+    <string name="str_add_group_to_table">Add Group</string>
+    <string name="str_select_seats">Select seats:</string>
+    <string name="string_select_all_checkbox">Select All</string>
+
+    <!--Main Product Fragment-->
+    <string name="string_guests_label">Guests</string>
+    <string name="string_search_products_edit_text_hint">Search Products</string>
+
+    <!--Settings-->
+    <string name="string_auto_logout_label">Auto Logout</string>
+    <string name="string_seat_selection_label">Seat Selection</string>
+    <string name="string_printer_settings_label">Printer Settings</string>
+    <string name="string_bill_printer_label">Bill Printer</string>
+    <string name="string_reset_label">Reset</string>
+    <string name="enter_ip_of_a_network_printer">Enter IP of a network printer</string>
+    <string name="_000">000</string>
+    <string name="_0000">0000</string>
+    <string name="enter_port_no">Enter port no</string>
+    <string name="set">Set</string>
+    <string name="logwood_server_ip_address">Logwood Server IP Address</string>
+    <string name="skip">Skip</string>
+    <string name="save_and_exit">Save and Exit</string>
+    <string name="placeholder_image">PLACEHOLDER_IMAGE</string>
+
+    <!--Add To Tab-->
+    <string name="string_enter_other_special_instructions">Enter other special instructions here</string>
+    <string name="string_price_edit_text_hint">Price</string>
+    <string name="string_add_to_tab_message">Our house special that is meant to fill you up without making you feel
+        bloated.
+    </string>
+    <string name="string_cancel">Cancel</string>
+    <string name="string_add_to_tab">Add To Tab</string>
+    <string name="string_select_seats">Select seats:</string>
+    <string name="print_bill">Print Bill</string>
+    <string name="done">Done</string>
+    <string name="checkout">Checkout</string>
+    <string name="move_table">Move Table</string>
+    <string name="clear_table">Clear Table</string>
+    <string name="try_again">Try Again</string>
+    <string name="oops_network_error_please_try_again">Oops! Network Error. Please Try Again.</string>
+    <string name="completing_transaction">Completing Transaction...</string>
+    <string name="settle_later">Settle Later</string>
+    <string name="proceed">Proceed</string>
+    <string name="select_all">Select All</string>
+    <string name="select_seats_for_checkout">Select seats for checkout:</string>
+
+    <!--Modifiers-->
+    <string name="is_compulsory">
+        <font color="#D50000">*</font>
+    </string>
+    <string name="details">Details</string>
+    <string name="payment">Payment</string>
+    <string name="discount">Discount</string>
+    <string name="print">Print</string>
+    <string name="close">Close</string>
+    <string name="printing">Printing</string>
+    <string name="update_terminal">Update Terminal</string>
+    <string name="order_history">Order History</string>
+    <string name="search_order_id">Search Order ID</string>
+    <string name="search_order_no">Search Order NO</string>
+    <string name="order_no">Order NO</string>
+    <string name="str_user">User</string>
+    <string name="date_time">Date/Time</string>
+    <string name="update_on_server">Update on server</string>
+
+    <!-- Toast Messages-->
+
+    <string name="network_error">Please check your network connection and try again!</string>
+
+
+    <!--instruction-->
+    <string name="toast_1">Transaction print,use the AIDL mode!</string>
+    <string name="toast_2">The service has been disconnected!</string>
+    <string name="toast_3">Bluetooth device is unavailable</string>
+    <string name="toast_4">Bluetooth device not detected. Please open Bluetooth!</string>
+    <string name="toast_5">Not Found InnterPrinter!</string>
+    <string name="toast_6">Bluetooth connect failed!</string>
+    <string name="toast_7"> Only a single Qr code is printed for the AIDL mode</string>
+    <string name="toast_8">Now QrCode size must be less than 7!</string>
+    <string name="toast_9">BarCode type or conent error!</string>
+    <string name="general_settings">General Settings</string>
+    <string name="printer_settings">Printer Settings</string>
+
+
+    <string name="no_internet_connected">Please check your internet connection</string>
+    <string name="general_error">Something went wrong, please try again</string>
+
+</resources>

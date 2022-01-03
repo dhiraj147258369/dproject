@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_name_long">50dp</dimen>
+    <dimen name="dimen_name_short">30dp</dimen>
+    <dimen name="dimen_table_min">120dp</dimen>
+    <dimen name="dimen_table_max">0dp</dimen>
+</resources>

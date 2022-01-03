@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="guest" type="Integer"/>
+        <variable name="adapter" type="com.rsl.youresto.ui.main_screen.tables_and_tabs.seat_selection.GuestCountSelectionAdapter"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+        <TextView
+                android:id="@+id/text_view_occupied_chairs"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/background_white_border_black"
+                android:gravity="center"
+                android:onClick="@{v -> adapter.onGuestCountClick(guest)}"
+                android:text="@{String.valueOf(guest)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorBlack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="12" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

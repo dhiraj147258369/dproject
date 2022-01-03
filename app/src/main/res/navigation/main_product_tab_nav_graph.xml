@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_product_tab_nav_graph"
+    app:startDestination="@+id/mainProductFragment2">
+
+    <fragment
+        android:id="@+id/mainProductFragment2"
+        android:name="com.rsl.youresto.ui.main_screen.main_product_flow.MainProductFragment"
+        android:label="fragment_main_product"
+        tools:layout="@layout/fragment_main_product"/>
+
+</navigation>

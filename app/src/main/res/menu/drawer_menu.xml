@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+            android:id="@+id/drawer_group"
+            android:checkableBehavior="single">
+        <item
+                android:id="@+id/navigate_tables_tab"
+                android:icon="@drawable/table"
+                android:title="@string/drawer_menu_tables_and_tab"/>
+
+        <item
+                android:id="@+id/navigate_quick_service"
+                android:icon="@drawable/ic_quick_service"
+                android:title="@string/drawer_menu_quick_service"/>
+
+        <item
+                android:id="@+id/navigate_pending_orders"
+                android:icon="@drawable/ic_pending_order"
+                android:title="@string/drawer_menu_pending_orders"/>
+
+        <item
+                android:id="@+id/navigate_order_history"
+                android:icon="@drawable/nav_past_orders"
+                android:title="@string/order_history"/>
+
+        <item
+                android:id="@+id/navigate_fav_item_selection"
+                android:icon="@drawable/ic_favorite_items"
+                android:title="@string/drawer_menu_favorite_items"/>
+        <!--<item-->
+        <!--android:id="@+id/navigate_manager"-->
+        <!--android:icon="@drawable/nav_reports"-->
+        <!--android:title="@string/manager" />-->
+        <item
+                android:id="@+id/navigate_settings"
+                android:icon="@drawable/nav_update_database"
+                android:title="@string/app_settings"/>
+<!--        <item-->
+<!--                android:id="@+id/navigate_end_shift"-->
+<!--                android:icon="@drawable/ic_end_shift"-->
+<!--                android:title="@string/String_end_of_shift_navigation"/>-->
+
+        <item
+                android:id="@+id/navigate_update_terminal"
+                android:icon="@drawable/ic_update_terminal"
+                android:title="@string/update_terminal"/>
+
+        <item
+                android:id="@+id/navigate_logout"
+                android:icon="@drawable/ic_reset"
+                android:title="@string/reset_terminal"/>
+    </group>
+</menu>

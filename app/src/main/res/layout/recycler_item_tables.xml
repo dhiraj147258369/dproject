@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="tablesModel"
+            type="com.rsl.youresto.data.database_download.models.TablesModel"/>
+        <variable name="tableAdapter"
+                  type="com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.TableRecyclerAdapter"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout_table_item"
+        android:layout_width="match_parent"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:onClick="@{v -> tableAdapter.onTableClicked(tablesModel)}"
+        android:background="@color/colorWhite"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_view_table_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/img_tables"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_table_name"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:text="@{String.valueOf(tablesModel.MTableID)}"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view_table_image"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_table_amount"
+            app:layout_constraintStart_toEndOf="@+id/image_view_table_image"
+            app:layout_constraintTop_toTopOf="@+id/image_view_table_image"
+            tools:text="Table 1" />
+
+        <TextView
+            android:id="@+id/text_view_table_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@{tablesModel.MTableNoOfOccupiedChairs  > 0 ? String.valueOf(`Occupied`):String.valueOf(`Empty`)}"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view_table_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_view_table_image"
+            tools:text="Empty" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
