@@ -6,7 +6,6 @@ import com.rsl.youresto.data.cart.CartDataSource
 import com.rsl.youresto.data.checkout.CheckoutDataSource
 import com.rsl.youresto.data.database_download.network.DatabaseDownloadDataSource
 import com.rsl.youresto.data.favorite_items.network.FavoriteItemsNetworkDataSource
-import com.rsl.youresto.data.server_login.ServerLoginDataSource
 import com.rsl.youresto.data.tables.TableDataSource
 import com.rsl.youresto.repositories.*
 import com.rsl.youresto.ui.database_download.DatabaseDownloadViewModelFactory
@@ -17,7 +16,6 @@ import com.rsl.youresto.ui.main_screen.favorite_items.FavoriteItemsViewModelFact
 import com.rsl.youresto.ui.main_screen.main_product_flow.MainProductViewModelFactory
 import com.rsl.youresto.ui.main_screen.order_history.OrderHistoryViewModelFactory
 import com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.TablesViewModelFactory
-import com.rsl.youresto.ui.server_login.ServerLoginViewModelFactory
 
 object InjectorUtils {
     // This will be called from QuotesActivity
@@ -47,15 +45,6 @@ object InjectorUtils {
             DatabaseDownloadRepository.getInstance(database!!.databaseDownloadDao(), databaseDownloadDataSource, appExecutors)
 
         return DatabaseDownloadViewModelFactory(databaseDownloadRepository)
-    }
-
-    fun provideServerLoginViewModelFactory(context: Context) : ServerLoginViewModelFactory{
-        val database: AppDatabase? = AppDatabase.getInstance(context)
-        val  serverLoginDataSource: ServerLoginDataSource? = ServerLoginDataSource.getInstance(context)
-
-        val serverLoginRepository = ServerLoginRepository.getInstance(database!!.serverLoginDao(), serverLoginDataSource)
-
-        return ServerLoginViewModelFactory(serverLoginRepository)
     }
 
     fun provideTablesViewModelFactory(context: Context) : TablesViewModelFactory {

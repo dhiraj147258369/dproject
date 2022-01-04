@@ -1,9 +1,7 @@
 package com.rsl.youresto.ui.server_login
 
 
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,37 +10,27 @@ import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.rsl.youresto.R
 import com.rsl.youresto.data.database_download.models.LocationModel
 import com.rsl.youresto.data.database_download.models.ServerModel
-import com.rsl.youresto.data.server_login.models.ServerShiftModel
 import com.rsl.youresto.databinding.FragmentServerLoginBinding
 import com.rsl.youresto.ui.main_screen.MainScreenActivity
-import com.rsl.youresto.utils.AppConstants.API_LOG_IN
-import com.rsl.youresto.utils.AppConstants.API_LOG_OUT
-import com.rsl.youresto.utils.AppConstants.LOGGED_IN_SERVER_ID
-import com.rsl.youresto.utils.AppConstants.LOGGED_IN_SERVER_NAME
-import com.rsl.youresto.utils.AppConstants.MY_PREFERENCES
-import com.rsl.youresto.utils.AppConstants.SELECTED_LOCATION_ID
-import com.rsl.youresto.utils.AppConstants.SELECTED_LOCATION_NAME
-import com.rsl.youresto.utils.DateUtils
-import com.rsl.youresto.utils.InjectorUtils
+import com.rsl.youresto.utils.AppPreferences
 import com.rsl.youresto.utils.custom_views.CustomToast
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ServerLoginFragment : Fragment() {
 
     private lateinit var mBinding: FragmentServerLoginBinding
-    private var mServerList: ArrayList<ServerModel>? = null
-    private lateinit var mSharedPrefs: SharedPreferences
-    private var mViewModel: ServerLoginViewModel? = null
+    private var serverList: ArrayList<ServerModel> = ArrayList()
+    private val prefs: AppPreferences by inject()
+
+    private val viewModel: ServerLoginViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +43,6 @@ class ServerLoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mSharedPrefs = requireActivity().getSharedPreferences(MY_PREFERENCES, MODE_PRIVATE)
 
         initViews()
         setLocation()
@@ -68,7 +55,7 @@ class ServerLoginFragment : Fragment() {
      * for the first time
      */
     private fun setLocation() {
-        mBinding.textViewSelectedLocation.text = mSharedPrefs.getString(SELECTED_LOCATION_NAME, "")
+        mBinding.textViewSelectedLocation.text = prefs.getSelectedLocationName()
     }
 
     /**
@@ -76,12 +63,10 @@ class ServerLoginFragment : Fragment() {
      * which will contain all the necessary info related to users like ids and passwords
      */
     private fun getServers() {
-        mServerList = ArrayList()
-        val mFactory = InjectorUtils.provideServerLoginViewModelFactory(requireActivity().applicationContext)
-        mViewModel = ViewModelProviders.of(this, mFactory).get(ServerLoginViewModel::class.java)
+        serverList = ArrayList()
 
-        mViewModel!!.getServers().observe(viewLifecycleOwner, {
-            mServerList?.addAll(it)
+        viewModel.getServers().observe(viewLifecycleOwner, {
+            serverList.addAll(it)
         })
     }
 
@@ -99,24 +84,13 @@ class ServerLoginFragment : Fragment() {
             when (it.length) {
                 4 -> {
                     mBinding.progressbarServerLogin.visibility = VISIBLE
-                    if (mServerList!!.size > 0) {
+                    if (serverList.size > 0) {
 
-                        loop@ for (i in 0 until mServerList!!.size) {
+                        loop@ for (i in 0 until serverList.size) {
                             when (it) {
-                                mServerList!![i].mServerPassword -> {
+                                serverList[i].mServerPassword -> {
                                     mPassCodeFlag = true
-                                    loginIntent(mServerList!![i])
-//                                    Network.isNetworkAvailableWithInternetAccess(requireActivity()).observe(viewLifecycleOwner, { hasNetwork ->
-//                                        when {
-//                                            hasNetwork -> checkServerShiftDetails(mServerList!![i])
-//                                            else -> {
-//                                                CustomToast.makeText(requireActivity(), getString(R.string.network_error), Toast.LENGTH_SHORT).show()
-//
-//                                                mBinding.progressbarServerLogin.visibility = GONE
-//                                                mBinding.passCodeView.setError(true)
-//                                            }
-//                                        }
-//                                    })
+                                    loginIntent(serverList[i])
                                     break@loop
                                 }
                                 "0000" -> {
@@ -131,8 +105,6 @@ class ServerLoginFragment : Fragment() {
                                     mBinding.passCodeView.setError(true)
                                     Handler(Looper.getMainLooper()).postDelayed({ mOverrideLogin = false }, 4000)
                                     break@loop
-
-
                                 }
                                 else -> mPassCodeFlag = false
                             }
@@ -158,162 +130,15 @@ class ServerLoginFragment : Fragment() {
         }
     }
 
-    private var mEndTime = false
-
-    private fun checkServerShiftDetails(mServer: ServerModel) {
-        val mServerData: LiveData<List<ServerShiftModel>> =
-            mViewModel!!.getServerShiftDetails(
-                mServer.mServerID, DateUtils.getDateForShift(false),
-                DateUtils.getDateForShift(true)
-            )
-
-        mServerData.observe(viewLifecycleOwner, {
-            when {
-                mOverrideLogin -> {
-                    loginIntent(mServer)
-                    mPassCodeFlag = true
-                }
-                else -> {
-
-                    for (element in it) {
-                        if (element.mEndTimeStamp == null) {
-                            mEndTime = true
-                            break
-                        } else {
-                            mEndTime = false
-                        }
-                    }
-
-                    if (mEndTime) {
-                        //completed: check login
-                        val mLoginData = checkLogin(mServer.mServerID)
-
-                        mLoginData.observe(viewLifecycleOwner, { mLoginFlag ->
-                            if (mLoginFlag) {
-                                submitLoginDetails(mServer)
-
-                                loginIntent(mServer)
-                            } else {
-                                CustomToast.makeText(
-                                    requireActivity(),
-                                    "You're logged in from another device \n" + "Please log out from that device first",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                mBinding.progressbarServerLogin.visibility = GONE
-                                mBinding.passCodeView.setError(true)
-                            }
-
-                            mLoginData.removeObservers(this)
-                        })
-                    } else {
-                        mBinding.progressbarServerLogin.visibility = GONE
-                        moreShiftDialog(mServer)
-                    }
-
-                }
-            }
-            mServerData.removeObservers(this)
-        })
-
-    }
-
-    private fun submitLoginDetails(mServer: ServerModel) {
-        mViewModel!!.submitLoginDetails(mServer.mServerID, mServer.mServerName, API_LOG_IN)
-    }
-
-    private val mServerLoginData = MutableLiveData<Boolean>()
-
-    private fun checkLogin(mServerID: String): LiveData<Boolean> {
-
-        mViewModel!!.getServerLoginDetails(mServerID).observe(viewLifecycleOwner, {
-            when {
-                it != null && it.mLogInFlag == API_LOG_OUT -> mServerLoginData.postValue(true)
-                it != null && it.mLogInFlag == API_LOG_IN -> mServerLoginData.postValue(false)
-                it == null -> mServerLoginData.postValue(false)
-            }
-        })
-
-        return mServerLoginData
-    }
-
     private fun loginIntent(mServer: ServerModel) {
         mBinding.progressbarServerLogin.visibility = GONE
         val mMainScreenIntent = Intent(activity, MainScreenActivity::class.java)
 
-        val mEditor = mSharedPrefs.edit()
-        mEditor.putString(LOGGED_IN_SERVER_ID, mServer.mServerID)
-        mEditor.putString(LOGGED_IN_SERVER_NAME, mServer.mServerName)
-        mEditor.apply()
+        prefs.setServerDetails(mServer)
 
         mMainScreenIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(mMainScreenIntent)
         requireActivity().finish()
-    }
-
-    private fun moreShiftDialog(mServer: ServerModel) {
-
-        //completed: moreShiftDialog
-
-        val shiftCountData = mViewModel!!.getShiftCount(
-            mServer.mServerID,
-            DateUtils.getDateForShift(false),
-            DateUtils.getDateForShift(true)
-        )
-
-        shiftCountData.observe(viewLifecycleOwner, { mShiftCount ->
-            if (mShiftCount != null) {
-                val builder = AlertDialog.Builder(requireActivity())
-                if (mShiftCount > 1)
-                    builder.setMessage(
-                        "You have already completed " + mShiftCount
-                                + " Shifts, do you really want to start another one?"
-                    )
-                else
-                    builder.setMessage(
-                        ("You have already completed " + mShiftCount
-                                + " Shift, do you really want to start another one?")
-                    )
-
-                builder.setTitle("Another Shift?")
-                builder.setPositiveButton("Yes, I wanna work!") { dialog, _ ->
-                    startShiftAgain(mServer)
-                    dialog.dismiss()
-                }
-                builder.setNegativeButton("No, I wanna rest!") { dialog, _ ->
-                    dialog.dismiss()
-                    mBinding.passCodeView.setError(true)
-                }
-
-                builder.create().show()
-
-                shiftCountData.removeObservers(this)
-            }
-        })
-    }
-
-    private fun startShiftAgain(mServer: ServerModel) {
-
-        checkLogin(mServer.mServerID).observe(viewLifecycleOwner, { serverLogin ->
-
-            if (serverLogin != null && serverLogin) {
-
-                mViewModel!!.startShift(mServer.mServerID).observe(viewLifecycleOwner, { integer ->
-                    if (integer != null && integer == 1) {
-                        submitLoginDetails(mServer)
-
-                        loginIntent(mServer)
-                    }
-                })
-
-            } else {
-                CustomToast.makeText(
-                    requireActivity(),
-                    "You're logged in from another device \n" + "Please log out from that device first",
-                    Toast.LENGTH_SHORT
-                ).show()
-                mBinding.passCodeView.setError(true)
-            }
-        })
     }
 
     private fun initViews() {
@@ -325,11 +150,6 @@ class ServerLoginFragment : Fragment() {
     }
 
     private fun changeLocation() {
-        val mEditor: SharedPreferences.Editor = mSharedPrefs.edit()
-        mEditor.putString(SELECTED_LOCATION_NAME, "")
-        mEditor.putString(SELECTED_LOCATION_ID, "")
-        mEditor.apply()
-
         findNavController().navigate(R.id.action_serverLoginFragment_to_locationFragment)
     }
 

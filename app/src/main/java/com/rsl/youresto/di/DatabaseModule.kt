@@ -12,4 +12,5 @@ val databaseModule = module {
     single { provideAppDataBase(get()).cartDao() }
     single { provideAppDataBase(get()).orderHistoryDao() }
     single { provideAppDataBase(get()).favoriteItemsDao() }
+    single { provideAppDataBase(get()).serverLoginDao() }
 }

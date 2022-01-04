@@ -51,12 +51,13 @@ import com.rsl.youresto.utils.custom_dialog.AlertDialogEvent
 import com.rsl.youresto.utils.custom_dialog.CustomAlertDialogFragment
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @SuppressLint("LogNotTimber")
 class PendingOrderFragment : Fragment()  {
 
     private lateinit var mBinding: FragmentPendingOrderBinding
-    private lateinit var mServerLoginViewModel: ServerLoginViewModel
+    private val serverViewModel: ServerLoginViewModel by viewModel()
     private lateinit var mCartViewModel: CartViewModel
 
     private var mSharedPref: SharedPreferences? = null
@@ -83,9 +84,6 @@ class PendingOrderFragment : Fragment()  {
         val mView = mBinding.root
 
         mSharedPref = requireActivity().getSharedPreferences(AppConstants.MY_PREFERENCES, Context.MODE_PRIVATE)
-
-        val factory = InjectorUtils.provideServerLoginViewModelFactory(requireActivity().applicationContext)
-        mServerLoginViewModel = ViewModelProviders.of(this, factory).get(ServerLoginViewModel::class.java)
 
         val cartFactory: CartViewModelFactory = InjectorUtils.provideCartViewModelFactory(requireActivity().applicationContext)
         mCartViewModel = ViewModelProviders.of(this, cartFactory).get(CartViewModel::class.java)
@@ -173,7 +171,7 @@ class PendingOrderFragment : Fragment()  {
         mLocationModelList!!.add(LocationModel("","ALL", "1"))
         mLocationList!!.add("ALL")
 
-        mServerLoginViewModel.getLocations().observe(viewLifecycleOwner, {
+        serverViewModel.getLocations().observe(viewLifecycleOwner, {
             when {
                 it.isNotEmpty() -> {
                     for (i in it.indices) {
@@ -225,7 +223,7 @@ class PendingOrderFragment : Fragment()  {
         mServerModelList!!.add(ServerModel("","ALL", "", "1", ArrayList()))
         mServerList!!.add("ALL")
 
-        mServerLoginViewModel.getServers().observe(viewLifecycleOwner, {
+        serverViewModel.getServers().observe(viewLifecycleOwner, {
             when {
                 it.isNotEmpty() -> {
                     for(i in it.indices) {

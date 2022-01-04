@@ -52,7 +52,7 @@ class OrderHistoryListFragment : Fragment() {
     private lateinit var mBinding: FragmentOrderHistoryListBinding
     private lateinit var mOrderHistoryViewModel: OrderHistoryViewModel
     private lateinit var mDownloadDataViewModel: DatabaseDownloadViewModel
-    private lateinit var mServerLoginViewModel: ServerLoginViewModel
+    private val serverViewModel: ServerLoginViewModel by viewModel()
 
     private var mFromDateInMillis: Long = 0
     private var mToDateInMillis: Long = 0
@@ -76,9 +76,6 @@ class OrderHistoryListFragment : Fragment() {
 
         val factory = InjectorUtils.provideOrderHistoryViewModelFactory(requireActivity())
         mOrderHistoryViewModel = ViewModelProviders.of(this, factory).get(OrderHistoryViewModel::class.java)
-
-        val serverFactory = InjectorUtils.provideServerLoginViewModelFactory(requireActivity().applicationContext)
-        mServerLoginViewModel = ViewModelProviders.of(this, serverFactory).get(ServerLoginViewModel::class.java)
 
         val downloadFactory: DatabaseDownloadViewModelFactory =
             InjectorUtils.provideDatabaseDownloadViewModelFactory(requireActivity())
@@ -435,7 +432,7 @@ class OrderHistoryListFragment : Fragment() {
         mServerModelList!!.add(ServerModel("", "ALL", "1", "", ArrayList()))
         mServerList!!.add("ALL")
 
-        mServerLoginViewModel.getServers().observe(viewLifecycleOwner, {
+        serverViewModel.getServers().observe(viewLifecycleOwner, {
             when {
                 it.isNotEmpty() -> {
                     for (i in it.indices) {

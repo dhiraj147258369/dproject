@@ -56,8 +56,11 @@ class PrinterUtil(var mContext: Activity) {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
 
         if (mBluetoothAdapter == null) {
-            CustomToast.makeText(mContext, "No bluetooth device paired", Toast.LENGTH_SHORT).show()
-            mContext.finish()
+            mContext.runOnUiThread {
+                CustomToast.makeText(mContext, "No bluetooth device paired", Toast.LENGTH_SHORT).show()
+                mContext.finish()
+            }
+            return 0
         }
 
         if (!mBluetoothAdapter!!.isEnabled) {

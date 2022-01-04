@@ -6,7 +6,6 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.rsl.youresto.ui.main_login.MainLoginActivity
-import com.rsl.youresto.utils.services.CheckAppState
 
 class SplashActivity : AppCompatActivity() {
 
@@ -20,7 +19,5 @@ class SplashActivity : AppCompatActivity() {
             startActivity(mainIntent)
             finish()
         }, 2000)
-
-        startService(Intent(this@SplashActivity, CheckAppState::class.java))
     }
 }

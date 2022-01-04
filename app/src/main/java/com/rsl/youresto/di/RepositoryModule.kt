@@ -10,4 +10,5 @@ val repoModule = module {
     single { NewCartRepository(get(), get()) }
     single { NewOrdersRepository(get(), get()) }
     single { NewFavoriteItemRepository(get(), get()) }
+    single { ServerLoginRepository(get()) }
 }

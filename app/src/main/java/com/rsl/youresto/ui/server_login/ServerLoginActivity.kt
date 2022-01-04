@@ -1,6 +1,5 @@
 package com.rsl.youresto.ui.server_login
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.rsl.youresto.R
 import com.rsl.youresto.utils.custom_views.CustomToast
-import com.rsl.youresto.utils.services.ServerLoginDetailService
 
 class ServerLoginActivity : AppCompatActivity() {
 
@@ -21,8 +19,6 @@ class ServerLoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_server_login)
 
         isTablet = resources.getBoolean(R.bool.isTablet)
-
-        startService(Intent(this, ServerLoginDetailService::class.java))
     }
 
     private var doubleBackToExitPressedOnce = false
@@ -38,7 +34,7 @@ class ServerLoginActivity : AppCompatActivity() {
         }
     }
 
-    fun showBackToast(){
+    private fun showBackToast(){
         if (doubleBackToExitPressedOnce) finish()
         this.doubleBackToExitPressedOnce = true
         CustomToast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()

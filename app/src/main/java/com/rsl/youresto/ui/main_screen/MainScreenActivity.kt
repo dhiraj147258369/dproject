@@ -41,7 +41,6 @@ import com.rsl.youresto.ui.main_screen.checkout.payment_options.wallet.QRCodeSca
 import com.rsl.youresto.ui.main_screen.checkout.seats_checkout.SeatsCheckoutFragment
 import com.rsl.youresto.ui.main_screen.main_product_flow.event.MainProductStoreIDEvent
 import com.rsl.youresto.ui.server_login.ServerLoginActivity
-import com.rsl.youresto.ui.server_login.ServerLoginViewModel
 import com.rsl.youresto.utils.AppConstants.FROM_MAIN_SCREEN
 import com.rsl.youresto.utils.AppConstants.GROUP_NAME
 import com.rsl.youresto.utils.AppConstants.INTENT_FROM
@@ -68,7 +67,6 @@ class MainScreenActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainScreenBinding
     private lateinit var mSharedPrefs: SharedPreferences
-    private lateinit var mViewModel: ServerLoginViewModel
     private lateinit var mCheckoutViewModel: CheckoutViewModel
     private lateinit var mDatabaseDownloadViewModel: DatabaseDownloadViewModel
 
@@ -83,9 +81,6 @@ class MainScreenActivity : AppCompatActivity() {
         isTablet = resources.getBoolean(R.bool.isTablet)
 
         mSharedPrefs = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE)
-
-        val mFactory = InjectorUtils.provideServerLoginViewModelFactory(this)
-        mViewModel = ViewModelProviders.of(this, mFactory).get(ServerLoginViewModel::class.java)
 
         val checkoutFactory: CheckoutViewModelFactory = InjectorUtils.provideCheckoutViewModelFactory(this)
         mCheckoutViewModel = ViewModelProviders.of(this, checkoutFactory).get(CheckoutViewModel::class.java)
