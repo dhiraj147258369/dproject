@@ -263,14 +263,14 @@
             <ImageView
                 android:id="@+id/image_view_add_product"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:layout_height="40dp"
                 android:background="?android:attr/selectableItemBackground"
+                android:padding="4dp"
                 android:src="@drawable/ic_add_box_white_36dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/text_view_cart_total_cart_amount"
                 app:layout_constraintStart_toEndOf="@id/text_view_cart_order_no"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/text_view_cart_total_cart_amount"
@@ -288,13 +288,13 @@
             <ImageView
                 android:id="@+id/image_view_action"
                 android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:padding="8dp"
+                android:layout_height="40dp"
                 android:background="?android:attr/selectableItemBackground"
-                app:layout_constraintTop_toTopOf="parent"
+                android:padding="8dp"
+                android:src="@drawable/ic_arrow_top"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/ic_arrow_top"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -56,4 +56,37 @@
         <item name="colorControlHighlight">@color/colorPrimary</item>
     </style>
 
+    <style name="youresto_">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:letterSpacing">
+            0.03
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+    </style>
+
+
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabMinWidth">30dp</item>
+        <!-- <item name="tab_layout_height">@dimen/tab_layout_height</item>-->
+        <item name="tabPaddingStart">-20dp</item>
+        <item name="tabPaddingEnd">-20dp</item>
+
+        <item name="tabBackground">@drawable/tab_indicator_primary</item>
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+    </style>
+    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gray_light</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
 </resources>

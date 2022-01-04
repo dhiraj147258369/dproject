@@ -42,6 +42,7 @@ class QuickFavoriteProductAdapter(private val mProductList: ArrayList<FavoritePr
         holder.setProductModel(mProduct)
 
         holder.mBinding.textViewProductName.ellipsize = TextUtils.TruncateAt.MARQUEE
+        holder.mBinding.textViewProductName.isSingleLine = true
         holder.mBinding.textViewProductName.marqueeRepeatLimit = -1
         holder.mBinding.textViewProductName.isSelected = true
 

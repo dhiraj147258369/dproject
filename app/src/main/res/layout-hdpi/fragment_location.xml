@@ -31,20 +31,21 @@
                     android:paddingEnd="24dp"
                     android:paddingBottom="8dp">
 
-                <com.mikhaellopez.circularimageview.CircularImageView
-                        android:id="@+id/circular_image_view_terminal_logo"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_marginTop="8dp"
-                        android:scaleType="centerInside"
-                        app:civ_border_color="#EEEEEE"
-                        app:civ_border_width="4dp"
-                        app:civ_shadow="true"
-                        app:civ_shadow_color="@color/colorPrimary"
-                        app:civ_shadow_radius="10"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                <ImageView
+                    android:id="@+id/circular_image_view_terminal_logo"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="centerInside"
+                    app:civ_border_color="#EEEEEE"
+                    app:civ_border_width="4dp"
+                    app:civ_shadow="true"
+                    app:civ_shadow_color="@color/colorPrimary"
+                    app:civ_shadow_radius="10"
+                    android:src="@drawable/y_c_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                         android:id="@+id/text_view_select_location"

@@ -103,7 +103,7 @@ class FavoriteCategoryFragment : Fragment() {
                 }
             }
 
-            val spanCount = if (App.isTablet) 9 else 3
+            val spanCount = if (App.isTablet) 3 else 1
 
             mFavoriteCategoryAdapter = FavoriteCategoryItemsAdapter(requireActivity(), mProductList)
             mBinding.recyclerViewFavoriteCategory.layoutManager = GridLayoutManager(activity, spanCount)

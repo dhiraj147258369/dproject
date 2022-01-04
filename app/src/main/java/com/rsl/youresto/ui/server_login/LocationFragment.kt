@@ -55,7 +55,7 @@ class LocationFragment : Fragment() {
         mViewModel = ViewModelProviders.of(this, factory).get(ServerLoginViewModel::class.java)
 
         setLocations()
-        setRestaurantLOGO()
+//        setRestaurantLOGO()
     }
 
     private fun setLocations() {
@@ -76,7 +76,7 @@ class LocationFragment : Fragment() {
         if (!isTablet) {
             mBinding.textViewSelectLocation.setOnClickListener { findNavController().navigate(R.id.serverLoginFragment) }
         } else {
-            mBinding.textViewSelectLocation.isVisible = false
+            mBinding.textViewSelectLocation.isVisible = true
         }
     }
 

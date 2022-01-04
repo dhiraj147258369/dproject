@@ -41,28 +41,33 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray_very_light">
 
                     <TextView
                         android:id="@+id/text_view_printer_settings"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="0dp"
+
+                        android:gravity="center"
+                        android:background="@color/white"
                         android:text="@string/printer_settings"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:textColor="@color/colorBlack"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <CheckBox
                         android:id="@+id/checkbox_bill_printer"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="16dp"
                         android:gravity="start"
-                        android:paddingTop="4dp"
+                        android:paddingTop="0dp"
                         android:text="@string/string_bill_printer_label"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         app:layout_constraintEnd_toStartOf="@+id/linear_spinner1"
@@ -86,10 +91,11 @@
                         android:layout_marginEnd="4dp"
                         android:background="@drawable/background_white_border_black"
                         android:gravity="center"
-                        android:padding="8dp"
                         android:maxLines="3"
+                        android:padding="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/button_bluetooth_reset"
                         app:layout_constraintEnd_toStartOf="@+id/button_bluetooth_reset"
-                        app:layout_constraintTop_toTopOf="@+id/checkbox_bill_printer">
+                        app:layout_constraintTop_toTopOf="@+id/button_bluetooth_reset">
 
                         <Spinner
                             android:id="@+id/spinner_bill_paper_size"
@@ -105,6 +111,7 @@
                         android:id="@+id/button_bluetooth_reset"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
+                        android:layout_marginEnd="10dp"
                         android:background="@drawable/background_primary_without_border"
                         android:gravity="center"
                         android:text="@string/string_reset_label"
@@ -116,16 +123,16 @@
                     <View
                         android:id="@+id/horizontal_line_2"
                         android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
+                        android:layout_height="15dp"
                         android:layout_marginTop="16dp"
-                        android:background="#ffd300"
+                        android:background="#ffffff"
                         app:layout_constraintTop_toBottomOf="@+id/checkbox_bill_printer" />
 
 
                     <com.rsl.youresto.utils.NonScrollRecyclerView
                         android:id="@+id/recycler_view_kitchen_printers"
                         android:layout_width="0dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

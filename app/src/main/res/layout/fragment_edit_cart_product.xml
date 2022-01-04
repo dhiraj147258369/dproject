@@ -66,14 +66,22 @@
                     app:layout_constraintTop_toBottomOf="@+id/text_view_product_detail">
 
                 <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tab_modifier"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:background="@color/colorLightGrey"
-                        app:tabGravity="fill"
-                        app:tabMode="fixed"
-                        app:tabSelectedTextColor="@color/colorPrimary"
-                        app:tabTextColor="@color/colorBlack"/>
+                    android:id="@+id/tab_modifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    app:tabMode="fixed"
+                    android:background="@drawable/tab_background_grey"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tabIndicator="@drawable/tab_indicator_primary"
+                    app:tabTextColor="@color/black"
+                    android:layout_margin="2dp"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabIndicatorColor="@color/colorPrimary"
+                    app:tabGravity="fill"
+                    app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                    app:tabIndicatorGravity="stretch"/>
 
             </androidx.viewpager.widget.ViewPager>
 

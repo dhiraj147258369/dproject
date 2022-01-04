@@ -30,11 +30,11 @@ class BluetoothPrinterAdapter(mBluetoothDeviceList: ArrayList<BluetoothDevice>, 
         holder.mBinding.textViewPrinterName.text = mBluetooth.name
 
         if (mSelectedPosition == holder.adapterPosition) {
-            holder.mBinding.constraintLayoutRecyclerPrinter.setBackgroundColor(mContext.resources.getColor(R.color.colorPrimary))
+            holder.mBinding.constraintLayoutRecyclerPrinter.setBackgroundDrawable(mContext.getDrawable(R.drawable.new_item_selected))
             holder.mBinding.textViewPrinterName.setTextColor(mContext.resources.getColor(R.color.colorWhite))
         }
         else {
-            holder.mBinding.constraintLayoutRecyclerPrinter.setBackgroundColor(mContext.resources.getColor(R.color.colorWhite))
+            holder.mBinding.constraintLayoutRecyclerPrinter.setBackgroundDrawable(mContext.getDrawable(R.drawable.new_item_not_selected))
             holder.mBinding.textViewPrinterName.setTextColor(mContext.resources.getColor(R.color.colorBlack))
         }
 

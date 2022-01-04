@@ -8,7 +8,7 @@
             name="tablesModel"
             type="com.rsl.youresto.data.database_download.models.TablesModel"/>
         <variable name="tableAdapter"
-                  type="com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.TableRecyclerAdapter"/>
+            type="com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.TableRecyclerAdapter"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,9 +28,10 @@
 
         <ImageView
             android:id="@+id/image_view_table_image"
-            android:layout_width="40dp"
+            android:layout_width="37dp"
             android:layout_height="40dp"
             android:src="@drawable/img_tables"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,31 +39,38 @@
         <TextView
             android:id="@+id/text_view_table_name"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
+            android:textSize="18dp"
+            android:text='@{"TABLE NO "+String.valueOf(tablesModel.MTableID)}'
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/black"
             android:textStyle="bold"
-            android:text="@{String.valueOf(tablesModel.MTableID)}"
-            app:layout_constraintBottom_toBottomOf="@+id/image_view_table_image"
-            app:layout_constraintEnd_toStartOf="@+id/text_view_table_amount"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_view_table_image"
             app:layout_constraintTop_toTopOf="@+id/image_view_table_image"
             tools:text="Table 1" />
 
         <TextView
             android:id="@+id/text_view_table_amount"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+
             android:text="@{tablesModel.MTableNoOfOccupiedChairs  > 0 ? String.valueOf(`Occupied`):String.valueOf(`Empty`)}"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             app:layout_constraintBottom_toBottomOf="@+id/image_view_table_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/image_view_table_image"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/image_view_table_image"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_table_name"
+            app:layout_constraintVertical_bias="0.0"
+            android:textColor="@color/colorPrimary"
             tools:text="Empty" />
 
 

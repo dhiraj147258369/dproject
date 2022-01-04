@@ -10,13 +10,22 @@
             tools:context=".ui.main_screen.app_settings.printer_settings.SelectPrinterFragment">
 
         <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs_select_printer"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabMode="fixed"/>
+            android:id="@+id/tabs_select_printer"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:tabMode="fixed"
+            android:background="@drawable/tab_background_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tabIndicator="@drawable/tab_indicator_primary"
+            app:tabTextColor="@color/black"
+            android:layout_margin="2dp"
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabGravity="fill"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+            app:tabIndicatorGravity="stretch"/>
 
         <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewpager_select_printer"

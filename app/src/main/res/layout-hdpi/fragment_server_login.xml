@@ -81,7 +81,7 @@
                         android:layout_marginBottom="8dp"
                         android:background="?android:attr/selectableItemBackground"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorPrimaryLight"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:text="@string/str_forgot_pin"/>
@@ -94,7 +94,7 @@
                         android:layout_marginBottom="8dp"
                         android:background="?android:attr/selectableItemBackground"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorPrimary"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:text="@string/str_change_location_label"/>

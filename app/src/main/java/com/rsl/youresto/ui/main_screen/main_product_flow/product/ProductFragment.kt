@@ -77,7 +77,12 @@ class ProductFragment : Fragment() {
         val layoutManager = (mBinding.recyclerViewProduct.layoutManager as GridLayoutManager)
         mBinding.recyclerViewProduct.post {
             val width = mBinding.recyclerViewProduct.width
-            layoutManager.spanCount = width / Utils.dpToPx(100)
+//            layoutManager.spanCount = width / Utils.dpToPx(150)
+            if(isTablet){
+                layoutManager.spanCount =3
+            }else{
+                layoutManager.spanCount =2
+            }
         }
 
         productViewModel.getProducts(mCategoryID ?: "").observe(viewLifecycleOwner) {

@@ -247,7 +247,7 @@ class MainProductFragment : Fragment() {
     var mGroupID: String = ""
 
     private fun initViews() {
-        val mTableNO = "Table " + mSharedPrefs.getInt(SELECTED_TABLE_NO, 0)
+        val mTableNO = "Table No. " +mSharedPrefs.getInt(SELECTED_TABLE_NO, 0)
         mBinding.textViewTableNo.text = mTableNO
 
         mViewModel.getTableGroupsAndSeats(mTableID).observe(viewLifecycleOwner, {
@@ -428,14 +428,14 @@ class MainProductFragment : Fragment() {
                 mBinding.imageViewArrowCategory.visibility = INVISIBLE
                 mBinding.textViewNavigationCategories.visibility = INVISIBLE
                 mBinding.textViewNavigationProducts.visibility = INVISIBLE
-                mBinding.textViewNavigationGroups.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorRed))
+                mBinding.textViewNavigationGroups.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
                 mBinding.textViewNavigationGroups.typeface = DEFAULT_BOLD
                 mBinding.editTextSearchProducts.text.clear()
             }
             CATEGORY -> {
                 mBinding.imageViewArrowGroups.visibility = VISIBLE
                 mBinding.textViewNavigationCategories.visibility = VISIBLE
-                mBinding.textViewNavigationCategories.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorRed))
+                mBinding.textViewNavigationCategories.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
                 mBinding.textViewNavigationCategories.typeface = DEFAULT_BOLD
                 mBinding.textViewNavigationGroups.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorBlack))
                 mBinding.textViewNavigationGroups.typeface = DEFAULT
@@ -448,7 +448,7 @@ class MainProductFragment : Fragment() {
                 mBinding.textViewNavigationCategories.visibility = VISIBLE
                 mBinding.imageViewArrowCategory.visibility = VISIBLE
                 mBinding.textViewNavigationProducts.visibility = VISIBLE
-                mBinding.textViewNavigationProducts.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorRed))
+                mBinding.textViewNavigationProducts.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
                 mBinding.textViewNavigationProducts.typeface = DEFAULT_BOLD
                 mBinding.textViewNavigationCategories.setTextColor(
                     ContextCompat.getColor(

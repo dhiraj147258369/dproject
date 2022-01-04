@@ -90,7 +90,7 @@
                         android:padding="16dp"
                         android:text="@string/str_forgot_pin"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorPrimaryLight"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -102,7 +102,7 @@
                         android:padding="16dp"
                         android:text="@string/str_change_location_label"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/colorPrimary"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
