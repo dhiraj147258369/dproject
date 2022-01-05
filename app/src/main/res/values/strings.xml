@@ -1,7 +1,7 @@
 <resources>
 
     <!--App Level-->
-    <string name="app_name">YouCloudResto</string>
+    <string name="app_name">YouResto</string>
     <!--    <string name="string_currency_sign">\u00a3</string>-->
     <string name="string_currency_sign">₹</string>
 
@@ -13,8 +13,8 @@
         Please login to your business\' YouCloudResto account to continue
     </string>
     <string name="login_text_view_label">login</string>
-    <string name="login_to_ordapos_label">Login to YouCloudResto</string>
-    <string name="login_info_text">Please enter your username and password to continue</string>
+    <string name="login_to_ordapos_label">Login to YouResto POS.</string>
+    <string name="login_info_text">Please enter your username and password.</string>
     <string name="str_main_login_proceed">PROCEED</string>
     <string name="str_username">Username</string>
     <string name="str_password">Password</string>
@@ -132,4 +132,7 @@
     <string name="no_internet_connected">Please check your internet connection</string>
     <string name="general_error">Something went wrong, please try again</string>
 
+    <string name="youresto_">
+        \u00A9 2021 YouResto.
+    </string>
 </resources>

@@ -11,13 +11,27 @@
             tools:context=".ui.main_screen.app_settings.SettingsFragment">
 
         <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs_settings"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabMode="fixed"/>
+            android:id="@+id/tabs_settings"
+            android:background="@drawable/tab_background_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:tabIndicator="@drawable/tab_indicator_primary"
+            app:tabTextColor="@color/black"
+            android:layout_margin="2dp"
+
+
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorColor="@color/colorPrimary"
+
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            app:tabGravity="fill"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+            app:tabMode="fixed"
+            app:tabIndicatorGravity="stretch"/>
 
         <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewpager_settings"

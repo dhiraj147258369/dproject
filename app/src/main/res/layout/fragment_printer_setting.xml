@@ -1,103 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.main_screen.app_settings.printer_settings.PrinterSettingFragment">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main_screen.app_settings.printer_settings.PrinterSettingFragment">
 
         <ScrollView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:context=".ui.app_settings.GeneralSettingsFragment">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_very_light"
+                tools:context=".ui.app_settings.GeneralSettingsFragment">
 
                 <CheckBox
-                        android:id="@+id/checkbox_bill_printer"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:gravity="start"
-                        android:paddingTop="4dp"
-                        android:text="@string/string_bill_printer_label"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        app:layout_constraintEnd_toStartOf="@+id/linear_spinner1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                    android:id="@+id/checkbox_bill_printer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="start"
+                    android:paddingTop="4dp"
+                    android:text="@string/string_bill_printer_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    app:layout_constraintEnd_toStartOf="@+id/linear_spinner1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                        android:id="@+id/text_view_bill_printer_network_ip"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox_bill_printer"
-                        app:layout_constraintStart_toStartOf="@+id/checkbox_bill_printer"
-                        android:layout_marginStart="32dp"
-                        tools:text="192.168.0.1"
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    android:id="@+id/text_view_bill_printer_network_ip"
+                    app:layout_constraintTop_toBottomOf="@+id/checkbox_bill_printer"
+                    app:layout_constraintStart_toStartOf="@+id/checkbox_bill_printer"
+                    android:layout_marginStart="32dp"
+                    tools:text="192.168.0.1"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
                 <LinearLayout
-                        android:id="@+id/linear_spinner1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_marginEnd="4dp"
-                        android:background="@drawable/background_white_border_black"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:maxLines="3"
-                        app:layout_constraintEnd_toStartOf="@+id/button_bluetooth_reset"
-                        app:layout_constraintTop_toTopOf="@+id/checkbox_bill_printer">
+                    android:id="@+id/linear_spinner1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/background_white_border_black"
+                    android:gravity="center"
+                    android:maxLines="3"
+                    android:padding="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/button_bluetooth_reset"
+                    app:layout_constraintEnd_toStartOf="@+id/button_bluetooth_reset"
+                    app:layout_constraintTop_toTopOf="@+id/button_bluetooth_reset">
 
                     <Spinner
-                            android:id="@+id/spinner_bill_paper_size"
-                            android:layout_width="wrap_content"
-                            android:layout_height="35dp"
-                            android:dropDownHorizontalOffset="15dp"
-                            android:dropDownVerticalOffset="35dp"
-                            android:imeOptions="flagNoExtractUi"
-                            android:spinnerMode="dropdown"/>
+                        android:id="@+id/spinner_bill_paper_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:dropDownHorizontalOffset="15dp"
+                        android:dropDownVerticalOffset="35dp"
+                        android:imeOptions="flagNoExtractUi"
+                        android:spinnerMode="dropdown" />
                 </LinearLayout>
 
                 <Button
-                        android:id="@+id/button_bluetooth_reset"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:background="@drawable/background_primary_without_border"
-                        android:gravity="center"
-                        android:text="@string/string_reset_label"
-                        android:textColor="#FFF"
-                        android:textSize="12sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/checkbox_bill_printer"/>
+                    android:id="@+id/button_bluetooth_reset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/background_primary_without_border"
+                    android:gravity="center"
+                    android:text="@string/string_reset_label"
+                    android:textColor="#FFF"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/checkbox_bill_printer" />
 
                 <View
-                        android:id="@+id/horizontal_line_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
-                        android:layout_marginTop="16dp"
-                        android:background="#ffd300"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox_bill_printer"/>
+                    android:id="@+id/horizontal_line_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@+id/checkbox_bill_printer"/>
 
 
                 <com.rsl.youresto.utils.NonScrollRecyclerView
-                        android:id="@+id/recycler_view_kitchen_printers"
-                        android:layout_width="0dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/horizontal_line_2"/>
+                    android:id="@+id/recycler_view_kitchen_printers"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontal_line_2"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

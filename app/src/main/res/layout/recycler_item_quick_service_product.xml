@@ -7,69 +7,178 @@
                 name="productModel"
                 type="com.rsl.youresto.ui.main_screen.favorite_items.model.FavoriteProductModel" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint_layout_product_item"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:layout_margin="4dp"
-            android:background="@color/colorPrimary">
+        android:id="@+id/constraint_layout_product_item"
+        android:layout_width="150dp"
+        android:layout_height="160dp"
+        android:layout_margin="4dp"
 
-        <ImageView
-                android:id="@+id/image_view_product"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="2dp"
-                android:contentDescription="@string/placeholder_image"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_cloud_download_white_24dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline_product_recycler_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_product_recycler_item"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+            <androidx.cardview.widget.CardView
+
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.75"/>
+                android:layout_height="140dp"
 
-        <TextView
-                android:id="@+id/text_view_product_name"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="@{productModel.MProductName}"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="@android:color/white"
+                app:cardCornerRadius="20dp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/guideline_product_recycler_item"
-                tools:text="Parag"/>
 
-        <com.rsl.youresto.utils.TriangleShapeView
-                android:id="@+id/triangle_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintVertical_bias="1.0">
 
-        <TextView
-                android:id="@+id/text_view_product_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:rotation="-45"
-                android:textColor="@color/colorBlack"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="$12"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary">
+
+                    <TextView
+                        android:id="@+id/text_view_product_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="@{productModel.MProductName}"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/text_view_product_price"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:text="Parag" />
+
+                    <TextView
+                        android:id="@+id/text_view_product_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/white"
+
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/text_view_product_name"
+                        app:layout_constraintStart_toStartOf="@+id/text_view_product_name"
+                        tools:text="$12" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_marginTop="2dp"
+
+            app:cardCornerRadius="55dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:backgroundTint="@color/gray_light">
+
+                <ImageView
+                    android:id="@+id/image_view_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_cloud_download_white_24dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/constraint_layout_product_item"-->
+<!--            android:layout_width="85dp"-->
+<!--            android:layout_height="85dp"-->
+<!--            android:layout_margin="4dp"-->
+<!--            android:background="@color/colorPrimary">-->
+
+<!--        <ImageView-->
+<!--                android:id="@+id/image_view_product"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_margin="2dp"-->
+<!--                android:contentDescription="@string/placeholder_image"-->
+<!--                android:scaleType="fitXY"-->
+<!--                android:src="@drawable/ic_cloud_download_white_24dp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/guideline_product_recycler_item"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"/>-->
+
+<!--        <androidx.constraintlayout.widget.Guideline-->
+<!--                android:id="@+id/guideline_product_recycler_item"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layout_constraintGuide_percent="0.75"/>-->
+
+<!--        <TextView-->
+<!--                android:id="@+id/text_view_product_name"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:gravity="center"-->
+<!--                android:singleLine="true"-->
+<!--                android:text="@{productModel.MProductName}"-->
+<!--                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/guideline_product_recycler_item"-->
+<!--                tools:text="Parag"/>-->
+
+<!--        <com.rsl.youresto.utils.TriangleShapeView-->
+<!--                android:id="@+id/triangle_view"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:alpha="0.6"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"/>-->
+
+<!--        <TextView-->
+<!--                android:id="@+id/text_view_product_price"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="4dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:rotation="-45"-->
+<!--                android:textColor="@color/colorBlack"-->
+<!--                android:textSize="12sp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                tools:text="$12"/>-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 </layout>

@@ -12,18 +12,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/gray_very_light">
 
         <CheckBox
             android:id="@+id/checkbox_kitchen_printer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="start"
-            android:paddingTop="4dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="4dp"
-            android:maxLines="3"
             android:ellipsize="end"
+            android:gravity="start"
+            android:maxLines="3"
+            android:paddingTop="4dp"
             android:text="@{kitchenModel.MSelectedKitchenPrinterName.contains(`NO_TYPE`) ? kitchenModel.MKitchenName : kitchenModel.MKitchenName + `: ` + kitchenModel.MSelectedKitchenPrinterName}"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_constraintEnd_toStartOf="@+id/linear_spinner1"
@@ -59,8 +61,9 @@
             android:background="@drawable/background_white_border_black"
             android:gravity="center"
             android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/button_printer_edit"
             app:layout_constraintEnd_toStartOf="@+id/button_printer_edit"
-            app:layout_constraintTop_toTopOf="@+id/checkbox_kitchen_printer">
+            app:layout_constraintTop_toTopOf="@+id/button_printer_edit">
 
             <Spinner
                 android:id="@+id/spinner_kitchen_paper_size"
@@ -88,9 +91,9 @@
         <View
             android:id="@+id/horizontal_line_2"
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            android:background="#ffd300"
+            android:background="#FFFFFF"
             app:layout_constraintTop_toBottomOf="@+id/text_view_logwood_server_id" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

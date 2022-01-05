@@ -15,7 +15,7 @@
         android:layout_width="41dp"
         android:layout_height="46dp"
         android:layout_margin="8dp"
-        android:background="@drawable/background_white_border_black"
+        android:background="@drawable/background_yellow_"
         android:onClick="@{v -> seatAdapter.onSeatClicked(seat)}"
         android:padding="1dp">
 

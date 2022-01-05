@@ -162,10 +162,10 @@ class MainLoginFragment : Fragment() {
                 mValidateUserName = s!!.isNotEmpty()
                 if (mValidateUserName && mValidatePassword) {
                     mBinding.buttonProceed.isEnabled = true
-                    mBinding.buttonProceed.setBackgroundResource(R.drawable.background_proceed_button)
+                    mBinding.buttonProceed.setBackgroundResource(R.drawable.new_button_state_back)
                 } else {
                     mBinding.buttonProceed.isEnabled = true
-                    mBinding.buttonProceed.setBackgroundResource(R.drawable.background_proceed_button_disable)
+                    mBinding.buttonProceed.setBackgroundResource(R.drawable.new_button_pressed)
                 }
             }
 
@@ -182,10 +182,10 @@ class MainLoginFragment : Fragment() {
                 mValidatePassword = s!!.isNotEmpty()
                 if (mValidateUserName && mValidatePassword) {
                     mBinding.buttonProceed.isEnabled = true
-                    mBinding.buttonProceed.setBackgroundResource(R.drawable.background_proceed_button)
+                    mBinding.buttonProceed.setBackgroundResource(R.drawable.new_button_state_back)
                 } else {
                     mBinding.buttonProceed.isEnabled = true
-                    mBinding.buttonProceed.setBackgroundResource(R.drawable.background_proceed_button_disable)
+                    mBinding.buttonProceed.setBackgroundResource(R.drawable.new_button_pressed)
                 }
             }
         })

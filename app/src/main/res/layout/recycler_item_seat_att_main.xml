@@ -48,11 +48,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_seats_att"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
                 tools:listitem="@layout/recycler_item_seat_att"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/text_view_seat_group_name"
