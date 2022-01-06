@@ -87,18 +87,7 @@ class AddToTabFragment : Fragment() {
         mTableID = mSharedPrefs.getString(SELECTED_TABLE_ID, "")!!
         mTableNO = mSharedPrefs.getInt(SELECTED_TABLE_NO, 0)
 
-        e("TAG", "onViewCreated: mTableNO: $mTableNO" )
-
         setupProduct()
-
-//        if (mSelectedLocationType == SERVICE_DINE_IN) {
-//            mTableID = mSharedPrefs.getString(SELECTED_TABLE_ID, "")!!
-//            mTableNO = mSharedPrefs.getInt(SELECTED_TABLE_NO, 0)
-//
-//            setupProduct()
-//        } else if (mSelectedLocationType == SERVICE_QUICK_SERVICE) {
-//
-//        }
     }
 
     private lateinit var mProductModel: ProductModel

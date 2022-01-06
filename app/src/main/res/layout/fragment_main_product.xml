@@ -203,17 +203,31 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:src="@drawable/ic_shopping_cart_white_24dp"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_cart_bar"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
+            <TextView
+                tools:text="2"
+                android:textSize="16sp"
+                android:textColor="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/recycler_item_cart_bar_item"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/image_view_cart"/>
+                app:layout_constraintStart_toEndOf="@+id/image_view_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/viewCart"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="View Cart"
+                android:padding="8dp"
+                android:textColor="@color/white"
+                app:cornerRadius="4dp"
+                android:backgroundTint="@color/colorOrange"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

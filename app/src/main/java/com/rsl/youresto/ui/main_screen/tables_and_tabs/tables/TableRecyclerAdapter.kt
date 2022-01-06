@@ -51,10 +51,6 @@ class TableRecyclerAdapter(private val mTablesList: ArrayList<TablesModel>) :
         return mTableLongPress!!
     }
 
-    fun setTableLongPressed(mTable: TablesModel) {
-        mTableLongPress = mTable
-    }
-
     fun onTableClicked(mTable: TablesModel) {
         EventBus.getDefault().post(mTable)
     }

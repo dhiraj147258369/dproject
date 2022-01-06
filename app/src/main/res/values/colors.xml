@@ -21,6 +21,7 @@
     <color name="colorGreen">#1B5E20</color>
     <color name="colorLightGreen">#76EC7F</color>
     <color name="colorRed">#D50000</color>
+    <color name="colorOrange">#ED6338</color>
     <color name="colorYellow">#FFFF00</color>
     <color name="colorLightBlue">@color/colorPrimary</color>
 

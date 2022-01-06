@@ -9,5 +9,8 @@ data class NetworkCartResponse(
     var orderId: Int = 0,
     var status: Boolean = false,
     @SerializedName("table_orders_id")
-    var tableOrdersId: Any = Any()
+    var tableOrdersId: Any = Any(),
+
+    @SerializedName("order_item_ids")
+    var itemIds: List<String> = ArrayList()
 )

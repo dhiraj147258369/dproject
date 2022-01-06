@@ -6,6 +6,7 @@ import com.rsl.youresto.data.cart.CartRemoteSource
 import com.rsl.youresto.data.cart.models.CartProductModel
 import com.rsl.youresto.data.checkout.model.NetworkCheckoutResponse
 import com.rsl.youresto.data.checkout.model.PostCheckout
+import com.rsl.youresto.data.database_download.models.IngredientsModel
 import com.rsl.youresto.network.Resource
 import com.rsl.youresto.network.models.AppliedTaxDetail
 import com.rsl.youresto.network.models.CartDetail
@@ -13,8 +14,12 @@ import com.rsl.youresto.network.models.NetworkCartResponse
 import com.rsl.youresto.network.models.PostCart
 import com.rsl.youresto.utils.AppConstants.SERVICE_QUICK_SERVICE
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
 import java.math.BigDecimal
+import java.util.*
+import kotlin.collections.ArrayList
 
 class NewCartRepository(private val remoteSource: CartRemoteSource, private val cartDao: CartDao) {
 
@@ -22,7 +27,6 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
     fun getCartDataById(cartId: String) = cartDao.getCartDataById(cartId)
 
     suspend fun getCartByTable(tableId: String) = withContext(Dispatchers.IO) { cartDao.getCarts(tableId) }
-
 
     suspend fun getPaymentMethods() = withContext(Dispatchers.IO) {cartDao.getPaymentMethods()}
 
@@ -210,5 +214,80 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
 
     fun getKitchens() = cartDao.getKitchens()
 
+    suspend fun syncCarts(){
+        val resource = withContext(Dispatchers.IO) {
+            remoteSource.syncCarts()
+        }
+
+        if (resource.status == Resource.Status.SUCCESS){
+            resource.data?.map { receiveCart ->
+                withContext(Dispatchers.IO) {
+                    cartDao.deleteCartByLocation(remoteSource.prefs.getSelectedLocation())
+                    async {
+
+                        val cartProducts = ArrayList<CartProductModel>()
+                        for (cart in receiveCart.cartDetails){
+
+                            val product = cartDao.getProduct(cart.recipeId.toString())
+                            val table = cartDao.getTable(receiveCart.tableId.toString())
+
+                            val mShowModifierList = ArrayList<IngredientsModel>()
+                            if (cart.addon.isNotEmpty()){
+                                val addOnIdList = ArrayList<String>()
+                                cart.addon.map { addOn -> addOnIdList.add(addOn.addonId.toString()) }
+                                val localAddOns = cartDao.getAddOnsByIds(addOnIdList)
+                                mShowModifierList.addAll(localAddOns)
+                            }
+
+                            val mCartProduct = CartProductModel(
+                                remoteSource.prefs.getSelectedLocation(),
+                                receiveCart.tableId.toString(),
+                                table.mTableNo,
+                                "z",
+                                0,
+                                ArrayList(),
+                                receiveCart.orderId,
+                                receiveCart.orderId,
+                                "",
+                                remoteSource.prefs.getLocationServiceType(),
+                                receiveCart.orderBy.toString(),
+                                "",
+                                cart.recipeId.toString(),
+                                product.mCategoryID ?: "",
+                                "",
+                                product.mGroupID ?: "",
+                                "",
+                                "",
+                                product.mProductType,
+                                product.mProductName,
+                                product.mDineInPrice,
+                                BigDecimal(cart.qty),
+                                mProductTotalPrice = BigDecimal(cart.price),
+                                "",
+                                BigDecimal(0.0),
+                                ArrayList(),
+                                mShowModifierList,
+                                ArrayList(),
+                                ArrayList(),
+                                Date(),
+                                "",
+                                0,
+                                "",
+                                0,
+                                true,
+                                taxName = "",
+                                taxPercentage = 0.0,
+                                tableOrderId = receiveCart.tableOrderId
+                            )
+
+                            cartProducts.add(mCartProduct)
+                        }
+
+                        cartDao.insertBulkCartProduct(cartProducts)
+                    }
+                }
+            }?.awaitAll()
+        }
+    }
 
 }

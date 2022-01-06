@@ -69,4 +69,13 @@ class NewCartViewModel(private val repo: NewCartRepository): ViewModel() {
     }
 
     suspend fun getPaymentMethods() = repo.getPaymentMethods()
+
+
+    fun syncCarts() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                repo.syncCarts()
+            }
+        }
+    }
 }

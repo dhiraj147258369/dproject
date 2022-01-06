@@ -33,6 +33,7 @@ import com.rsl.youresto.ui.database_download.DatabaseDownloadViewModel
 import com.rsl.youresto.ui.database_download.DatabaseDownloadViewModelFactory
 import com.rsl.youresto.ui.main_login.MainLoginViewModel
 import com.rsl.youresto.ui.main_screen.app_settings.event.ShowBluetoothDevicesEvent
+import com.rsl.youresto.ui.main_screen.cart.NewCartViewModel
 import com.rsl.youresto.ui.main_screen.checkout.CheckoutFragment
 import com.rsl.youresto.ui.main_screen.checkout.CheckoutViewModel
 import com.rsl.youresto.ui.main_screen.checkout.CheckoutViewModelFactory
@@ -69,6 +70,7 @@ class MainScreenActivity : AppCompatActivity() {
     private lateinit var mSharedPrefs: SharedPreferences
     private lateinit var mCheckoutViewModel: CheckoutViewModel
     private lateinit var mDatabaseDownloadViewModel: DatabaseDownloadViewModel
+    private val cartViewModel: NewCartViewModel by viewModel()
 
     private val loginViewModel: MainLoginViewModel by viewModel()
 
@@ -91,6 +93,7 @@ class MainScreenActivity : AppCompatActivity() {
             ViewModelProviders.of(this, databaseDownloadFactory).get(DatabaseDownloadViewModel::class.java)
 
         initViews()
+        syncCarts()
 //        stopService(Intent(this, ServerLoginDetailService::class.java))
     }
 
@@ -212,6 +215,10 @@ class MainScreenActivity : AppCompatActivity() {
             else if (!mDrawerLock)
                 mBinding.drawerLayout.openDrawer(GravityCompat.END)
         }
+    }
+
+    private fun syncCarts() {
+        cartViewModel.syncCarts()
     }
 
     private fun resetTerminal() {

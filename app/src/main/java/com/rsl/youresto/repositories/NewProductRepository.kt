@@ -117,6 +117,8 @@ class NewProductRepository(private val mainProductDao: MainProductDao, private v
             }
             noOfPerson = 2 /*cartProduct.mTotalGuestsCount*/
             if (isTableOccupied) orderId = cartProduct.mCartID
+            locationId = cartProduct.mLocationID
+            orderType = cartProduct.mOrderType.toString()
         }
 
 
@@ -127,7 +129,8 @@ class NewProductRepository(private val mainProductDao: MainProductDao, private v
 
         if (resource.status == Resource.Status.SUCCESS){
             resource.data?.let {
-                cartProduct.mID = cartId.toInt()
+//                cartProduct.mID = it.itemIds[it.itemIds.size - 1].toInt()
+//                cartProduct.mID =
                 cartProduct.mCartID = it.orderId.toString()
                 cartProduct.mCartNO = it.orderId.toString()
                 cartProduct.tableOrderId = it.tableOrdersId.toString()

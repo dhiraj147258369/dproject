@@ -92,6 +92,7 @@ class ShareBillPrint80Activity : AppCompatActivity() {
         }
 
         CustomToast.createToast(this, "Please select 50 mm print paper size from settings for now.", Toast.LENGTH_SHORT).show()
+        finish()
 //        setDineInPrintLayout()
     }
 

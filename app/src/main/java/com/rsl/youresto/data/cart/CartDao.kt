@@ -3,9 +3,7 @@ package com.rsl.youresto.data.cart
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.rsl.youresto.data.cart.models.CartProductModel
-import com.rsl.youresto.data.database_download.models.KitchenModel
-import com.rsl.youresto.data.database_download.models.PaymentMethodModel
-import com.rsl.youresto.data.database_download.models.ProductGroupModel
+import com.rsl.youresto.data.database_download.models.*
 import com.rsl.youresto.data.main_login.network.Login
 import java.math.BigDecimal
 
@@ -27,6 +25,23 @@ interface CartDao {
 
     @Query("SELECT * FROM CartProductModel WHERE mCartID =:mCartId")
     fun getCartsById(mCartId: String): List<CartProductModel>
+
+    @Query("SELECT * FROM CartProductModel WHERE mCartID IN (:list)")
+    fun getCartByIds(list: List<String>): List<CartProductModel>
+
+    @Query("SELECT * FROM IngredientsModel WHERE mIngredientID IN (:list)")
+    fun getAddOnsByIds(list: List<String>): List<IngredientsModel>
+
+
+    @Query("SELECT * FROM ProductModel WHERE mProductID =:id")
+    fun getProduct(id: String): ProductModel
+
+    @Query("SELECT * FROM TablesModel WHERE mTableID =:id")
+    fun getTable(id: String): TablesModel
+
+
+    @Insert
+    fun insertBulkCartProduct(mProductCartList: List<CartProductModel>) : LongArray
 
 
 
@@ -76,8 +91,7 @@ interface CartDao {
     @Query("DELETE FROM CartProductModel WHERE mLocationID =:mLocationID")
     fun deleteCartByLocation(mLocationID: String) : Int
 
-    @Insert
-    fun insertBulkCartProduct(mProductCartList: List<CartProductModel>) : LongArray
+
 
     @Query("UPDATE CartProductModel SET mProductQuantity =:mProductQuantity, mProductTotalPrice =:mProductTotalPrice WHERE mID =:mRowID")
     fun updateProductQuantity(mRowID: Int, mProductQuantity: BigDecimal, mProductTotalPrice: BigDecimal): Int

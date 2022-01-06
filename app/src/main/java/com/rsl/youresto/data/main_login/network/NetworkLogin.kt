@@ -54,8 +54,8 @@ data class Login(
     var isRegPayment: String = "",
     @SerializedName("is_tax")
     var isTax: Boolean = false,
-    var latitude: String = "",
-    var longitude: String = "",
+    var latitude: String? = "",
+    var longitude: String? = "",
     var name: String = "",
     @SerializedName("opening_time")
     var openingTime: String = "",
@@ -65,25 +65,25 @@ data class Login(
     var ownerContactNo: String = "",
     var password: String = "",
     @SerializedName("payment_end_date")
-    var paymentEndDate: String = "",
+    var paymentEndDate: String? = "",
     var postcode: String = "",
     @SerializedName("profile_photo")
     var profilePhoto: String = "",
     @SerializedName("rest_img_1")
-    var restImg1: String = "",
+    var restImg1: String? = "",
     @SerializedName("rest_img_2")
-    var restImg2: String = "",
+    var restImg2: String? = "",
     @SerializedName("rest_img_3")
-    var restImg3: String = "",
+    var restImg3: String? = "",
     @SerializedName("rest_img_4")
-    var restImg4: String = "",
+    var restImg4: String? = "",
     @SerializedName("rest_img_5")
-    var restImg5: String = "",
+    var restImg5: String? = "",
     @SerializedName("restaurant_name")
     var restaurantName: String? = "",
     var restauranttype: String = "",
     @SerializedName("subscription_id")
-    var subscriptionId: String = "",
+    var subscriptionId: String? = "",
     var tax: String = "",
     @SerializedName("upline_id")
     var uplinkId: String? = "",
