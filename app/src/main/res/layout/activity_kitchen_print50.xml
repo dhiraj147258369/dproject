@@ -248,8 +248,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="@+id/guide_line_custom_progress"
                     android:background="@color/colorWhite"
-                    android:layout_width="150dp"
-                    android:layout_height="80dp"/>
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"/>
 
             <ImageView
                     app:layout_constraintTop_toTopOf="@+id/view_gif_background"
@@ -257,7 +257,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/view_gif_background"
                     android:paddingHorizontal="16dp"
                     app:layout_constraintBottom_toBottomOf="@+id/view_gif_background"
-                    android:src="@drawable/ic_orda_logo"
+                    android:src="@drawable/y_c_logo"
                     android:layout_width="0dp"
                     android:layout_height="0dp"/>
 

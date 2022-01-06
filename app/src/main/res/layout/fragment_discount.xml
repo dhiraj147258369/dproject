@@ -90,6 +90,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Apply"
+            android:background="@drawable/new_button"
+            android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/toggle_switch_discount"
                 app:layout_constraintTop_toBottomOf="@+id/edit_text_discount_value" />

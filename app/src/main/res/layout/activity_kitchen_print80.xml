@@ -251,14 +251,22 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"/>
 
-            <pl.droidsonroids.gif.GifImageView
-                    app:layout_constraintTop_toTopOf="@+id/view_gif_background"
-                    app:layout_constraintStart_toStartOf="@+id/view_gif_background"
-                    app:layout_constraintEnd_toEndOf="@+id/view_gif_background"
-                    app:layout_constraintBottom_toBottomOf="@+id/view_gif_background"
-                    android:src="@drawable/ic_orda_gif"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+            <ImageView
+                app:layout_constraintTop_toTopOf="@+id/view_gif_background"
+                app:layout_constraintStart_toStartOf="@+id/view_gif_background"
+                app:layout_constraintEnd_toEndOf="@+id/view_gif_background"
+                app:layout_constraintBottom_toBottomOf="@+id/view_gif_background"
+                android:src="@drawable/y_c_logo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"/>
+<!--            <pl.droidsonroids.gif.GifImageView-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/view_gif_background"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/view_gif_background"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/view_gif_background"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/view_gif_background"-->
+<!--                    android:src="@drawable/ic_orda_gif"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"/>-->
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

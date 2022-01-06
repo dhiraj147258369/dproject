@@ -20,11 +20,11 @@
     <string name="str_password">Password</string>
     <string name="str_forgot_password">Forgot Password?</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Hello blank fragmvsent</string>
 
 
     <!--Database Download-->
-    <string name="str_downloading_necessary_data">Downloading necessary data</string>
+    <string name="str_downloading_necessary_data">Downloading necessary data.....</string>
     <string name="string_select_location_label">Select Location</string>
     <string name="string_selected_location_label">Selected Location</string>
     <string name="str_forgot_pin">Forgot Pin?</string>
