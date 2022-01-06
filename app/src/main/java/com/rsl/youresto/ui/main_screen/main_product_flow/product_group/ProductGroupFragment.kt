@@ -66,7 +66,15 @@ class ProductGroupFragment : Fragment() {
 
         mBinding.recyclerViewProductGroups.post {
             val width = mBinding.recyclerViewProductGroups.width
-            layoutManager.spanCount = width / dpToPx(100)
+
+            if(isTablet){
+                layoutManager.spanCount=3
+            }else{
+                layoutManager.spanCount=2
+
+            }
+
+            //layoutManager.spanCount = width / dpToPx(100)
         }
 
         productViewModel.getProductGroups().observe(viewLifecycleOwner) {
