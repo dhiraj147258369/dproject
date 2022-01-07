@@ -37,6 +37,7 @@
                         android:layout_marginTop="4dp"
                         android:drawableStart="@drawable/ic_add_box_white_36dp"
                         android:gravity="center"
+
                         android:text="@string/str_add_group_to_table"
                         android:background="?android:attr/selectableItemBackground"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -97,7 +98,7 @@
                         android:id="@+id/text_view_table"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/background_primary_without_border"
+                        android:background="@drawable/new_button_pressed"
                         android:gravity="center"
                         android:padding="16dp"
                         android:minWidth="120dp"

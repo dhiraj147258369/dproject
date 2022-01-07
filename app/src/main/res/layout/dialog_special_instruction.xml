@@ -109,7 +109,7 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:background="@drawable/background_primary_without_border"
+                        android:background="@drawable/new_button"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/guide_line_instruction"
                         app:layout_constraintBottom_toBottomOf="parent"

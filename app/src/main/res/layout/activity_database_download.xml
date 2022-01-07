@@ -10,26 +10,36 @@
             tools:context=".ui.database_download.DatabaseDownloadActivity">
 
         <ProgressBar
-                android:id="@+id/progress_bar_database_download"
-                app:layout_constraintBottom_toTopOf="@+id/text_view_download_label"
-                app:layout_constraintStart_toStartOf="@+id/text_view_download_label"
-                app:layout_constraintEnd_toEndOf="@+id/text_view_download_label"
-                android:layout_marginBottom="8dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"/>
+            android:id="@+id/progress_bar_database_download"
+            android:layout_width="0dp"
+            android:layout_height="155dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:indeterminateDrawable="@drawable/custom_progress_circle"
+            android:padding="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.507" />
 
         <TextView
-                android:id="@+id/text_view_download_label"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textStyle="bold"
-                android:textColor="@color/colorBlack"
-                android:text="@string/str_downloading_necessary_data"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            android:id="@+id/text_view_download_label"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+android:gravity="center"
+            android:layout_marginStart="90dp"
+            android:layout_marginEnd="90dp"
+            android:text="@string/str_downloading_necessary_data"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/progress_bar_database_download"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.712" />
 
         <TextView
                 android:id="@+id/text_view_no_internet_connection"

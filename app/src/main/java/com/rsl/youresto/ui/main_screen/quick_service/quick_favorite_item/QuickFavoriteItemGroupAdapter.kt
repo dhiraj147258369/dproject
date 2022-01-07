@@ -40,7 +40,7 @@ class QuickFavoriteItemGroupAdapter(
                 //holder.itemView.layoutParams = params
             }
             mFavoriteItemModel.mProductArrayList.size <= 8 -> {
-                val mLayoutManager = GridLayoutManager(mContext, 1, GridLayoutManager.HORIZONTAL, false)
+                val mLayoutManager = GridLayoutManager(mContext, 2, GridLayoutManager.HORIZONTAL, false)
                 holder.mBinding.recyclerViewFavoriteProducts.layoutManager = mLayoutManager
 
 //                val params = holder.itemView.layoutParams
@@ -48,7 +48,7 @@ class QuickFavoriteItemGroupAdapter(
                // holder.itemView.layoutParams = params
             }
             mFavoriteItemModel.mProductArrayList.size > 8 -> {
-                val mLayoutManager = GridLayoutManager(mContext, 1, GridLayoutManager.HORIZONTAL, false)
+                val mLayoutManager = GridLayoutManager(mContext, 3, GridLayoutManager.HORIZONTAL, false)
                 holder.mBinding.recyclerViewFavoriteProducts.layoutManager = mLayoutManager
 
 //                val params = holder.itemView.layoutParams
