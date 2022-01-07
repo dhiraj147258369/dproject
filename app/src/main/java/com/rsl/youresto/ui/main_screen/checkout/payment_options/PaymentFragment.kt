@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.rsl.youresto.App
 import com.rsl.youresto.databinding.FragmentPaymentBinding
 import com.rsl.youresto.ui.main_screen.cart.NewCartViewModel
 import com.rsl.youresto.ui.main_screen.checkout.CheckoutDialog
@@ -150,6 +151,10 @@ class PaymentFragment : Fragment() {
                     CustomToast.makeText(requireActivity(), "Order completed!", Toast.LENGTH_SHORT)
                     (requireParentFragment().requireParentFragment() as CheckoutDialog).dismissDialog()
                     printBill()
+
+                    if (!App.isTablet) {
+                        //todo: redirect to tables fragment for mobile screen
+                    }
                 }
             }
         }

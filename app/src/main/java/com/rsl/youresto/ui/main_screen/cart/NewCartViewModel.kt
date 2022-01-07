@@ -32,8 +32,8 @@ class NewCartViewModel(private val repo: NewCartRepository): ViewModel() {
         }
     }
 
-    private val _cartData = MutableLiveData<Event<NetworkCartResponse>>()
-    val cartData: LiveData<Event<NetworkCartResponse>> get() = _cartData
+    private val _deleteCartData = MutableLiveData<Event<NetworkCartResponse>>()
+    val deleteCartData: LiveData<Event<NetworkCartResponse>> get() = _deleteCartData
 
     fun deleteCartItem(cartProduct: CartProductModel){
         viewModelScope.launch {
@@ -42,9 +42,9 @@ class NewCartViewModel(private val repo: NewCartRepository): ViewModel() {
             }
 
             if (resource.status == Resource.Status.SUCCESS){
-                _cartData.value = Event(resource.data!!)
+                _deleteCartData.value = Event(resource.data!!)
             } else {
-                _cartData.value = Event(NetworkCartResponse())
+                _deleteCartData.value = Event(NetworkCartResponse())
             }
         }
     }

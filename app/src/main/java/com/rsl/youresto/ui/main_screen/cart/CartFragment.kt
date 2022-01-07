@@ -2,9 +2,7 @@ package com.rsl.youresto.ui.main_screen.cart
 
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log.e
 import android.view.LayoutInflater
@@ -14,9 +12,10 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import com.rsl.youresto.App
 import com.rsl.youresto.R
 import com.rsl.youresto.data.cart.models.CartProductModel
 import com.rsl.youresto.databinding.FragmentCartBinding
@@ -28,15 +27,12 @@ import com.rsl.youresto.ui.main_screen.estimate_bill_print.EstimateBillPrint50Ac
 import com.rsl.youresto.ui.main_screen.kitchen_print.KitchenPrint50Activity
 import com.rsl.youresto.ui.main_screen.kitchen_print.KitchenPrint80Activity
 import com.rsl.youresto.ui.main_screen.tables_and_tabs.edit_cart_product.tabs.EditCartDialog
-import com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.TablesViewModel
 import com.rsl.youresto.ui.tab_specific.QuickServiceTabFragment
 import com.rsl.youresto.ui.tab_specific.TablesTabFragment
 import com.rsl.youresto.utils.*
 import com.rsl.youresto.utils.AppConstants.CUSTOM_DIALOG_FRAGMENT
-import com.rsl.youresto.utils.AppConstants.ENABLE_KITCHEN_PRINT
 import com.rsl.youresto.utils.AppConstants.GROUP_NAME
 import com.rsl.youresto.utils.AppConstants.PAPER_SIZE_50
-import com.rsl.youresto.utils.AppConstants.QUICK_SERVICE_CART_ID
 import com.rsl.youresto.utils.AppConstants.SELECTED_GROUP_NAME
 import com.rsl.youresto.utils.AppConstants.SERVICE_DINE_IN
 import com.rsl.youresto.utils.AppConstants.SERVICE_QUICK_SERVICE
@@ -48,6 +44,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.math.BigDecimal
 import java.util.*
@@ -63,16 +60,13 @@ class CartFragment : Fragment() {
 
     private lateinit var mBinding: FragmentCartBinding
     private var mGroupName: String? = null
-    private lateinit var mTableViewModel: TablesViewModel
-    private lateinit var mCartViewModel: CartViewModel
-    private lateinit var mSharedPrefs: SharedPreferences
     private lateinit var mTableID: String
     private var mTableNO: Int = 0
     private var mCartNO: String? = null
     private var mSelectedLocationType: Int? = null
 
-
     private val cartViewModel: NewCartViewModel by viewModel()
+    private val prefs: AppPreferences by inject()
 
     companion object {
         fun newInstance(mGroupName: String, mSelectedGroupName: String): CartFragment {
@@ -94,27 +88,9 @@ class CartFragment : Fragment() {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_cart, container, false)
         val mView = mBinding.root
 
-//        mGroupName = requireArguments().getString(GROUP_NAME)
-
-        val factory = InjectorUtils.provideTablesViewModelFactory(requireActivity())
-        mTableViewModel = ViewModelProviders.of(this, factory).get(TablesViewModel::class.java)
-
-        val cartFactory: CartViewModelFactory = InjectorUtils.provideCartViewModelFactory(requireActivity())
-        mCartViewModel = ViewModelProviders.of(this, cartFactory).get(CartViewModel::class.java)
-
-        mSharedPrefs = requireActivity().getSharedPreferences(AppConstants.MY_PREFERENCES, Context.MODE_PRIVATE)
-        mSelectedLocationType = mSharedPrefs.getInt(AppConstants.LOCATION_SERVICE_TYPE, 0)
-
-        mTableID = mSharedPrefs.getString(AppConstants.SELECTED_TABLE_ID, "")!!
-        mTableNO = mSharedPrefs.getInt(AppConstants.SELECTED_TABLE_NO, 0)
-
-//        if (mSelectedLocationType == SERVICE_DINE_IN) {
-//            mTableID = mSharedPrefs.getString(AppConstants.SELECTED_TABLE_ID, "")!!
-//            mTableNO = mSharedPrefs.getInt(AppConstants.SELECTED_TABLE_NO, 0)
-//        } else if (mSelectedLocationType == SERVICE_QUICK_SERVICE) {
-//            mTableID = mSharedPrefs.getString(AppConstants.QUICK_SERVICE_TABLE_ID, "")!!
-//            mTableNO = mSharedPrefs.getInt(AppConstants.QUICK_SERVICE_TABLE_NO, 0)
-//        }
+        mSelectedLocationType = prefs.getLocationServiceType()
+        mTableID = prefs.getSelectedTableId()
+        mTableNO = prefs.getSelectedTableNo()
 
         getCartDetails()
         initViews()
@@ -163,82 +139,65 @@ class CartFragment : Fragment() {
 
     private fun getCartDetails() {
 
-        when (mSelectedLocationType) {
-            SERVICE_DINE_IN ->
-                cartViewModel.getCarts(mTableID).observe(viewLifecycleOwner){
-                    if (it.isNotEmpty()) {
-                        mCartAdapter = CartRecyclerAdapter(requireActivity(), ArrayList(it))
-                        mBinding.recyclerViewCartList.adapter = mCartAdapter
-
-                        cartId = it[0].mCartNO
-                        val mCartNOString = "Cart ID: ${it[0].mCartNO}"
-                        mBinding.textViewCartOrderNo.text = mCartNOString
-
-                        var mCartTotal = BigDecimal(0.0)
-                        for (element in it)
-                            mCartTotal += element.mProductTotalPrice
-
-                        mBinding.textViewCartTotalCartAmount.text =
-                            String.format(Locale.ENGLISH, "%.2f", mCartTotal)
-                    } else {
-                        ((parentFragment as NavHostFragment).parentFragment as TablesTabFragment).hideCart()
-                    }
+        if (mSelectedLocationType == SERVICE_DINE_IN) {
+            cartViewModel.getCarts(mTableID).observe(viewLifecycleOwner) {
+                    loadAdapter(it)
                 }
-            SERVICE_QUICK_SERVICE ->
-                cartViewModel.getCarts(mTableID)
-                    .observe(viewLifecycleOwner){
-                        if (it.isNotEmpty()) {
-                            mCartAdapter = CartRecyclerAdapter(requireActivity(), ArrayList(it))
-                            mBinding.recyclerViewCartList.adapter = mCartAdapter
-
-                            cartId = it[0].mCartNO
-                            val mCartNOString = "Cart ID: ${it[0].mCartNO}"
-                            mBinding.textViewCartOrderNo.text = mCartNOString
-
-                            var mCartTotal = BigDecimal(0.0)
-                            for (element in it)
-                                mCartTotal += element.mProductTotalPrice
-
-                            mBinding.textViewCartTotalCartAmount.text =
-                                String.format(Locale.ENGLISH, "%.2f", mCartTotal)
-                        } else {
-                            ((parentFragment as NavHostFragment).parentFragment as QuickServiceTabFragment).hideCart()
-                        }
-            }
-//                mCartViewModel.getCartDataWithCartID(
-//                mSharedPrefs.getString(
-//                    QUICK_SERVICE_CART_ID,
-//                    ""
-//                )!!
-//            )
-//                .observe(viewLifecycleOwner, {
-//
-//                    val mCartList = it.sortedBy { cart -> cart.mSequenceNO }
-//
-//                    mCartAdapter = CartRecyclerAdapter(requireActivity(), ArrayList(mCartList))
-//                    mBinding.recyclerViewCartList.adapter = mCartAdapter
-//                    Animations.runLayoutAnimationFallDown(mBinding.recyclerViewCartList)
-//                })
+        } else if (mSelectedLocationType == SERVICE_QUICK_SERVICE){
+            val cartId = prefs.selectedQuickServiceCartId()
+            cartViewModel.getCartDataById(cartId).observe(viewLifecycleOwner) {
+                    loadAdapter(it)
+                }
         }
 
 
-        cartViewModel.cartData.observe(viewLifecycleOwner) { event ->
+
+
+        cartViewModel.deleteCartData.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
-                if (it.status) {
+                if (!App.isTablet){
+                    findNavController().navigate(R.id.tablesFragment)
                 }
             }
         }
 
         mBinding.constraintLayoutOptionDone.setOnClickListener {
             kotSend()
+            if (mBinding.constraintLayoutActionOptions.isVisible) hideActionBarOptions()
         }
 
         mBinding.constraintLayoutOptionClose.setOnClickListener {
             close()
+            if (mBinding.constraintLayoutActionOptions.isVisible) hideActionBarOptions()
         }
 
         mBinding.constraintLayoutOptionPrint.setOnClickListener {
             estimateBillPrint()
+            if (mBinding.constraintLayoutActionOptions.isVisible) hideActionBarOptions()
+        }
+    }
+
+    private fun loadAdapter(it: List<CartProductModel>) {
+        if (it.isNotEmpty()) {
+            mCartAdapter = CartRecyclerAdapter(requireActivity(), ArrayList(it))
+            mBinding.recyclerViewCartList.adapter = mCartAdapter
+
+            cartId = it[0].mCartNO
+            val mCartNOString = "Cart ID: ${it[0].mCartNO}"
+            mBinding.textViewCartOrderNo.text = mCartNOString
+
+            var mCartTotal = BigDecimal(0.0)
+            for (element in it)
+                mCartTotal += element.mProductTotalPrice
+
+            mBinding.textViewCartTotalCartAmount.text =
+                String.format(Locale.ENGLISH, "%.2f", mCartTotal)
+        } else {
+            if (mSelectedLocationType == SERVICE_DINE_IN){
+                ((parentFragment as? NavHostFragment)?.parentFragment as? TablesTabFragment)?.hideCart()
+            } else {
+                ((parentFragment as? NavHostFragment)?.parentFragment as? QuickServiceTabFragment)?.hideCart()
+            }
         }
     }
 
@@ -257,7 +216,7 @@ class CartFragment : Fragment() {
 
     private fun kotSend() {
 
-        if (mSharedPrefs.getBoolean(ENABLE_KITCHEN_PRINT, false)){
+        if (prefs.getKitchenPrintEnableFlag()){
             lifecycleScope.launch {
                 val kitchens = withContext(Dispatchers.IO){
                     cartViewModel.getKitchens()
@@ -300,35 +259,19 @@ class CartFragment : Fragment() {
 
     @Subscribe
     fun onProductQuantityChanged(mEvent: UpdateCartProductQuantityEvent) {
-        e(javaClass.simpleName, "mEvent.mGroupName: ${mEvent.mGroupName}")
-        e(javaClass.simpleName, "mGroupName: $mGroupName")
-//        if (mEvent.mGroupName != mGroupName) {
-//            return
-//        }
-
-        var tableId = mTableID
-        if (mSelectedLocationType == SERVICE_QUICK_SERVICE){
-            tableId = mSharedPrefs.getString(QUICK_SERVICE_CART_ID,"") ?: ""
-        }
-
-        cartViewModel.updateQuantity(mEvent.mRowID, mEvent.mQuantity, mEvent.mTotalProductPrice, tableId)
-
+        cartViewModel.updateQuantity(mEvent.mRowID, mEvent.mQuantity, mEvent.mTotalProductPrice, mTableID)
     }
 
     @Subscribe
     fun onCartProductNameClick(mEvent: EditCartProductClickEvent) {
+        if (App.isTablet) {
+            val dialog = EditCartDialog(mEvent.mCartModel.mCartProductID)
+            dialog.isCancelable = true
+            dialog.show(childFragmentManager, "EditCartDialog")
+        } else {
+            //todo: editCart fragment
+        }
 
-//        e("TAG", "onCartProductNameClick: ${mEvent.mCartModel.mProductName}", )
-        val dialog = EditCartDialog(mEvent.mCartModel.mCartProductID)
-        dialog.isCancelable = true
-        dialog.show(childFragmentManager, "EditCartDialog")
-
-//        val action =
-//            CartGroupFragmentDirections.actionCartGroupFragmentToEditCartProductFragment(
-//                mEvent.mCartModel.mCartProductID,
-//                ""
-//            )
-//        findNavController().navigate(action)
     }
 
     private var mCartModel: CartProductModel? = null
@@ -360,7 +303,6 @@ class CartFragment : Fragment() {
     @Subscribe
     fun refreshCart(mEvent: RefreshCartEvent) {
         e(javaClass.simpleName, "mEvent: ${mEvent.mGroupName}")
-//        getGroupDetails()
         getCartDetails()
     }
 

@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.rsl.youresto.data.database_download.models.IngredientsModel
 import com.rsl.youresto.data.database_download.models.ProductModel
 import com.rsl.youresto.data.database_download.models.ReportModel
 import com.rsl.youresto.data.database_download.models.ServerModel
@@ -14,6 +15,9 @@ interface OrderHistoryDao {
 
     @Query("SELECT * FROM ProductModel WHERE mProductID = :productId")
     fun getProduct(productId: String): ProductModel?
+
+    @Query("SELECT * FROM IngredientsModel WHERE mIngredientID IN (:list)")
+    fun getAddOnsByIds(list: List<String>): List<IngredientsModel>
 
 
     @Query("SELECT * FROM ServerModel WHERE mServerID =:id")

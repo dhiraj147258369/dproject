@@ -220,11 +220,10 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
         }
 
         if (resource.status == Resource.Status.SUCCESS){
+            withContext(Dispatchers.IO) {cartDao.deleteCartByLocation(remoteSource.prefs.getSelectedLocation())}
             resource.data?.map { receiveCart ->
                 withContext(Dispatchers.IO) {
-                    cartDao.deleteCartByLocation(remoteSource.prefs.getSelectedLocation())
                     async {
-
                         val cartProducts = ArrayList<CartProductModel>()
                         for (cart in receiveCart.cartDetails){
 
@@ -238,6 +237,11 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
                                 val localAddOns = cartDao.getAddOnsByIds(addOnIdList)
                                 mShowModifierList.addAll(localAddOns)
                             }
+
+                            var addOnTotal = BigDecimal(0.0)
+                            mShowModifierList.map { modifier -> addOnTotal += (modifier.mIngredientPrice * BigDecimal(cart.qty)) }
+
+                            val cartProductTotalPrice = BigDecimal(cart.price * cart.qty) + addOnTotal
 
                             val mCartProduct = CartProductModel(
                                 remoteSource.prefs.getSelectedLocation(),
@@ -262,7 +266,7 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
                                 product.mProductName,
                                 product.mDineInPrice,
                                 BigDecimal(cart.qty),
-                                mProductTotalPrice = BigDecimal(cart.price),
+                                mProductTotalPrice = cartProductTotalPrice,
                                 "",
                                 BigDecimal(0.0),
                                 ArrayList(),
@@ -283,7 +287,7 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
                             cartProducts.add(mCartProduct)
                         }
 
-                        cartDao.insertBulkCartProduct(cartProducts)
+                        val ids = cartDao.insertBulkCartProduct(cartProducts)
                     }
                 }
             }?.awaitAll()

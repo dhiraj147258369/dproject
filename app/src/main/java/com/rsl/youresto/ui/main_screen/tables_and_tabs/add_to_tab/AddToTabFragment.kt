@@ -20,6 +20,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import com.rsl.youresto.App
 import com.rsl.youresto.R
 import com.rsl.youresto.data.cart.models.CartProductModel
 import com.rsl.youresto.data.database_download.models.*
@@ -39,9 +40,11 @@ import com.rsl.youresto.utils.AppConstants.SELECTED_TABLE_ID
 import com.rsl.youresto.utils.AppConstants.SELECTED_TABLE_NO
 import com.rsl.youresto.utils.AppConstants.SERVICE_DINE_IN
 import com.rsl.youresto.utils.AppConstants.SERVICE_QUICK_SERVICE
+import com.rsl.youresto.utils.AppPreferences
 import com.rsl.youresto.utils.custom_views.CustomToast
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -62,6 +65,7 @@ class AddToTabFragment : Fragment() {
 
     private var isTablet: Boolean = false
     private val productViewModel: NewProductViewModel by viewModel()
+    private val prefs: AppPreferences by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -173,7 +177,11 @@ class AddToTabFragment : Fragment() {
         val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH)
         val nowTime = simpleDateFormat.format(now.time)
 
-        val cartId = Date().time.toString()
+        var cartId = "0"
+
+        if (mSelectedLocationType == SERVICE_QUICK_SERVICE){
+            cartId = prefs.selectedQuickServiceCartId()
+        }
 
         mTotalProductPrice = (mProductUnitPrice * mQuantity)
 
@@ -226,8 +234,12 @@ class AddToTabFragment : Fragment() {
         productViewModel.cartData.observe(viewLifecycleOwner) { event ->
             event?.getContentIfNotHandled()?.let {
                 if (it.status){
-                    ((parentFragment as NavHostFragment).parentFragment as AddToTabDialog).dismissDialog()
-                    EventBus.getDefault().post(ShowCartEvent(true))
+                    if (App.isTablet){
+                        ((parentFragment as? NavHostFragment)?.parentFragment as? AddToTabDialog)?.dismissDialog()
+                        EventBus.getDefault().post(ShowCartEvent(true))
+                    } else {
+                        findNavController().navigateUp()
+                    }
                 } else {
                     CustomToast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
                 }

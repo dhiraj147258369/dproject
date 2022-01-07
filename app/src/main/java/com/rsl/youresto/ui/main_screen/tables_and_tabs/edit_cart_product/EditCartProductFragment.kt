@@ -156,8 +156,7 @@ class EditCartProductFragment : Fragment() {
            if (App.isTablet) {
                ((parentFragment as NavHostFragment).parentFragment as EditCartDialog).dismissDialog()
            } else {
-               val action = EditCartProductFragmentDirections.actionEditCartProductFragmentToCartGroupFragment(mGroupName!!, javaClass.simpleName)
-               findNavController().navigate(action)
+               findNavController().navigate(R.id.cartFragment)
            }
         }
 

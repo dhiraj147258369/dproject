@@ -24,11 +24,11 @@ import androidx.navigation.fragment.findNavController
 import com.rsl.youresto.App
 import com.rsl.youresto.R
 import com.rsl.youresto.data.cart.models.CartProductModel
-import com.rsl.youresto.data.database_download.models.LocationModel
 import com.rsl.youresto.data.database_download.models.ServerModel
 import com.rsl.youresto.databinding.FragmentPendingOrderBinding
 import com.rsl.youresto.ui.main_screen.cart.CartViewModel
 import com.rsl.youresto.ui.main_screen.cart.CartViewModelFactory
+import com.rsl.youresto.ui.main_screen.cart.NewCartViewModel
 import com.rsl.youresto.ui.main_screen.pending_order.event.PendingOrderDeleteEvent
 import com.rsl.youresto.ui.main_screen.pending_order.event.PendingOrderEvent
 import com.rsl.youresto.ui.server_login.ServerLoginViewModel
@@ -37,11 +37,9 @@ import com.rsl.youresto.utils.AppConstants
 import com.rsl.youresto.utils.AppConstants.INTENT_FROM
 import com.rsl.youresto.utils.AppConstants.LOCATION_SERVICE_TYPE
 import com.rsl.youresto.utils.AppConstants.LOGGED_IN_SERVER_NAME
-import com.rsl.youresto.utils.AppConstants.PENDING_ORDER_FRAGMENT
 import com.rsl.youresto.utils.AppConstants.QUICK_SERVICE_CART_ID
 import com.rsl.youresto.utils.AppConstants.QUICK_SERVICE_CART_NO
 import com.rsl.youresto.utils.AppConstants.SELECTED_LOCATION_ID
-import com.rsl.youresto.utils.AppConstants.SELECTED_LOCATION_NAME
 import com.rsl.youresto.utils.AppConstants.SELECTED_TABLE_ID
 import com.rsl.youresto.utils.AppConstants.SELECTED_TABLE_NO
 import com.rsl.youresto.utils.AppConstants.SERVICE_DINE_IN
@@ -58,11 +56,11 @@ class PendingOrderFragment : Fragment()  {
 
     private lateinit var mBinding: FragmentPendingOrderBinding
     private val serverViewModel: ServerLoginViewModel by viewModel()
+    private val cartViewModel: NewCartViewModel by viewModel()
     private lateinit var mCartViewModel: CartViewModel
 
     private var mSharedPref: SharedPreferences? = null
 
-    private var mLocationList: ArrayList<String>? = null
     private var mServerList: ArrayList<String>? = null
 
     private var mLocationID = ""
@@ -90,7 +88,6 @@ class PendingOrderFragment : Fragment()  {
 
         mLocationID = mSharedPref?.getString(SELECTED_LOCATION_ID, "") ?: ""
 
-//        setUpLocationFilter()
         setUpServerFilter()
 
         Handler(Looper.getMainLooper()).postDelayed({
@@ -100,12 +97,11 @@ class PendingOrderFragment : Fragment()  {
             }
         },200)
 
+        cartViewModel.syncCarts()
+
         return mView
     }
 
-    private var mLocationSelectedListener: AdapterView.OnItemSelectedListener? = null
-
-    private var mLocationModelList: ArrayList<LocationModel>? = ArrayList()
     private var mServerModelList: ArrayList<ServerModel>? = ArrayList()
 
     private fun initOnClickListeners() {
@@ -164,52 +160,6 @@ class PendingOrderFragment : Fragment()  {
                 mPendingAdapter?.notifyDataSetChanged()
             }
         }
-    }
-
-    private fun setUpLocationFilter() {
-        mLocationList = ArrayList()
-        mLocationModelList!!.add(LocationModel("","ALL", "1"))
-        mLocationList!!.add("ALL")
-
-        serverViewModel.getLocations().observe(viewLifecycleOwner, {
-            when {
-                it.isNotEmpty() -> {
-                    for (i in it.indices) {
-                        mLocationModelList!!.add(it[i])
-                        mLocationList!!.add(it[i].mLocationName)
-                    }
-
-                    val mLocationAdapter =
-                        ArrayAdapter(requireActivity(), R.layout.spinner_item_pending_order, mLocationList!!)
-                    mLocationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    mBinding.spinnerLocation.adapter = mLocationAdapter
-
-                    mLocationSelectedListener = object : AdapterView.OnItemSelectedListener {
-                        override fun onNothingSelected(parent: AdapterView<*>?) {
-                            /*Not required*/
-                        }
-
-                        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                            mLocationID = mLocationModelList!![position].mLocationID
-
-                            if(!mViewCreated)
-                                setUpRecyclerView()
-                        }
-                    }
-
-                    var mSelectedLocationPosition = 0
-                    for(j in 0 until mLocationList!!.size) {
-                        if(mLocationList!![j] == mSharedPref!!.getString(SELECTED_LOCATION_NAME,"")) {
-                            mSelectedLocationPosition = j
-                            break
-                        }
-                    }
-                    mBinding.spinnerLocation.setSelection(mSelectedLocationPosition)
-
-                    mBinding.spinnerLocation.onItemSelectedListener = mLocationSelectedListener
-                }
-            }
-        })
     }
 
     private var mOrderNoOrder = DESCENDING_ORDER
@@ -320,8 +270,7 @@ class PendingOrderFragment : Fragment()  {
 
             Handler(Looper.getMainLooper()).postDelayed({
                 if (!App.isTablet) {
-                    val action = PendingOrderFragmentDirections.actionPendingOrderFragmentToCartGroupFragment(mEvent.mCart.mGroupName, PENDING_ORDER_FRAGMENT)
-                    findNavController().navigate(action)
+                    findNavController().navigate(R.id.cartFragment)
                 } else {
                     if(mEvent.mCart.mOrderType == SERVICE_QUICK_SERVICE) {
                         findNavController().navigate(R.id.quickServiceTabFragment, bundleOf(INTENT_FROM to "PendingOrderFragment"))
@@ -386,12 +335,6 @@ class PendingOrderFragment : Fragment()  {
                 })
         }
     }
-
-    //TODO: HANDLE BACK PRESS
-//    override fun handleOnBackPressed(): Boolean {
-//        pressAgainMethod()
-//        return true
-//    }
 
     override fun onStart() {
         super.onStart()

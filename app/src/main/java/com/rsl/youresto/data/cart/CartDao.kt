@@ -14,8 +14,8 @@ interface CartDao {
     @Delete
     fun deleteCartItem(cartProduct: CartProductModel): Int
 
-    @Query("SELECT * FROM CartProductModel WHERE mTableID =:mTableNO")
-    fun getCarts(mTableNO: String): List<CartProductModel>
+    @Query("SELECT * FROM CartProductModel WHERE mTableID =:mTableId")
+    fun getCarts(mTableId: String): List<CartProductModel>
 
     @Query("SELECT * FROM CartProductModel WHERE mTableID =:mTableNO")
     fun getCartData(mTableNO: String): LiveData<List<CartProductModel>>

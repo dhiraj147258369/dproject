@@ -12,6 +12,7 @@ import com.rsl.youresto.network.models.AppliedTaxDetail
 import com.rsl.youresto.network.models.CartDetail
 import com.rsl.youresto.network.models.NetworkCartResponse
 import com.rsl.youresto.network.models.PostCart
+import com.rsl.youresto.utils.AppConstants.SERVICE_QUICK_SERVICE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -37,7 +38,11 @@ class NewProductRepository(private val mainProductDao: MainProductDao, private v
     suspend fun submitCartProduct(cartProduct: CartProductModel): Resource<NetworkCartResponse> {
 
         val carts = withContext(Dispatchers.IO) {
-            mainProductDao.getCartData(cartProduct.mTableID)
+            if (remoteSource.prefs.getLocationServiceType() == SERVICE_QUICK_SERVICE){
+                mainProductDao.getCartDataById(remoteSource.prefs.selectedQuickServiceCartId())
+            } else {
+                mainProductDao.getCartData(cartProduct.mTableID)
+            }
         }
 
         val isTableOccupied = carts.isNotEmpty()
@@ -81,6 +86,8 @@ class NewProductRepository(private val mainProductDao: MainProductDao, private v
             mainProductDao.saveCartProduct(cartProduct)
         }
 
+        cartProduct.mID = cartId.toInt()
+
         val addons = ArrayList<CartDetail.Addon>()
         cartProduct.mShowModifierList?.map { addons.add(CartDetail.Addon(it.mIngredientID.toInt())) }
 
@@ -93,9 +100,9 @@ class NewProductRepository(private val mainProductDao: MainProductDao, private v
             specialNotes = cartProduct.mSpecialInstruction
         }
 
-        if (cartProduct.taxPercentage > 0) taxTotal += (cartProduct.mProductUnitPrice.toDouble() * cartProduct.mProductQuantity.toInt() * cartProduct.taxPercentage) / 100
+        if (cartProduct.taxPercentage > 0) taxTotal += (cartProduct.mProductTotalPrice.toDouble() * cartProduct.taxPercentage) / 100
 
-        subTotal += BigDecimal(cartProduct.mProductUnitPrice.toDouble() * cartProduct.mProductQuantity.toInt())
+        subTotal += BigDecimal(cartProduct.mProductTotalPrice.toDouble())
 
         val gTotal: BigDecimal = subTotal + BigDecimal(taxTotal)
 
@@ -131,6 +138,7 @@ class NewProductRepository(private val mainProductDao: MainProductDao, private v
             resource.data?.let {
 //                cartProduct.mID = it.itemIds[it.itemIds.size - 1].toInt()
 //                cartProduct.mID =
+                remoteSource.prefs.setQuickServiceCartId(it.orderId.toString())
                 cartProduct.mCartID = it.orderId.toString()
                 cartProduct.mCartNO = it.orderId.toString()
                 cartProduct.tableOrderId = it.tableOrdersId.toString()

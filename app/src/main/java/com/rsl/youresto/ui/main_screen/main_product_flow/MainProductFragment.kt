@@ -2,8 +2,6 @@ package com.rsl.youresto.ui.main_screen.main_product_flow
 
 
 import android.annotation.SuppressLint
-import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
 import android.graphics.Typeface.DEFAULT
 import android.graphics.Typeface.DEFAULT_BOLD
 import android.os.Bundle
@@ -16,7 +14,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -29,30 +26,22 @@ import com.rsl.youresto.data.database_download.models.ProductModel
 import com.rsl.youresto.data.database_download.models.TablesModel
 import com.rsl.youresto.databinding.FragmentMainProductBinding
 import com.rsl.youresto.ui.main_screen.cart.NewCartViewModel
-import com.rsl.youresto.ui.main_screen.main_product_flow.event.CartBarGroupEvent
 import com.rsl.youresto.ui.main_screen.main_product_flow.event.MainProductFlowEvent
 import com.rsl.youresto.ui.main_screen.main_product_flow.event.MainProductNavigateEvent
 import com.rsl.youresto.ui.main_screen.main_product_flow.event.MainProductSearchEvent
 import com.rsl.youresto.ui.main_screen.main_product_flow.product.ProductFragment
 import com.rsl.youresto.ui.main_screen.main_product_flow.product_category.ProductCategoryFragment
 import com.rsl.youresto.ui.main_screen.main_product_flow.product_group.ProductGroupFragment
-import com.rsl.youresto.ui.main_screen.pending_order.PendingOrderFragment
 import com.rsl.youresto.ui.main_screen.quick_service.QuickServiceFragmentDirections
 import com.rsl.youresto.ui.main_screen.tables_and_tabs.AddToTabDialog
 import com.rsl.youresto.utils.AppConstants.CATEGORY
 import com.rsl.youresto.utils.AppConstants.GROUP
 import com.rsl.youresto.utils.AppConstants.INTENT_FROM
-import com.rsl.youresto.utils.AppConstants.LOCATION_SERVICE_TYPE
-import com.rsl.youresto.utils.AppConstants.MAIN_PRODUCT_FRAGMENT
-import com.rsl.youresto.utils.AppConstants.MY_PREFERENCES
 import com.rsl.youresto.utils.AppConstants.PRODUCT
-import com.rsl.youresto.utils.AppConstants.SELECTED_TABLE_ID
-import com.rsl.youresto.utils.AppConstants.SELECTED_TABLE_NO
 import com.rsl.youresto.utils.AppConstants.SERVICE_DINE_IN
 import com.rsl.youresto.utils.AppConstants.SERVICE_QUICK_SERVICE
 import com.rsl.youresto.utils.AppPreferences
 import com.rsl.youresto.utils.Utils
-import com.rsl.youresto.utils.custom_views.CustomToast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -65,14 +54,12 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainProductFragment : Fragment() {
 
     private lateinit var mBinding: FragmentMainProductBinding
-    private lateinit var mSharedPrefs: SharedPreferences
     private lateinit var mTableID: String
     private var mSelectedLocationType: Int? = null
     private var mIntentFrom: String = "A"
 
     private var isTablet: Boolean = false
     private val prefs: AppPreferences by inject()
-    private val productViewModel: NewProductViewModel by viewModel()
     private val cartViewModel: NewCartViewModel by viewModel()
 
     override fun onCreateView(
@@ -85,15 +72,9 @@ class MainProductFragment : Fragment() {
 
         isTablet = resources.getBoolean(R.bool.isTablet)
 
-        mSharedPrefs = requireActivity().getSharedPreferences(MY_PREFERENCES, MODE_PRIVATE)
-
-        mSelectedLocationType = mSharedPrefs.getInt(LOCATION_SERVICE_TYPE, 0)
-
+        mSelectedLocationType = prefs.getLocationServiceType()
         mIntentFrom = arguments?.getString(INTENT_FROM) ?: ""
-
-        e(javaClass.simpleName, "mIntentFrom: $mIntentFrom")
-
-        mTableID = mSharedPrefs.getString(SELECTED_TABLE_ID, "") ?: ""
+        mTableID = prefs.getSelectedTableId()
 
 
         initViews()
@@ -103,7 +84,7 @@ class MainProductFragment : Fragment() {
 
 
     private fun checkLocationServiceType() {
-        if (mSharedPrefs.getInt(LOCATION_SERVICE_TYPE, 0) != SERVICE_DINE_IN) {
+        if (mSelectedLocationType != SERVICE_DINE_IN) {
             mBinding.textViewTableNo.visibility = GONE
             mBinding.textViewGuestsLabel.visibility = GONE
             mBinding.textViewOccupiedChairs.visibility = GONE
@@ -113,7 +94,7 @@ class MainProductFragment : Fragment() {
     var mGroupID: String = ""
 
     private fun initViews() {
-        val mTableNO = "Table No. " +mSharedPrefs.getInt(SELECTED_TABLE_NO, 0)
+        val mTableNO = "Table " + prefs.getSelectedTableNo()
         mBinding.textViewTableNo.text = mTableNO
 
 
@@ -145,18 +126,14 @@ class MainProductFragment : Fragment() {
             mBinding.editTextSearchProducts.setText("")
         }
 
-        mBinding.textViewOccupiedChairs.setOnClickListener {
-            val action = MainProductFragmentDirections.actionMainProductFragmentToSeatSelectionFragment(
-                mTableID,
-                javaClass.simpleName
-            )
-            findNavController().navigate(action)
-        }
+        mBinding.textViewOccupiedChairs.setOnClickListener {}
 
         productSearch()
         Handler(Looper.getMainLooper()).postDelayed({
             redirectTOProducts()
         }, 10)
+
+        if (isTablet) mBinding.constraintLayoutCartBar.visibility = GONE
 
 
         lifecycleScope.launch {
@@ -165,7 +142,15 @@ class MainProductFragment : Fragment() {
             }
 
             if (cartItems.isNotEmpty()){
-                //todo: show cart for mobile screen
+                mBinding.cartProductCount.text = "${cartItems.size}"
+            } else {
+                mBinding.constraintLayoutCartBar.visibility = GONE
+            }
+        }
+
+        mBinding.viewCart.setOnClickListener {
+            if (!isTablet){
+                findNavController().navigate(R.id.cartFragment)
             }
         }
     }
@@ -344,39 +329,7 @@ class MainProductFragment : Fragment() {
         } else if (prefs.getLocationServiceType() == SERVICE_QUICK_SERVICE) {
             if (isTablet){
                 //check tableId
-
-                    if (mIntentFrom == PendingOrderFragment::class.simpleName){
-                        openAddToTab(mProduct)
-                        return
-                    }
-
-                lifecycleScope.launch {
-
-                    mTableID = mSharedPrefs.getString(SELECTED_TABLE_ID, "") ?: ""
-
-                    val cart = withContext(Dispatchers.IO){
-                        cartViewModel.getCartByTable(mTableID)
-                    }
-
-                    val table = withContext(Dispatchers.IO){
-                        productViewModel.getQuickServiceTable()
-                    }
-
-                    when {
-                        table != null -> {
-                            prefs.setTable(table.mTableID, table.mTableNo)
-                            openAddToTab(mProduct)
-                        }
-                        cart.isNotEmpty() -> {
-                            openAddToTab(mProduct)
-                        }
-                        else -> {
-                            CustomToast.makeText(requireActivity(), "There is no empty tables", Toast.LENGTH_SHORT).show()
-                            return@launch
-                        }
-                    }
-                }
-
+                openAddToTab(mProduct)
             } else {
                 val action =
                     QuickServiceFragmentDirections.actionQuickServiceFragmentToAddToTabFragment(
@@ -397,27 +350,8 @@ class MainProductFragment : Fragment() {
     }
 
     @Subscribe
-    fun onCartBarGroupClicked(mEvent: CartBarGroupEvent) {
-        if (mEvent.mResult) {
-            if (mSelectedLocationType == SERVICE_DINE_IN) {
-                val action = MainProductFragmentDirections.actionMainProductFragmentToCartGroupFragment(
-                    mEvent.mCartBarModel.mGroupName,
-                    MAIN_PRODUCT_FRAGMENT
-                )
-                findNavController().navigate(action)
-            } else if (mSelectedLocationType == SERVICE_QUICK_SERVICE) {
-                val action = QuickServiceFragmentDirections.actionQuickServiceFragmentToCartGroupFragment(
-                    mEvent.mCartBarModel.mGroupName,
-                    MAIN_PRODUCT_FRAGMENT
-                )
-                findNavController().navigate(action)
-            }
-        }
-    }
-
-    @Subscribe
     fun onTableClicked(mTable: TablesModel) {
-        val mTableNO = "Table " + mTable.mTableID
+        val mTableNO = "Table " + mTable.mTableNo
         mBinding.textViewTableNo.text = mTableNO
     }
 

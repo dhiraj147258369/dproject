@@ -6,7 +6,6 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log.e
 import android.view.LayoutInflater
 import android.view.View
@@ -25,9 +24,6 @@ import com.rsl.youresto.R
 import com.rsl.youresto.data.database_download.models.ReportModel
 import com.rsl.youresto.data.database_download.models.ServerModel
 import com.rsl.youresto.databinding.FragmentOrderHistoryListBinding
-import com.rsl.youresto.ui.database_download.DatabaseDownloadViewModel
-import com.rsl.youresto.ui.database_download.DatabaseDownloadViewModelFactory
-import com.rsl.youresto.ui.main_screen.MainScreenActivity
 import com.rsl.youresto.ui.main_screen.order_history.NewOrdersViewModel
 import com.rsl.youresto.ui.main_screen.order_history.OrderHistoryViewModel
 import com.rsl.youresto.ui.main_screen.order_history.event.OrderHistoryListEvent
@@ -36,7 +32,6 @@ import com.rsl.youresto.ui.main_screen.order_history.order_history_cart.OrderHis
 import com.rsl.youresto.ui.server_login.ServerLoginViewModel
 import com.rsl.youresto.utils.*
 import com.rsl.youresto.utils.AppConstants.DIALOG_TYPE_OTHER
-import com.rsl.youresto.utils.AppConstants.RESTAURANT_ID
 import com.rsl.youresto.utils.custom_dialog.CustomProgressDialog
 import com.rsl.youresto.utils.custom_views.CustomToast
 import org.greenrobot.eventbus.EventBus
@@ -51,7 +46,6 @@ import kotlin.collections.ArrayList
 class OrderHistoryListFragment : Fragment() {
     private lateinit var mBinding: FragmentOrderHistoryListBinding
     private lateinit var mOrderHistoryViewModel: OrderHistoryViewModel
-    private lateinit var mDownloadDataViewModel: DatabaseDownloadViewModel
     private val serverViewModel: ServerLoginViewModel by viewModel()
 
     private var mFromDateInMillis: Long = 0
@@ -77,11 +71,6 @@ class OrderHistoryListFragment : Fragment() {
         val factory = InjectorUtils.provideOrderHistoryViewModelFactory(requireActivity())
         mOrderHistoryViewModel = ViewModelProviders.of(this, factory).get(OrderHistoryViewModel::class.java)
 
-        val downloadFactory: DatabaseDownloadViewModelFactory =
-            InjectorUtils.provideDatabaseDownloadViewModelFactory(requireActivity())
-        mDownloadDataViewModel = ViewModelProviders.of(this, downloadFactory).get(DatabaseDownloadViewModel::class.java)
-
-//        val mIntentFrom = requireArguments().getString(INTENT_FROM)
         val mIntentFrom = ""
 
         editTextDateFrom()
@@ -127,92 +116,6 @@ class OrderHistoryListFragment : Fragment() {
                 mProgressDialog?.dismiss()
             }
         }
-
-//        mOrderHistoryViewModel.getLastRowOfReport().observe(viewLifecycleOwner, { reportModel ->
-//            if (reportModel != null) {
-//                val mDate = reportModel.mDateTime.replace(".0", "")
-//                e(javaClass.simpleName, "checkForUpdateData: $mDate")
-//                if (mDate != "") {
-//                    val date = Utils.getDateFromString("yyyy-MM-dd HH:mm:ss", mDate)
-//
-//                    val mCalendar = Calendar.getInstance()
-//                    mCalendar.time = date
-//                    var mHour = mCalendar.get(Calendar.HOUR)
-//                    var mMinutes = mCalendar.get(Calendar.MINUTE)
-//                    var mSeconds = mCalendar.get(Calendar.SECOND)
-//
-//                    if (mMinutes == 59) {
-//                        mHour++
-//                        mMinutes = 0
-//                        mSeconds = 0
-//                    } else if (mSeconds == 59 || mSeconds == 60) {
-//                        mMinutes++
-//                        mSeconds = 0
-//                    } else {
-//                        mSeconds++
-//                    }
-//
-//                    mCalendar.set(Calendar.HOUR, mHour)
-//                    mCalendar.set(Calendar.MINUTE, mMinutes)
-//                    mCalendar.set(Calendar.SECOND, mSeconds)
-//
-//                    val d = mCalendar.time
-//                    mDateTime = Utils.getStringFromDate("dd/MM/yyyy HH:mm:ss", d)
-//                    e(javaClass.simpleName, "checkForUpdateData: updated date: $mDateTime")
-//
-//                    updateReportData(mDateTime)
-//                }
-//            } else {
-//                updateReportData("")
-//            }
-//        })
-    }
-
-    private fun updateReportData(mDateTime: String) {
-        val mRestaurantID = mSharedPref!!.getString(RESTAURANT_ID, "")
-
-        Network.isNetworkAvailableWithInternetAccess(requireContext()).observe(viewLifecycleOwner, {
-            when {
-                it != null ->
-                    when {
-                        it -> mDownloadDataViewModel.getReportsData(mRestaurantID!!, mDateTime).observe(viewLifecycleOwner,
-                            { b ->
-                            when {
-                                b != null -> {
-
-                                    CustomToast.makeText(requireActivity(), "Data updated successfully", Toast.LENGTH_SHORT).show()
-
-                                    mBinding.progressBarBillReportList.visibility = GONE
-                                    mBinding.textViewUpdatingData.visibility = GONE
-                                    mBinding.constraintLayoutMainOrderHistory.visibility = VISIBLE
-
-                                    initialiseDates()
-
-
-                                    when {
-                                        mProgressDialog != null -> mProgressDialog!!.dismiss()
-                                    }
-                                }
-                            }
-                        })
-                        else -> {
-                            CustomToast.makeText(requireActivity(), "Network Error! Reports are not updated", Toast.LENGTH_SHORT)
-                                .show()
-
-                            mBinding.progressBarBillReportList.visibility = GONE
-                            mBinding.textViewUpdatingData.visibility = GONE
-                            mBinding.constraintLayoutMainOrderHistory.visibility = VISIBLE
-
-                            initialiseDates()
-
-                            when {
-                                mProgressDialog != null -> mProgressDialog!!.dismiss()
-                            }
-                        }
-                    }
-            }
-        })
-
     }
 
     private fun initialiseDates() {
@@ -505,32 +408,6 @@ class OrderHistoryListFragment : Fragment() {
 
         }
     }
-
-    private var doubleBackToExitPressedOnce = false
-
-    private fun pressAgainMethod() {
-        val mDrawerVisibility = (activity as MainScreenActivity).checkNavigationDrawerVisibility()
-
-        if (mDrawerVisibility)
-            return
-
-        if (doubleBackToExitPressedOnce) {
-            (activity as MainScreenActivity).serverLogout()
-            return
-        }
-
-        this.doubleBackToExitPressedOnce = true
-        if (!requireActivity().isFinishing)
-            CustomToast.makeText(requireActivity(), "Press again to exit", Toast.LENGTH_SHORT).show()
-
-        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
-    }
-
-    //TODO: HANDLE BACK PRESS
-//    override fun handleOnBackPressed(): Boolean {
-//        pressAgainMethod()
-//        return true
-//    }
 
     override fun onStart() {
         super.onStart()

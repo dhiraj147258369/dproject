@@ -88,6 +88,7 @@ data class OrderItem(
     var orderId: String,
     var price: String,
     var qty: String,
+    var addon: List<ReceiveCartDetail.Addon> = ArrayList(),
     @SerializedName("recipe_id")
     var recipeId: String,
     @SerializedName("special_notes")

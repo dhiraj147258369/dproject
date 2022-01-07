@@ -1,6 +1,7 @@
 package com.rsl.youresto.repositories
 
 import com.rsl.youresto.data.database_download.models.ReportModel
+import com.rsl.youresto.data.database_download.models.ReportProductIngredientModel
 import com.rsl.youresto.data.database_download.models.ReportProductModel
 import com.rsl.youresto.data.order_history.OrderHistoryDao
 import com.rsl.youresto.data.order_history.OrderHistoryRemoteSource
@@ -11,7 +12,6 @@ import com.rsl.youresto.utils.Utils.DATE_FORMAT_1
 import com.rsl.youresto.utils.Utils.getDateFromString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class NewOrdersRepository(private val remoteSource: OrderHistoryRemoteSource, val dao: OrderHistoryDao) {
 
@@ -46,6 +46,23 @@ class NewOrdersRepository(private val remoteSource: OrderHistoryRemoteSource, va
                 }
 
                 if (product != null) {
+
+                    val ingredientsList = ArrayList<ReportProductIngredientModel>()
+                    if (item.addon.isNotEmpty()){
+                        val addOnIdList = ArrayList<String>()
+                        item.addon.map { addOn -> addOnIdList.add(addOn.addonId.toString()) }
+                        val localAddOns = dao.getAddOnsByIds(addOnIdList)
+                        localAddOns.map {localAddOn ->
+                            ingredientsList.add(ReportProductIngredientModel(
+                                localAddOn.mIngredientID,
+                                localAddOn.mIngredientName,
+                                localAddOn.mIngredientQuantity.toInt(),
+                                localAddOn.mCartIngredientID ?: "",
+                                localAddOn.mIngredientPrice.toDouble()
+                            ))
+                        }
+                    }
+
                     productList.add(
                         ReportProductModel(
                             product.mGroupID.toString(),
@@ -55,7 +72,7 @@ class NewOrdersRepository(private val remoteSource: OrderHistoryRemoteSource, va
                             item.qty.toInt(),
                             "",
                             item.price.toDouble(),
-                            item.total.toDouble(),
+                            report.netTotal.toDouble(),
                             product.mProductType,
                             "",
                             0.0,
@@ -63,7 +80,7 @@ class NewOrdersRepository(private val remoteSource: OrderHistoryRemoteSource, va
                             "",
                             "",
                             "",
-                            ArrayList(),
+                            ingredientsList,
                             ArrayList()
                         )
                     )

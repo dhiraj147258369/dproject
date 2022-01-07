@@ -25,6 +25,9 @@ interface TablesDao {
     @Query("SELECT * FROM CartProductModel WHERE mTableID =:tableId")
     suspend fun getCartWithTableId(tableId: String): List<CartProductModel>
 
+    @Query("SELECT * FROM TablesModel WHERE mLocationID =:locationId")
+    suspend fun getTableWithLocation(locationId: String): List<TablesModel>
+
 
 
     @Query("SELECT * FROM TablesModel WHERE mTableID =:mTableID")

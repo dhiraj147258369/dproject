@@ -5,7 +5,7 @@ import org.koin.dsl.module
 
 val repoModule = module {
     single { LoginRepository(get(), get()) }
-    single { NewTablesRepository(get()) }
+    single { NewTablesRepository(get(), get()) }
     single { NewProductRepository(get(), get()) }
     single { NewCartRepository(get(), get()) }
     single { NewOrdersRepository(get(), get()) }

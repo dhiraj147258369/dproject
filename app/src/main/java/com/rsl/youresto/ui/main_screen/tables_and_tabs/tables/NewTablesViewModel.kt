@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class NewTablesViewModel(val repo: NewTablesRepository): ViewModel() {
+class NewTablesViewModel(private val repo: NewTablesRepository): ViewModel() {
 
     val filterText = MutableLiveData<String>()
 
@@ -32,4 +32,6 @@ class NewTablesViewModel(val repo: NewTablesRepository): ViewModel() {
 
         return mediatorData
     }
+
+    suspend fun getTableWithLocation() = repo.getTableWithLocation()
 }

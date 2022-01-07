@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.rsl.youresto.App
 import com.rsl.youresto.R
 import com.rsl.youresto.data.database_download.models.LocationModel
 import com.rsl.youresto.data.database_download.models.ServerModel
@@ -56,6 +57,7 @@ class ServerLoginFragment : Fragment() {
      */
     private fun setLocation() {
         mBinding.textViewSelectedLocation.text = prefs.getSelectedLocationName()
+        if (App.isTablet) mBinding.textViewChangeLocation.visibility = GONE
     }
 
     /**
