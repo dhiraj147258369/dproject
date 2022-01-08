@@ -417,7 +417,7 @@ class MainProductFragment : Fragment() {
 
     @Subscribe
     fun onTableClicked(mTable: TablesModel) {
-        val mTableNO = "Table " + mTable.mTableID
+        val mTableNO = "Table " + mTable.mTableNo
         mBinding.textViewTableNo.text = mTableNO
     }
 

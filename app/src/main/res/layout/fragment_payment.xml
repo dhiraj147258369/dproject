@@ -56,7 +56,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/background_smoky_black_with_left_corners"
+                android:background="@drawable/background_yc_with_left_corners"
                 android:gravity="center"
                 android:text="@string/string_currency_sign"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
@@ -98,6 +98,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Proceed"
+
+                android:textColor="@color/white"
+                android:background="@drawable/new_button"
                 app:layout_constraintEnd_toEndOf="@+id/edit_text_cash_value"
                 app:layout_constraintStart_toStartOf="@+id/text_view_sign"
                 app:layout_constraintTop_toBottomOf="@+id/edit_text_cash_value" />
