@@ -118,7 +118,7 @@ class BluetoothPrinterFragment : Fragment() {
         }
 
         mBinding.buttonSetBluetoothPrinter.setOnClickListener {
-            mSelectedBluetoothPrinter = mBAdapter!!.getSelectedBluetooth()
+            mSelectedBluetoothPrinter = mBAdapter?.getSelectedBluetooth()
             when {
                 mSelectedBluetoothPrinter != null -> if(mSharedPrefs.getString(BILL_PRINTER_OR_KITCHEN_PRINTER,"")!! == BILL_PRINTER)
                     updateBillPrinter()

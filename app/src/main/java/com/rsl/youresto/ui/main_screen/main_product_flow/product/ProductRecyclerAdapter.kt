@@ -5,12 +5,13 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.rsl.youresto.data.database_download.models.ProductModel
 import com.rsl.youresto.databinding.RecyclerItemProductBinding
 import org.greenrobot.eventbus.EventBus
 import java.util.*
 
-class ProductRecyclerAdapter(mContext: Context, private val mProductList : ArrayList<ProductModel>) :
+class ProductRecyclerAdapter(val mContext: Context, private val mProductList : ArrayList<ProductModel>) :
     RecyclerView.Adapter<ProductRecyclerAdapter.ProductViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -28,16 +29,15 @@ class ProductRecyclerAdapter(mContext: Context, private val mProductList : Array
 
         holder.mBinding.textViewProductPrice.text = String.format(Locale.ENGLISH,"%.2f",mProduct.mDineInPrice)
 
-//        when {
-//            mSharedPrefs.getInt(LOCATION_SERVICE_TYPE,0) == SERVICE_DINE_IN ->
-//                holder.mBinding.textViewProductPrice.text = String.format(Locale.ENGLISH,"%.2f",mProduct.mDineInPrice)
-//            mSharedPrefs.getInt(LOCATION_SERVICE_TYPE,0) == SERVICE_QUICK_SERVICE ->
-//                holder.mBinding.textViewProductPrice.text = String.format(Locale.ENGLISH,"%.2f",mProduct.mQuickServicePrice)
-//            else ->
-//                holder.mBinding.textViewProductPrice.text = String.format(Locale.ENGLISH,"%.2f",mProduct.mDeliveryPrice)
-//        }
-
         marqueeProductName(holder)
+        loadImage(mProduct.mProductImageUrl, holder)
+    }
+
+    private fun loadImage(mImageURL: String, holder: ProductViewHolder) {
+        Glide
+            .with(mContext)
+            .load(mImageURL) // GlideUrl is created anyway so there's no extra objects allocated
+            .into(holder.mBinding.imageViewProduct)
     }
 
     private fun marqueeProductName(holder: ProductViewHolder){

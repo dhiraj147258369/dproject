@@ -78,4 +78,14 @@ class NewCartViewModel(private val repo: NewCartRepository): ViewModel() {
             }
         }
     }
+
+    fun deleteCart(tableId: String?, cartId: String?){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                repo.deleteCart(tableId, cartId)
+            }
+        }
+    }
+
+    fun getPendingOrderCartData() = repo.getPendingOrderCartData()
 }

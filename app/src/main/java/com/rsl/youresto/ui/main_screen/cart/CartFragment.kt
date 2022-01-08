@@ -160,9 +160,6 @@ class CartFragment : Fragment() {
                 }
         }
 
-
-
-
         cartViewModel.deleteCartData.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
                 if (!App.isTablet){
@@ -251,20 +248,6 @@ class CartFragment : Fragment() {
         val dialog = CheckoutDialog()
         dialog.isCancelable = true
         dialog.show(childFragmentManager, "CheckoutDialog")
-    }
-
-    @Subscribe
-    fun checkInternetConnectionOnProductQtyChange(mEvent: CheckNetworkCartEvent) {
-
-        if (mEvent.mCartModel.mGroupName != mGroupName) {
-            return
-        }
-
-        Network.isNetworkAvailableWithInternetAccess(requireActivity()).observe(viewLifecycleOwner,
-            {
-                if (it) mCartAdapter!!.onNetworkChecked(true, mEvent.mPosition, mEvent.mChangeType, mEvent.mCartModel)
-                else CustomToast.makeText(requireActivity(), getString(R.string.network_error), Toast.LENGTH_SHORT).show()
-            })
     }
 
     @Subscribe

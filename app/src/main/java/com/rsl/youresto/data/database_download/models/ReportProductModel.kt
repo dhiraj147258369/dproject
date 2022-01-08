@@ -18,6 +18,5 @@ class ReportProductModel(
     val mPrinterID: String,
     val mCartProductID: String,
     val mAssignedSeats: String,
-    val mIngredientList: ArrayList<ReportProductIngredientModel>,
-    val mSubProductList: ArrayList<ReportSubProductModel>
+    val mIngredientList: ArrayList<ReportProductIngredientModel>
 )

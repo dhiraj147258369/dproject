@@ -906,7 +906,6 @@ object DownloadDatabaseNetworkUtils {
                                                             mPrinterID,
                                                             mCartProductID,
                                                             mAssignedSeats,
-                                                            ArrayList(),
                                                             ArrayList()
                                                         )
                                                         mProductList.add(mReportProductModel)
@@ -958,8 +957,7 @@ object DownloadDatabaseNetworkUtils {
                                                             mPrinterID,
                                                             mCartProductID,
                                                             mAssignedSeats,
-                                                            mIngredientList,
-                                                            ArrayList()
+                                                            mIngredientList
                                                         )
                                                         mProductList.add(mReportProductModel)
 
@@ -1045,8 +1043,7 @@ object DownloadDatabaseNetworkUtils {
                                                             mPrinterID,
                                                             mCartProductID,
                                                             mAssignedSeats,
-                                                            ArrayList(),
-                                                            mSubProductList
+                                                            ArrayList()
                                                         )
                                                         mProductList.add(mReportProductModel)
                                                     }

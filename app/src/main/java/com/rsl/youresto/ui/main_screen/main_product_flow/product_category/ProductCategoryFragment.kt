@@ -89,7 +89,7 @@ class ProductCategoryFragment : Fragment() {
         productViewModel.getProductCategories(mGroupID).observe(viewLifecycleOwner) {
             val categoryAdapter =
                 ProductCategoryRecyclerAdapter(
-                    ArrayList(it)
+                    requireContext(), ArrayList(it)
                 )
             mBinding.recyclerViewProductCategories.adapter = categoryAdapter
             Animations.runGridLayoutAnimationFallDown(mBinding.recyclerViewProductCategories)

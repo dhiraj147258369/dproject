@@ -128,7 +128,7 @@
     <fragment android:id="@+id/orderHistoryCartFragment"
               android:name="com.rsl.youresto.ui.main_screen.order_history.order_history_cart.OrderHistoryCartFragment"
               android:label="OrderHistoryCartFragment">
-        <argument android:name="mID" app:argType="integer" android:defaultValue="0"/>
+        <argument android:name="mID" app:argType="string" android:defaultValue="0"/>
         <action android:id="@+id/action_orderHistoryCartFragment_to_orderHistoryListFragment2"
                 app:destination="@id/orderHistoryListFragment"
                 app:enterAnim="@anim/item_animation_slide_enter_from_left"

@@ -20,6 +20,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import com.rsl.youresto.App
 import com.rsl.youresto.R
 import com.rsl.youresto.data.database_download.models.ReportModel
 import com.rsl.youresto.data.database_download.models.ServerModel
@@ -30,8 +32,10 @@ import com.rsl.youresto.ui.main_screen.order_history.event.OrderHistoryListEvent
 import com.rsl.youresto.ui.main_screen.order_history.model.LocationTypeModel
 import com.rsl.youresto.ui.main_screen.order_history.order_history_cart.OrderHistoryCartFragment
 import com.rsl.youresto.ui.server_login.ServerLoginViewModel
-import com.rsl.youresto.utils.*
-import com.rsl.youresto.utils.AppConstants.DIALOG_TYPE_OTHER
+import com.rsl.youresto.utils.Animations
+import com.rsl.youresto.utils.AppConstants
+import com.rsl.youresto.utils.InjectorUtils
+import com.rsl.youresto.utils.Utils
 import com.rsl.youresto.utils.custom_dialog.CustomProgressDialog
 import com.rsl.youresto.utils.custom_views.CustomToast
 import org.greenrobot.eventbus.EventBus
@@ -96,13 +100,16 @@ class OrderHistoryListFragment : Fragment() {
 
     private fun checkForUpdateData() {
 
-        mProgressDialog = CustomProgressDialog.newInstance(
-            "Updating Reports",
-            "Please Wait..",
-            DIALOG_TYPE_OTHER
-        )
-        mProgressDialog!!.show(childFragmentManager, AppConstants.CUSTOM_PROGRESS_DIALOG_FRAGMENT)
-        mProgressDialog!!.isCancelable = true
+
+        CustomToast.makeText(requireActivity(), "Updating orders in the background", Toast.LENGTH_LONG).show()
+
+//        mProgressDialog = CustomProgressDialog.newInstance(
+//            "Updating Reports",
+//            "Please Wait..",
+//            DIALOG_TYPE_OTHER
+//        )
+//        mProgressDialog!!.show(childFragmentManager, AppConstants.CUSTOM_PROGRESS_DIALOG_FRAGMENT)
+//        mProgressDialog!!.isCancelable = true
 
         ordersViewModel.getCartReportsFromNetwork()
 
@@ -364,16 +371,16 @@ class OrderHistoryListFragment : Fragment() {
                         }
                     }
 
-                    var mSelectedServerPosition = 0
-                    loop@ for (j in 0 until mServerList!!.size) {
-                        when {
-                            mServerList!![j] == mSharedPref!!.getString(AppConstants.LOGGED_IN_SERVER_NAME, "") -> {
-                                mSelectedServerPosition = j
-                                break@loop
-                            }
-                        }
-                    }
-                    mBinding.spinnerServer.setSelection(mSelectedServerPosition)
+//                    var mSelectedServerPosition = 0
+//                    loop@ for (j in 0 until mServerList!!.size) {
+//                        when {
+//                            mServerList!![j] == mSharedPref!!.getString(AppConstants.LOGGED_IN_SERVER_NAME, "") -> {
+//                                mSelectedServerPosition = j
+//                                break@loop
+//                            }
+//                        }
+//                    }
+//                    mBinding.spinnerServer.setSelection(mSelectedServerPosition)
 
                     mBinding.spinnerServer.onItemSelectedListener = mServerSelectedListener
                 }
@@ -401,11 +408,12 @@ class OrderHistoryListFragment : Fragment() {
     fun onOrderClick(mEvent: OrderHistoryListEvent) {
         if (mEvent.mResult) {
             mBinding.editTextSearchOrderNo.text.clear()
-//            val action =
-//                OrderHistoryListFragmentDirections.actionOrderHistoryListFragmentToOrderHistoryCartFragment(mEvent.mOrder.mID)
-//            findNavController().navigate(action)
 
-
+            if (!App.isTablet){
+                val action =
+                    OrderHistoryListFragmentDirections.actionOrderHistoryListFragmentToOrderHistoryCartFragment(mEvent.mOrder.id)
+                findNavController().navigate(action)
+            }
         }
     }
 

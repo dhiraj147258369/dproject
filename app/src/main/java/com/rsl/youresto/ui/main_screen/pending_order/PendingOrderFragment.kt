@@ -2,8 +2,6 @@ package com.rsl.youresto.ui.main_screen.pending_order
 
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -18,16 +16,12 @@ import android.widget.ArrayAdapter
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.rsl.youresto.App
 import com.rsl.youresto.R
 import com.rsl.youresto.data.cart.models.CartProductModel
 import com.rsl.youresto.data.database_download.models.ServerModel
 import com.rsl.youresto.databinding.FragmentPendingOrderBinding
-import com.rsl.youresto.ui.main_screen.cart.CartViewModel
-import com.rsl.youresto.ui.main_screen.cart.CartViewModelFactory
 import com.rsl.youresto.ui.main_screen.cart.NewCartViewModel
 import com.rsl.youresto.ui.main_screen.pending_order.event.PendingOrderDeleteEvent
 import com.rsl.youresto.ui.main_screen.pending_order.event.PendingOrderEvent
@@ -35,19 +29,14 @@ import com.rsl.youresto.ui.server_login.ServerLoginViewModel
 import com.rsl.youresto.utils.Animations.runLayoutAnimationFallDown
 import com.rsl.youresto.utils.AppConstants
 import com.rsl.youresto.utils.AppConstants.INTENT_FROM
-import com.rsl.youresto.utils.AppConstants.LOCATION_SERVICE_TYPE
-import com.rsl.youresto.utils.AppConstants.QUICK_SERVICE_CART_ID
-import com.rsl.youresto.utils.AppConstants.QUICK_SERVICE_CART_NO
-import com.rsl.youresto.utils.AppConstants.SELECTED_LOCATION_ID
-import com.rsl.youresto.utils.AppConstants.SELECTED_TABLE_ID
-import com.rsl.youresto.utils.AppConstants.SELECTED_TABLE_NO
 import com.rsl.youresto.utils.AppConstants.SERVICE_DINE_IN
 import com.rsl.youresto.utils.AppConstants.SERVICE_QUICK_SERVICE
-import com.rsl.youresto.utils.InjectorUtils
+import com.rsl.youresto.utils.AppPreferences
 import com.rsl.youresto.utils.custom_dialog.AlertDialogEvent
 import com.rsl.youresto.utils.custom_dialog.CustomAlertDialogFragment
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @SuppressLint("LogNotTimber")
@@ -56,9 +45,7 @@ class PendingOrderFragment : Fragment()  {
     private lateinit var mBinding: FragmentPendingOrderBinding
     private val serverViewModel: ServerLoginViewModel by viewModel()
     private val cartViewModel: NewCartViewModel by viewModel()
-    private lateinit var mCartViewModel: CartViewModel
-
-    private var mSharedPref: SharedPreferences? = null
+    private val prefs: AppPreferences by inject()
 
     private var mServerList: ArrayList<String>? = null
 
@@ -80,12 +67,7 @@ class PendingOrderFragment : Fragment()  {
         mBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_pending_order, container, false)
         val mView = mBinding.root
 
-        mSharedPref = requireActivity().getSharedPreferences(AppConstants.MY_PREFERENCES, Context.MODE_PRIVATE)
-
-        val cartFactory: CartViewModelFactory = InjectorUtils.provideCartViewModelFactory(requireActivity().applicationContext)
-        mCartViewModel = ViewModelProviders.of(this, cartFactory).get(CartViewModel::class.java)
-
-        mLocationID = mSharedPref?.getString(SELECTED_LOCATION_ID, "") ?: ""
+        mLocationID = prefs.getSelectedLocation()
 
         setUpServerFilter()
 
@@ -215,18 +197,13 @@ class PendingOrderFragment : Fragment()  {
         })
     }
 
-    private var mCartObserver: Observer<List<CartProductModel>>? = null
-
     private var mCartList: ArrayList<CartProductModel>? =null
     private var mPendingAdapter: PendingOrderAdapter? =null
 
     private fun setUpRecyclerView() {
         mViewCreated = false
 
-        e(javaClass.simpleName,"location: $mLocationID , Server $mServerID")
-
-        val mCartData = mCartViewModel.getPendingOrderCartData(mLocationID,mServerID)
-        mCartObserver = Observer {
+        cartViewModel.getPendingOrderCartData().observe(viewLifecycleOwner) {
             if(it.isNotEmpty()) {
                 mCartList = ArrayList(it)
 
@@ -248,23 +225,19 @@ class PendingOrderFragment : Fragment()  {
                 mBinding.constraintLayoutNoPendingOrder.visibility = VISIBLE
             }
         }
-        mCartData.observe(viewLifecycleOwner,mCartObserver!!)
     }
 
     @Subscribe
     fun onPendingOrderClick(mEvent: PendingOrderEvent) {
         if(mEvent.mResult) {
             if(mEvent.mCart.mOrderType == SERVICE_DINE_IN) {
-                mSharedPref!!.edit().putString(SELECTED_TABLE_ID,mEvent.mCart.mTableID).apply()
-                mSharedPref!!.edit().putInt(SELECTED_TABLE_NO,mEvent.mCart.mTableNO).apply()
-                mSharedPref!!.edit().putInt(LOCATION_SERVICE_TYPE, SERVICE_DINE_IN).apply()
+                prefs.setTable(mEvent.mCart.mTableID, mEvent.mCart.mTableNO)
+                prefs.setSelectedLocationType(SERVICE_DINE_IN)
 
             } else if(mEvent.mCart.mOrderType == SERVICE_QUICK_SERVICE) {
-                mSharedPref!!.edit().putInt(LOCATION_SERVICE_TYPE, SERVICE_QUICK_SERVICE).apply()
-                mSharedPref!!.edit().putString(SELECTED_TABLE_ID,mEvent.mCart.mTableID).apply()
-                mSharedPref!!.edit().putInt(SELECTED_TABLE_NO,mEvent.mCart.mTableNO).apply()
-                mSharedPref!!.edit().putString(QUICK_SERVICE_CART_ID, mEvent.mCart.mCartID).apply()
-                mSharedPref!!.edit().putString(QUICK_SERVICE_CART_NO, mEvent.mCart.mCartNO).apply()
+                prefs.setTable(mEvent.mCart.mTableID, mEvent.mCart.mTableNO)
+                prefs.setSelectedLocationType(SERVICE_QUICK_SERVICE)
+                prefs.setQuickServiceCartId(mEvent.mCart.mCartID)
             }
 
             Handler(Looper.getMainLooper()).postDelayed({
@@ -299,39 +272,18 @@ class PendingOrderFragment : Fragment()  {
     @Subscribe
     fun onAlertDialogEvent(mEvent: AlertDialogEvent){
         when {
-            mEvent.mSource == javaClass.simpleName && mEvent.mActionType -> mCartViewModel.getTableCartDataForCartID(mCart!!.mTableNO, mCart!!.mCartID).observe(viewLifecycleOwner,
-                {
-                    when {
-                        it.isNotEmpty() -> {
-                            var mCheckKOT = false
-                            loop@ for(element in it) {
-                                when (element.mKitchenPrintFlag) {
-                                    1 -> {
-                                        mCheckKOT = true
-                                        break@loop
-                                    }
-                                }
-                            }
-                            when {
-                                mCheckKOT -> {
-                                    val mCustomDialogFragment = CustomAlertDialogFragment.newInstance(1, javaClass.simpleName, R.drawable.ic_delete_forever_primary_36dp,
-                                        "Table Occupied","You cannot delete this order.",
-                                        "","Okay", 0, R.drawable.ic_close_black_24dp)
-                                    mCustomDialogFragment.show(childFragmentManager, AppConstants.CUSTOM_DIALOG_FRAGMENT)
-                                }
-                                else -> mCartViewModel.deleteCartOnServer(mCart!!).observe(viewLifecycleOwner,
-                                    { i ->
-                                    when {
-                                        i != null && i > 0 -> {
-                                            e(javaClass.simpleName, "i: $i product deleted on server")
-                                            setUpRecyclerView()
-                                        }
-                                    }
-                                })
-                            }
-                        }
+            mEvent.mSource == javaClass.simpleName && mEvent.mActionType -> {
+
+                mCart?.let { cart ->
+                    if (cart.mOrderType == SERVICE_QUICK_SERVICE){
+                        cartViewModel.deleteCart(null, cart.mCartID)
+                    } else {
+                        cartViewModel.deleteCart(cart.mTableID, null)
                     }
-                })
+                }
+
+
+            }
         }
     }
 

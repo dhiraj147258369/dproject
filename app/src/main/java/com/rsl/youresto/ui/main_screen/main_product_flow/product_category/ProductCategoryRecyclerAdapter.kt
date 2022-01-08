@@ -1,14 +1,16 @@
 package com.rsl.youresto.ui.main_screen.main_product_flow.product_category
 
+import android.content.Context
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.rsl.youresto.data.database_download.models.ProductCategoryModel
 import com.rsl.youresto.databinding.RecyclerItemProductCategoryBinding
 import org.greenrobot.eventbus.EventBus
 
-class ProductCategoryRecyclerAdapter(private val mCategoryList: ArrayList<ProductCategoryModel>) :
+class ProductCategoryRecyclerAdapter(val context: Context, private val mCategoryList: ArrayList<ProductCategoryModel>) :
     RecyclerView.Adapter<ProductCategoryRecyclerAdapter.ProductCategoryViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductCategoryViewHolder {
         val mBinding = RecyclerItemProductCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -43,6 +45,15 @@ class ProductCategoryRecyclerAdapter(private val mCategoryList: ArrayList<Produc
         fun bind(mCategory: ProductCategoryModel) {
             mBinding.category = mCategory
             mBinding.adapter = this@ProductCategoryRecyclerAdapter
+
+            loadImage(mCategory.mCategoryImageUrl, this)
+        }
+
+        private fun loadImage(mImageURL: String, holder: ProductCategoryViewHolder) {
+            Glide
+                .with(context)
+                .load(mImageURL) // GlideUrl is created anyway so there's no extra objects allocated
+                .into(holder.mBinding.imageViewProductCategory)
         }
     }
 }

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "557783ed645e4ee77341e5430f7e8a36",
+    "identityHash": "11eebdafeeeae5e14cc211fb0188ddd3",
     "entities": [
       {
         "tableName": "Login",
@@ -1620,7 +1620,7 @@
       },
       {
         "tableName": "ReportModel",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mRestaurantID` TEXT NOT NULL, `mPaymentSelectionType` TEXT NOT NULL, `mTableNO` INTEGER NOT NULL, `mCartID` TEXT NOT NULL, `mCartNO` TEXT NOT NULL, `mCartTotal` REAL NOT NULL, `mTableID` TEXT NOT NULL, `mDiscountType` TEXT NOT NULL, `mDiscountPercent` REAL NOT NULL, `mDiscountAmount` REAL NOT NULL, `mTaxPercent` REAL NOT NULL, `mTaxAmount` REAL NOT NULL, `mAmountPaid` REAL NOT NULL, `mOrderTotal` REAL NOT NULL, `mDateTime` TEXT NOT NULL, `mDateTimeInTimeStamp` INTEGER NOT NULL, `mOrderType` INTEGER NOT NULL, `mServerName` TEXT NOT NULL, `mPaymentList` TEXT NOT NULL, `mProductList` TEXT NOT NULL, `id` TEXT NOT NULL, `mID` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mRestaurantID` TEXT NOT NULL, `mPaymentSelectionType` TEXT NOT NULL, `mTableNO` INTEGER NOT NULL, `mCartID` TEXT NOT NULL, `mCartNO` TEXT NOT NULL, `mCartTotal` REAL NOT NULL, `mTableID` TEXT NOT NULL, `mDiscountType` TEXT NOT NULL, `mDiscountPercent` REAL NOT NULL, `mDiscountAmount` REAL NOT NULL, `mTaxPercent` REAL NOT NULL, `mTaxAmount` REAL NOT NULL, `mAmountPaid` REAL NOT NULL, `mOrderTotal` REAL NOT NULL, `mDateTime` TEXT NOT NULL, `mDateTimeInTimeStamp` INTEGER NOT NULL, `mOrderType` INTEGER NOT NULL, `mServerName` TEXT NOT NULL, `mPaymentList` TEXT NOT NULL, `mProductList` TEXT NOT NULL, `deliverCharges` REAL NOT NULL, `id` TEXT NOT NULL, `mID` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "mRestaurantID",
@@ -1743,6 +1743,12 @@
             "notNull": true
           },
           {
+            "fieldPath": "deliverCharges",
+            "columnName": "deliverCharges",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "TEXT",
@@ -1806,7 +1812,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '557783ed645e4ee77341e5430f7e8a36')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '11eebdafeeeae5e14cc211fb0188ddd3')"
     ]
   }
 }

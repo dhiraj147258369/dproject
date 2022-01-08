@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.util.Log.e
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.rsl.youresto.App
 import com.rsl.youresto.R
 import com.rsl.youresto.data.database_download.models.ReportProductModel
 import com.rsl.youresto.databinding.FragmentOrderHistoryCartBinding
@@ -41,7 +43,8 @@ class OrderHistoryCartFragment : Fragment() {
         val factory = InjectorUtils.provideOrderHistoryViewModelFactory(requireActivity())
         mOrderHistoryViewModel = ViewModelProviders.of(this, factory).get(OrderHistoryViewModel::class.java)
 
-//        mID = OrderHistoryCartFragmentArgs.fromBundle(requireArguments()).mID
+        if (!App.isTablet)
+            mID = OrderHistoryCartFragmentArgs.fromBundle(requireArguments()).mID
 
         fetchReportData()
         expandAndCollapsePaymentDetails()
@@ -96,6 +99,12 @@ class OrderHistoryCartFragment : Fragment() {
                     mBinding.textViewWallet.text = String.format(Locale.ENGLISH, "%.2f", mWallet)
                     mBinding.textViewSubTotal.text = String.format(Locale.ENGLISH, "%.2f", mSubTotal)
 
+                    if (it.deliverCharges > 0) {
+                        mBinding.deliveryCharges.visibility = VISIBLE
+                        mBinding.deliveryLabel.visibility = VISIBLE
+                        mBinding.deliveryCharges.text =
+                            String.format(Locale.ENGLISH, "%.2f", it.deliverCharges)
+                    }
                     managePaymentViews()
 
                     val mProductList = ArrayList<ReportProductModel>()

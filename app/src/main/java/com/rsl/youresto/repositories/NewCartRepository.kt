@@ -23,7 +23,12 @@ import kotlin.collections.ArrayList
 
 class NewCartRepository(private val remoteSource: CartRemoteSource, private val cartDao: CartDao) {
 
-    fun getCarts(tableNo: String) = cartDao.getCartData(tableNo)
+    fun getCarts(tableNo: String) =
+        if (remoteSource.prefs.getLocationServiceType() == SERVICE_QUICK_SERVICE){
+            cartDao.getCartDataById(remoteSource.prefs.selectedQuickServiceCartId())
+        } else {
+            cartDao.getCartData(tableNo)
+        }
     fun getCartDataById(cartId: String) = cartDao.getCartDataById(cartId)
 
     suspend fun getCartByTable(tableId: String) = withContext(Dispatchers.IO) {
@@ -201,6 +206,49 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
 
         return resource
     }
+
+    suspend fun deleteCart(tableId: String?, cartId: String?){
+        val carts = if (cartId != null){
+            withContext(Dispatchers.IO) {
+                cartDao.getCartsById(cartId)
+            }
+        } else {
+            withContext(Dispatchers.IO) {
+                cartDao.getCarts(tableId ?: "")
+            }
+        }
+
+        withContext(Dispatchers.IO){
+            cartDao.deleteEntireCart(carts)
+        }
+
+        val networkCart = PostCart().apply {
+            cartDetails.addAll(ArrayList())
+            appliedTaxDetails.add(AppliedTaxDetail())
+            restaurantId = remoteSource.prefs.getRestaurantId().toInt()
+            netTotal = 0.0
+            orderBy = 0
+            this.subTotal = 0.0
+            try {
+                this.tableId = carts[0].mTableID.toInt()
+            } catch (e: Exception){
+                e.printStackTrace()
+            }
+            noOfPerson = 0 /*cartProduct.mTotalGuestsCount*/
+            try {
+                if (carts[0].mCartID.isDigitsOnly()) orderId = carts[0].mCartID
+            } catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+
+        withContext(Dispatchers.IO) {
+            remoteSource.submitCart(networkCart)
+        }
+
+    }
+
+    fun getPendingOrderCartData() = cartDao.getLocationPendingOrders(remoteSource.prefs.getSelectedLocation())
 
     suspend fun checkoutOrder(checkout: PostCheckout, mTableId: String): Resource<NetworkCheckoutResponse>  {
          val resource = withContext(Dispatchers.IO) {

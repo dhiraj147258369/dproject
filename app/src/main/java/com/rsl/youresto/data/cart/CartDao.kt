@@ -14,6 +14,9 @@ interface CartDao {
     @Delete
     fun deleteCartItem(cartProduct: CartProductModel): Int
 
+    @Delete
+    fun deleteEntireCart(cartProduct: List<CartProductModel>)
+
     @Query("SELECT * FROM CartProductModel WHERE mTableID =:mTableId")
     fun getCarts(mTableId: String): List<CartProductModel>
 
@@ -43,6 +46,8 @@ interface CartDao {
     @Insert
     fun insertBulkCartProduct(mProductCartList: List<CartProductModel>) : LongArray
 
+    @Query("SELECT * FROM CartProductModel WHERE mLocationID =:mLocationID GROUP BY mCartID")
+    fun getLocationPendingOrders(mLocationID: String): LiveData<List<CartProductModel>>
 
 
     @Query("SELECT * FROM KitchenModel")

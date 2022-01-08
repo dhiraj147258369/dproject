@@ -92,10 +92,13 @@ class CartRecyclerAdapter(var mContext: Context, private var mCartProductList: A
 
         var mProductQty = mCartModel.mProductQuantity
 
+        var addOnPrice = BigDecimal(0)
+        mCartModel.mShowModifierList?.map { addOn -> addOnPrice += addOn.mIngredientPrice  }
+
         if(mChangeType == 0) {      // 0 -> quantity decrease
             if(mProductQty > BigDecimal(1)) {
                 mProductQty--
-                val mProductTotalPrice = (mCartModel.mProductUnitPrice + mCartModel.mSpecialInstructionPrice)* mProductQty
+                val mProductTotalPrice = (mCartModel.mProductUnitPrice + mCartModel.mSpecialInstructionPrice + addOnPrice)* mProductQty
                 EventBus.getDefault().post(UpdateCartProductQuantityEvent(mCartModel.mID,mProductQty,mProductTotalPrice, mCartModel.mGroupName))
                 mCartModel.mProductQuantity = mProductQty
                 mCartModel.mProductTotalPrice = mProductTotalPrice
@@ -103,30 +106,7 @@ class CartRecyclerAdapter(var mContext: Context, private var mCartProductList: A
             }
         } else {                    // 1 -> quantity increase
             mProductQty++
-            val mProductTotalPrice = (mCartModel.mProductUnitPrice + mCartModel.mSpecialInstructionPrice)* mProductQty
-            EventBus.getDefault().post(UpdateCartProductQuantityEvent(mCartModel.mID,mProductQty,mProductTotalPrice, mCartModel.mGroupName))
-            mCartModel.mProductQuantity = mProductQty
-            mCartModel.mProductTotalPrice = mProductTotalPrice
-            notifyItemChanged(mPosition)
-        }
-    }
-
-    fun onNetworkChecked(isNetworkAvailable: Boolean, mPosition: Int, mChangeType: Int, mCartModel: CartProductModel) {
-        e(javaClass.simpleName, "onNetworkChecked: $isNetworkAvailable")
-        var mProductQty = mCartModel.mProductQuantity
-
-        if(mChangeType == 0) {      // 0 -> quantity decrease
-            if(mProductQty > BigDecimal(1)) {
-                mProductQty--
-                val mProductTotalPrice = (mCartModel.mProductUnitPrice + mCartModel.mSpecialInstructionPrice)* mProductQty
-                EventBus.getDefault().post(UpdateCartProductQuantityEvent(mCartModel.mID,mProductQty,mProductTotalPrice, mCartModel.mGroupName))
-                mCartModel.mProductQuantity = mProductQty
-                mCartModel.mProductTotalPrice = mProductTotalPrice
-                notifyItemChanged(mPosition)
-            }
-        } else {                    // 1 -> quantity increase
-            mProductQty++
-            val mProductTotalPrice = (mCartModel.mProductUnitPrice + mCartModel.mSpecialInstructionPrice)* mProductQty
+            val mProductTotalPrice = (mCartModel.mProductUnitPrice + mCartModel.mSpecialInstructionPrice + addOnPrice)* mProductQty
             EventBus.getDefault().post(UpdateCartProductQuantityEvent(mCartModel.mID,mProductQty,mProductTotalPrice, mCartModel.mGroupName))
             mCartModel.mProductQuantity = mProductQty
             mCartModel.mProductTotalPrice = mProductTotalPrice
@@ -143,11 +123,6 @@ class CartRecyclerAdapter(var mContext: Context, private var mCartProductList: A
 
         EventBus.getDefault().post(DeleteCartProductEvent(mCartModel, mPosition, mCartModel.mGroupName))
 
-    }
-
-    fun notifyAfterDelete(mPosition: Int){
-        mCartProductList.removeAt(mPosition)
-        notifyItemRemoved(mPosition)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

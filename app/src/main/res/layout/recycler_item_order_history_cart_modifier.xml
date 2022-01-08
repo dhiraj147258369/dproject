@@ -27,7 +27,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:textStyle="italic"
-                android:text="@{mIngredient.MIngredientQuantity > 1 ? mIngredient.MIngredientName + ` x ` + mIngredient.MIngredientQuantity : mIngredient.MIngredientName}"
+                android:text="@{mIngredient.MIngredientName}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/text_view_type_price"
                 app:layout_constraintStart_toEndOf="@+id/image_view_type_delete"
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
-                android:text='@{String.format("%.2f", mIngredient.MIngredientUnitPrice * mIngredient.MIngredientQuantity)}'
+                android:text='@{String.format("%.2f", mIngredient.MIngredientUnitPrice)}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

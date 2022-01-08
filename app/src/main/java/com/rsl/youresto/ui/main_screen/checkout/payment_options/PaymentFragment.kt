@@ -146,7 +146,6 @@ class PaymentFragment : Fragment() {
 
         }
 
-
         cartViewModel.checkoutData.observe(viewLifecycleOwner) {event ->
             event?.getContentIfNotHandled()?.let {
                 if (it.status) {

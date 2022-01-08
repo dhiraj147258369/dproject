@@ -42,13 +42,6 @@ class OrderHistoryCartAdapter(val mProductList: ArrayList<ReportProductModel>): 
             } else {
                 holder.mBinding.recyclerViewProductTypes.adapter = null
             }
-        } else if(itemViewType == CART_TYPE_3) {
-            if (mProduct.mSubProductList.size > 0) {
-                val mSubProductAdapter = OrderHistorySubProductAdapter(mProduct.mSubProductList)
-                holder.mBinding.recyclerViewProductTypes.adapter = mSubProductAdapter
-            } else {
-                holder.mBinding.recyclerViewProductTypes.adapter = null
-            }
         }
 
 

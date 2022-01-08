@@ -12,6 +12,7 @@ import com.rsl.youresto.utils.Utils.DATE_FORMAT_1
 import com.rsl.youresto.utils.Utils.getDateFromString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.math.BigDecimal
 
 class NewOrdersRepository(private val remoteSource: OrderHistoryRemoteSource, val dao: OrderHistoryDao) {
 
@@ -48,6 +49,7 @@ class NewOrdersRepository(private val remoteSource: OrderHistoryRemoteSource, va
                 if (product != null) {
 
                     val ingredientsList = ArrayList<ReportProductIngredientModel>()
+                    var addOnPrice = BigDecimal(0)
                     if (item.addon.isNotEmpty()){
                         val addOnIdList = ArrayList<String>()
                         item.addon.map { addOn -> addOnIdList.add(addOn.addonId.toString()) }
@@ -60,8 +62,13 @@ class NewOrdersRepository(private val remoteSource: OrderHistoryRemoteSource, va
                                 localAddOn.mCartIngredientID ?: "",
                                 localAddOn.mIngredientPrice.toDouble()
                             ))
+                            addOnPrice += localAddOn.mIngredientPrice
                         }
                     }
+
+                    val totalPrice = (BigDecimal(item.price) + addOnPrice) * BigDecimal(item.qty)
+
+
 
                     productList.add(
                         ReportProductModel(
@@ -72,7 +79,7 @@ class NewOrdersRepository(private val remoteSource: OrderHistoryRemoteSource, va
                             item.qty.toInt(),
                             "",
                             item.price.toDouble(),
-                            report.netTotal.toDouble(),
+                            totalPrice.toDouble(),
                             product.mProductType,
                             "",
                             0.0,
@@ -80,8 +87,7 @@ class NewOrdersRepository(private val remoteSource: OrderHistoryRemoteSource, va
                             "",
                             "",
                             "",
-                            ingredientsList,
-                            ArrayList()
+                            ingredientsList
                         )
                     )
                 }
@@ -97,6 +103,13 @@ class NewOrdersRepository(private val remoteSource: OrderHistoryRemoteSource, va
             }
 
             reportModel.mProductList = productList
+
+            var deliveryCharge = 0.0
+            try {
+                deliveryCharge = report.deliveryFee.toDouble()
+            }catch (e: java.lang.Exception){
+                e.printStackTrace()
+            }
 
             reportModel.apply {
                 id = report.id
@@ -115,6 +128,7 @@ class NewOrdersRepository(private val remoteSource: OrderHistoryRemoteSource, va
                 mOrderTotal = report.netTotal.toDouble()
                 mDateTime = report.createdAt
                 mDateTimeInTimeStamp = getDateFromString(DATE_FORMAT_1, report.createdAt)
+                deliverCharges = deliveryCharge
             }
 
             reports.add(reportModel)
