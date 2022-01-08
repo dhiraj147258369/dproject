@@ -137,6 +137,8 @@ class ServerLoginFragment : Fragment() {
         val mMainScreenIntent = Intent(activity, MainScreenActivity::class.java)
 
         prefs.setServerDetails(mServer)
+        prefs.clearOrderData()
+        prefs.clearTableData()
 
         mMainScreenIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(mMainScreenIntent)

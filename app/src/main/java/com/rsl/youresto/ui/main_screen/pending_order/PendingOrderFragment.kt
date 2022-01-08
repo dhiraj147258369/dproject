@@ -36,7 +36,6 @@ import com.rsl.youresto.utils.Animations.runLayoutAnimationFallDown
 import com.rsl.youresto.utils.AppConstants
 import com.rsl.youresto.utils.AppConstants.INTENT_FROM
 import com.rsl.youresto.utils.AppConstants.LOCATION_SERVICE_TYPE
-import com.rsl.youresto.utils.AppConstants.LOGGED_IN_SERVER_NAME
 import com.rsl.youresto.utils.AppConstants.QUICK_SERVICE_CART_ID
 import com.rsl.youresto.utils.AppConstants.QUICK_SERVICE_CART_NO
 import com.rsl.youresto.utils.AppConstants.SELECTED_LOCATION_ID
@@ -199,16 +198,16 @@ class PendingOrderFragment : Fragment()  {
                         }
                     }
 
-                    var mSelectedServerPosition = 0
-                    loop@ for(j in 0 until mServerList!!.size) {
-                        when {
-                            mServerList!![j] == mSharedPref!!.getString(LOGGED_IN_SERVER_NAME,"") -> {
-                                mSelectedServerPosition = j
-                                break@loop
-                            }
-                        }
-                    }
-                    mBinding.spinnerServer.setSelection(mSelectedServerPosition)
+//                    var mSelectedServerPosition = 0
+//                    loop@ for(j in 0 until mServerList!!.size) {
+//                        when {
+//                            mServerList!![j] == mSharedPref!!.getString(LOGGED_IN_SERVER_NAME,"") -> {
+//                                mSelectedServerPosition = j
+//                                break@loop
+//                            }
+//                        }
+//                    }
+//                    mBinding.spinnerServer.setSelection(mSelectedServerPosition)
 
                     mBinding.spinnerServer.onItemSelectedListener = mServerSelectedListener
                 }

@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.rsl.youresto.App
 import com.rsl.youresto.R
 import com.rsl.youresto.databinding.FragmentQuickFavoriteItemBinding
+import com.rsl.youresto.ui.main_screen.cart.NewCartViewModel
 import com.rsl.youresto.ui.main_screen.favorite_items.NewFavoriteItemViewModel
 import com.rsl.youresto.ui.main_screen.favorite_items.model.FavoriteProductModel
 import com.rsl.youresto.ui.main_screen.tables_and_tabs.AddToTabDialog
+import com.rsl.youresto.ui.main_screen.tables_and_tabs.add_to_tab.AddToTabFragmentArgs
 import com.rsl.youresto.utils.AppConstants
 import com.rsl.youresto.utils.AppPreferences
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +33,7 @@ class QuickFavoriteItemFragment : Fragment() {
 
     private val viewModel: NewFavoriteItemViewModel by viewModel()
     private val prefs: AppPreferences by inject()
+    private val cartViewModel: NewCartViewModel by viewModel()
     private var mIntentFrom: String = "A"
 
     private var mTableID: String = ""
@@ -65,6 +69,27 @@ class QuickFavoriteItemFragment : Fragment() {
             mBinding.recyclerViewQuickFavoriteItems.adapter = mProductAdapter
             mBinding.progressbarQuickProducts.visibility = View.GONE
         }
+
+        if (App.isTablet) mBinding.constraintLayoutCartBar.visibility = View.GONE
+
+
+        lifecycleScope.launch {
+            val cartItems = withContext(Dispatchers.IO){
+                cartViewModel.getCartByTable(mTableID)
+            }
+
+            if (cartItems.isNotEmpty()){
+                mBinding.cartProductCount.text = "${cartItems.size}"
+            } else {
+                mBinding.constraintLayoutCartBar.visibility = View.GONE
+            }
+        }
+
+        mBinding.viewCart.setOnClickListener {
+            if (!App.isTablet){
+                findNavController().navigate(R.id.cartFragment)
+            }
+        }
     }
 
     @Subscribe
@@ -72,7 +97,8 @@ class QuickFavoriteItemFragment : Fragment() {
         if (App.isTablet){
             openAddToTab(product)
         } else {
-            //todo: open add to tab fragment.
+            findNavController().navigate(R.id.addToTabFragment,
+                AddToTabFragmentArgs(product.mGroupID, product.mCategoryID, product.mProductID).toBundle())
         }
     }
 

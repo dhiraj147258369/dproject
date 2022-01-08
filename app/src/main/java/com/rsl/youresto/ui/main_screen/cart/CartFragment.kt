@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log.e
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -23,6 +24,7 @@ import com.rsl.youresto.ui.main_screen.cart.adapter.CartRecyclerAdapter
 import com.rsl.youresto.ui.main_screen.cart.event.*
 import com.rsl.youresto.ui.main_screen.checkout.CheckoutDialog
 import com.rsl.youresto.ui.main_screen.checkout.events.DrawerEvent
+import com.rsl.youresto.ui.main_screen.checkout.payment_options.events.PaymentCompletedEvent
 import com.rsl.youresto.ui.main_screen.estimate_bill_print.EstimateBillPrint50Activity
 import com.rsl.youresto.ui.main_screen.kitchen_print.KitchenPrint50Activity
 import com.rsl.youresto.ui.main_screen.kitchen_print.KitchenPrint80Activity
@@ -107,6 +109,14 @@ class CartFragment : Fragment() {
             } else {
                 showActionBarOptions()
             }
+        }
+
+        if (!App.isTablet) {
+            mBinding.imageViewAddProduct.visibility = VISIBLE
+            mBinding.imageViewAddProduct.setOnClickListener { findNavController().navigate(
+                if (mSelectedLocationType == SERVICE_QUICK_SERVICE) R.id.quickServiceFragment
+                else R.id.mainProductFragment
+            ) }
         }
     }
 
@@ -304,6 +314,11 @@ class CartFragment : Fragment() {
     fun refreshCart(mEvent: RefreshCartEvent) {
         e(javaClass.simpleName, "mEvent: ${mEvent.mGroupName}")
         getCartDetails()
+    }
+
+    @Subscribe
+    fun paymentComplete(mEvent: PaymentCompletedEvent) {
+        findNavController().navigate(R.id.tablesFragment)
     }
 
     override fun onStart() {

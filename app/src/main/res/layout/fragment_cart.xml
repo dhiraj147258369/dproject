@@ -267,6 +267,7 @@
                 android:layout_height="40dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:padding="4dp"
+                android:visibility="gone"
                 android:src="@drawable/ic_add_box_white_36dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/text_view_cart_total_cart_amount"

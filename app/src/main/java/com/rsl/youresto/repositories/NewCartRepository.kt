@@ -26,7 +26,13 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
     fun getCarts(tableNo: String) = cartDao.getCartData(tableNo)
     fun getCartDataById(cartId: String) = cartDao.getCartDataById(cartId)
 
-    suspend fun getCartByTable(tableId: String) = withContext(Dispatchers.IO) { cartDao.getCarts(tableId) }
+    suspend fun getCartByTable(tableId: String) = withContext(Dispatchers.IO) {
+        if (remoteSource.prefs.getLocationServiceType() == SERVICE_QUICK_SERVICE){
+            cartDao.getCartsById(remoteSource.prefs.selectedQuickServiceCartId())
+        } else {
+            cartDao.getCarts(tableId)
+        }
+    }
 
     suspend fun getPaymentMethods() = withContext(Dispatchers.IO) {cartDao.getPaymentMethods()}
 

@@ -20,11 +20,13 @@ import com.rsl.youresto.ui.main_screen.checkout.CheckoutDialog
 import com.rsl.youresto.ui.main_screen.checkout.SharedCheckoutViewModel
 import com.rsl.youresto.ui.main_screen.checkout.bill_print.ShareBillPrint50Activity
 import com.rsl.youresto.ui.main_screen.checkout.bill_print.ShareBillPrint80Activity
+import com.rsl.youresto.ui.main_screen.checkout.payment_options.events.PaymentCompletedEvent
 import com.rsl.youresto.utils.AppConstants
 import com.rsl.youresto.utils.custom_views.CustomToast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.greenrobot.eventbus.EventBus
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -153,7 +155,7 @@ class PaymentFragment : Fragment() {
                     printBill()
 
                     if (!App.isTablet) {
-                        //todo: redirect to tables fragment for mobile screen
+                        EventBus.getDefault().post(PaymentCompletedEvent(true))
                     }
                 }
             }
