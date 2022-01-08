@@ -24,6 +24,7 @@ import com.rsl.youresto.utils.Animations
 import com.rsl.youresto.utils.AppConstants.CATEGORY
 import com.rsl.youresto.utils.AppConstants.GROUP
 import com.rsl.youresto.utils.InjectorUtils
+import com.rsl.youresto.utils.Utils
 import com.rsl.youresto.utils.Utils.dpToPx
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -68,7 +69,7 @@ class ProductGroupFragment : Fragment() {
             val width = mBinding.recyclerViewProductGroups.width
 
             if(isTablet){
-                layoutManager.spanCount=3
+                layoutManager.spanCount=width / Utils.dpToPx(180)
             }else{
                 layoutManager.spanCount=2
 

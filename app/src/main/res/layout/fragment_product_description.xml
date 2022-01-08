@@ -14,6 +14,7 @@
                 android:textColor="@color/colorBlack"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="match_parent"
+                android:gravity="center"
                 android:layout_height="match_parent"/>
 
         <ImageView

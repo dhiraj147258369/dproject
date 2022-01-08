@@ -77,7 +77,8 @@ class ProductCategoryFragment : Fragment() {
         mBinding.recyclerViewProductCategories.post {
             val width = mBinding.recyclerViewProductCategories.width
             if(isTablet){
-                layoutManager.spanCount=3
+
+                layoutManager.spanCount=width / Utils.dpToPx(180)
             }else{
                 layoutManager.spanCount=2
 

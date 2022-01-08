@@ -240,7 +240,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_layout_cart_action"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:elevation="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -256,6 +256,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
+                android:gravity="center"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:textColor="@color/colorWhite"/>
@@ -282,6 +283,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/image_view_action"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginEnd="12dp"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:textColor="@color/colorWhite"/>
 

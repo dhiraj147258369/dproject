@@ -1,0 +1,1812 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "557783ed645e4ee77341e5430f7e8a36",
+    "entities": [
+      {
+        "tableName": "Login",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `aboutRestaurant` TEXT NOT NULL, `address` TEXT NOT NULL, `apiKey` TEXT NOT NULL, `businessName` TEXT NOT NULL, `city` TEXT NOT NULL, `closeTime` TEXT NOT NULL, `contactNumber` TEXT NOT NULL, `country` TEXT NOT NULL, `countrycode` TEXT NOT NULL, `currency` TEXT NOT NULL, `currencySymbol` TEXT NOT NULL, `datetime` TEXT NOT NULL, `email` TEXT NOT NULL, `foodCompanyId` TEXT, `forgotLinkUsed` TEXT NOT NULL, `groupSeq` TEXT NOT NULL, `imgUrl` TEXT NOT NULL, `active` TEXT NOT NULL, `isAlacalcRecipe` TEXT NOT NULL, `isCategoryPrices` TEXT NOT NULL, `isIndividualReg` TEXT NOT NULL, `isRegPayment` TEXT NOT NULL, `isTax` INTEGER NOT NULL, `latitude` TEXT, `longitude` TEXT, `name` TEXT NOT NULL, `openingTime` TEXT NOT NULL, `ownerAddress` TEXT NOT NULL, `ownerContactNo` TEXT NOT NULL, `password` TEXT NOT NULL, `paymentEndDate` TEXT, `postcode` TEXT NOT NULL, `profilePhoto` TEXT NOT NULL, `restImg1` TEXT, `restImg2` TEXT, `restImg3` TEXT, `restImg4` TEXT, `restImg5` TEXT, `restaurantName` TEXT, `restauranttype` TEXT NOT NULL, `subscriptionId` TEXT, `tax` TEXT NOT NULL, `uplinkId` TEXT, `usertype` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aboutRestaurant",
+            "columnName": "aboutRestaurant",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "address",
+            "columnName": "address",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "apiKey",
+            "columnName": "apiKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "businessName",
+            "columnName": "businessName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "closeTime",
+            "columnName": "closeTime",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contactNumber",
+            "columnName": "contactNumber",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "country",
+            "columnName": "country",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "countrycode",
+            "columnName": "countrycode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currency",
+            "columnName": "currency",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currencySymbol",
+            "columnName": "currencySymbol",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "datetime",
+            "columnName": "datetime",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "foodCompanyId",
+            "columnName": "foodCompanyId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forgotLinkUsed",
+            "columnName": "forgotLinkUsed",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "groupSeq",
+            "columnName": "groupSeq",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imgUrl",
+            "columnName": "imgUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "active",
+            "columnName": "active",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isAlacalcRecipe",
+            "columnName": "isAlacalcRecipe",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isCategoryPrices",
+            "columnName": "isCategoryPrices",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isIndividualReg",
+            "columnName": "isIndividualReg",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isRegPayment",
+            "columnName": "isRegPayment",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isTax",
+            "columnName": "isTax",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "openingTime",
+            "columnName": "openingTime",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ownerAddress",
+            "columnName": "ownerAddress",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ownerContactNo",
+            "columnName": "ownerContactNo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "password",
+            "columnName": "password",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "paymentEndDate",
+            "columnName": "paymentEndDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "postcode",
+            "columnName": "postcode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profilePhoto",
+            "columnName": "profilePhoto",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "restImg1",
+            "columnName": "restImg1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "restImg2",
+            "columnName": "restImg2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "restImg3",
+            "columnName": "restImg3",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "restImg4",
+            "columnName": "restImg4",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "restImg5",
+            "columnName": "restImg5",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "restaurantName",
+            "columnName": "restaurantName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "restauranttype",
+            "columnName": "restauranttype",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subscriptionId",
+            "columnName": "subscriptionId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tax",
+            "columnName": "tax",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uplinkId",
+            "columnName": "uplinkId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "usertype",
+            "columnName": "usertype",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "AllergenModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mAllergenID` TEXT NOT NULL, `mAllergenName` TEXT NOT NULL, `mAllergenDescription` TEXT NOT NULL, `mID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "mAllergenID",
+            "columnName": "mAllergenID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mAllergenName",
+            "columnName": "mAllergenName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mAllergenDescription",
+            "columnName": "mAllergenDescription",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mID",
+            "columnName": "mID",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ProductGroupModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mGroupName` TEXT NOT NULL, `mGroupID` TEXT NOT NULL, `mGroupActive` INTEGER NOT NULL, `mGroupImageURL` TEXT NOT NULL, `mDoNotDisplayOn` INTEGER NOT NULL, `mProductCategoryList` TEXT NOT NULL, PRIMARY KEY(`mGroupID`))",
+        "fields": [
+          {
+            "fieldPath": "mGroupName",
+            "columnName": "mGroupName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mGroupID",
+            "columnName": "mGroupID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mGroupActive",
+            "columnName": "mGroupActive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mGroupImageURL",
+            "columnName": "mGroupImageURL",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDoNotDisplayOn",
+            "columnName": "mDoNotDisplayOn",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductCategoryList",
+            "columnName": "mProductCategoryList",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mGroupID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ProductCategoryModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mCategoryName` TEXT NOT NULL, `mCategoryID` TEXT NOT NULL, `mGroupID` TEXT NOT NULL, `mCategoryActive` INTEGER NOT NULL, `mDoNotDisplayOn` INTEGER NOT NULL, `mCategoryImageUrl` TEXT NOT NULL, `mCategorySequence` INTEGER NOT NULL, `isCompulsory` INTEGER NOT NULL, `mModifierSelection` INTEGER NOT NULL, `mProductList` TEXT, PRIMARY KEY(`mCategoryID`))",
+        "fields": [
+          {
+            "fieldPath": "mCategoryName",
+            "columnName": "mCategoryName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCategoryID",
+            "columnName": "mCategoryID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mGroupID",
+            "columnName": "mGroupID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCategoryActive",
+            "columnName": "mCategoryActive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDoNotDisplayOn",
+            "columnName": "mDoNotDisplayOn",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCategoryImageUrl",
+            "columnName": "mCategoryImageUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCategorySequence",
+            "columnName": "mCategorySequence",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isCompulsory",
+            "columnName": "isCompulsory",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mModifierSelection",
+            "columnName": "mModifierSelection",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductList",
+            "columnName": "mProductList",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mCategoryID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ProductModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mID` INTEGER NOT NULL, `mProductID` TEXT NOT NULL, `mProductActive` INTEGER NOT NULL, `mCategoryID` TEXT, `mCategoryName` TEXT NOT NULL, `mGroupID` TEXT, `mGroupName` TEXT NOT NULL, `mIngredientsList` TEXT NOT NULL, `mAllergenList` TEXT NOT NULL, `mProductName` TEXT NOT NULL, `mProductDescription` TEXT, `mDineInPrice` TEXT NOT NULL, `mQuickServicePrice` TEXT NOT NULL, `mDeliveryPrice` TEXT NOT NULL, `mProductImageUrl` TEXT NOT NULL, `mProductType` INTEGER NOT NULL, `mProductSequence` INTEGER NOT NULL, `mCategorySequence` INTEGER NOT NULL, `mPrinterID` TEXT NOT NULL, `isSelected` INTEGER NOT NULL, `taxName` TEXT NOT NULL, `taxPercentage` TEXT NOT NULL, PRIMARY KEY(`mProductID`))",
+        "fields": [
+          {
+            "fieldPath": "mID",
+            "columnName": "mID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductID",
+            "columnName": "mProductID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductActive",
+            "columnName": "mProductActive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCategoryID",
+            "columnName": "mCategoryID",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCategoryName",
+            "columnName": "mCategoryName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mGroupID",
+            "columnName": "mGroupID",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mGroupName",
+            "columnName": "mGroupName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mIngredientsList",
+            "columnName": "mIngredientsList",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mAllergenList",
+            "columnName": "mAllergenList",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductName",
+            "columnName": "mProductName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductDescription",
+            "columnName": "mProductDescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mDineInPrice",
+            "columnName": "mDineInPrice",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mQuickServicePrice",
+            "columnName": "mQuickServicePrice",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDeliveryPrice",
+            "columnName": "mDeliveryPrice",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductImageUrl",
+            "columnName": "mProductImageUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductType",
+            "columnName": "mProductType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductSequence",
+            "columnName": "mProductSequence",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCategorySequence",
+            "columnName": "mCategorySequence",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPrinterID",
+            "columnName": "mPrinterID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isSelected",
+            "columnName": "isSelected",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "taxName",
+            "columnName": "taxName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "taxPercentage",
+            "columnName": "taxPercentage",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mProductID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "IngredientsModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mIngredientID` TEXT NOT NULL, `mIngredientName` TEXT NOT NULL, `mIngredientPrice` TEXT NOT NULL, `mIngredientQuantity` TEXT NOT NULL, `mIngredientProductID` TEXT NOT NULL, `mIngredientCategoryID` TEXT NOT NULL, `isSelected` INTEGER NOT NULL, `isCompulsory` INTEGER NOT NULL, `mSelectionType` INTEGER NOT NULL, `mCartIngredientID` TEXT, `ingredientQuantity` TEXT NOT NULL, PRIMARY KEY(`mIngredientID`))",
+        "fields": [
+          {
+            "fieldPath": "mIngredientID",
+            "columnName": "mIngredientID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mIngredientName",
+            "columnName": "mIngredientName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mIngredientPrice",
+            "columnName": "mIngredientPrice",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mIngredientQuantity",
+            "columnName": "mIngredientQuantity",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mIngredientProductID",
+            "columnName": "mIngredientProductID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mIngredientCategoryID",
+            "columnName": "mIngredientCategoryID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isSelected",
+            "columnName": "isSelected",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isCompulsory",
+            "columnName": "isCompulsory",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mSelectionType",
+            "columnName": "mSelectionType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCartIngredientID",
+            "columnName": "mCartIngredientID",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ingredientQuantity",
+            "columnName": "ingredientQuantity",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mIngredientID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "LocationModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mLocationID` TEXT NOT NULL, `mLocationName` TEXT NOT NULL, `mLocationType` TEXT NOT NULL, PRIMARY KEY(`mLocationID`))",
+        "fields": [
+          {
+            "fieldPath": "mLocationID",
+            "columnName": "mLocationID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mLocationName",
+            "columnName": "mLocationName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mLocationType",
+            "columnName": "mLocationType",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mLocationID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "TablesModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mLocationID` TEXT NOT NULL, `mTableID` TEXT NOT NULL, `mTableNo` INTEGER NOT NULL, `mTableTotalNoOfChairs` INTEGER NOT NULL, `mTableNoOfOccupiedChairs` INTEGER NOT NULL, `mTableType` INTEGER NOT NULL, `mOccupiedByUser` TEXT NOT NULL, `mOccupiedByUserID` TEXT NOT NULL, `mGroupList` TEXT, PRIMARY KEY(`mTableID`))",
+        "fields": [
+          {
+            "fieldPath": "mLocationID",
+            "columnName": "mLocationID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTableID",
+            "columnName": "mTableID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTableNo",
+            "columnName": "mTableNo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTableTotalNoOfChairs",
+            "columnName": "mTableTotalNoOfChairs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTableNoOfOccupiedChairs",
+            "columnName": "mTableNoOfOccupiedChairs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTableType",
+            "columnName": "mTableType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOccupiedByUser",
+            "columnName": "mOccupiedByUser",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOccupiedByUserID",
+            "columnName": "mOccupiedByUserID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mGroupList",
+            "columnName": "mGroupList",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mTableID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "KitchenModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mKitchenID` TEXT NOT NULL, `mKitchenName` TEXT NOT NULL, `mSelectedKitchenPrinterName` TEXT NOT NULL, `mSelectedKitchenPrinterSize` INTEGER NOT NULL, `mLogWoodServerIP` TEXT NOT NULL, `mLogWoodServerPort` TEXT NOT NULL, `mNetworkPrinterIP` TEXT NOT NULL, `mNetworkPrinterPort` TEXT NOT NULL, `mPrinterType` INTEGER NOT NULL, PRIMARY KEY(`mKitchenID`))",
+        "fields": [
+          {
+            "fieldPath": "mKitchenID",
+            "columnName": "mKitchenID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mKitchenName",
+            "columnName": "mKitchenName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mSelectedKitchenPrinterName",
+            "columnName": "mSelectedKitchenPrinterName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mSelectedKitchenPrinterSize",
+            "columnName": "mSelectedKitchenPrinterSize",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mLogWoodServerIP",
+            "columnName": "mLogWoodServerIP",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mLogWoodServerPort",
+            "columnName": "mLogWoodServerPort",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mNetworkPrinterIP",
+            "columnName": "mNetworkPrinterIP",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mNetworkPrinterPort",
+            "columnName": "mNetworkPrinterPort",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPrinterType",
+            "columnName": "mPrinterType",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mKitchenID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "TaxModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mTaxID` TEXT NOT NULL, `mTIN` TEXT NOT NULL, `mTaxName` TEXT NOT NULL, `mTaxPercentage` TEXT NOT NULL, PRIMARY KEY(`mTaxID`))",
+        "fields": [
+          {
+            "fieldPath": "mTaxID",
+            "columnName": "mTaxID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTIN",
+            "columnName": "mTIN",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTaxName",
+            "columnName": "mTaxName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTaxPercentage",
+            "columnName": "mTaxPercentage",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mTaxID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ServerModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mServerID` TEXT NOT NULL, `mServerName` TEXT NOT NULL, `mServerPassword` TEXT NOT NULL, `mServerActualPassword` TEXT NOT NULL, `mServerAccessList` TEXT NOT NULL, PRIMARY KEY(`mServerID`))",
+        "fields": [
+          {
+            "fieldPath": "mServerID",
+            "columnName": "mServerID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mServerName",
+            "columnName": "mServerName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mServerPassword",
+            "columnName": "mServerPassword",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mServerActualPassword",
+            "columnName": "mServerActualPassword",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mServerAccessList",
+            "columnName": "mServerAccessList",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mServerID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PaymentMethodModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mPaymentMethodID` TEXT NOT NULL, `mPaymentMethodName` TEXT NOT NULL, `mPaymentMethodType` INTEGER NOT NULL, `mPaymentImageResource` INTEGER NOT NULL, PRIMARY KEY(`mPaymentMethodID`))",
+        "fields": [
+          {
+            "fieldPath": "mPaymentMethodID",
+            "columnName": "mPaymentMethodID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPaymentMethodName",
+            "columnName": "mPaymentMethodName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPaymentMethodType",
+            "columnName": "mPaymentMethodType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPaymentImageResource",
+            "columnName": "mPaymentImageResource",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mPaymentMethodID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ServerShiftModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mRestaurantID` TEXT NOT NULL, `mServerID` TEXT NOT NULL, `mShiftDate` INTEGER NOT NULL, `mShiftDay` TEXT NOT NULL, `mStartTimeStamp` INTEGER, `mEndTimeStamp` INTEGER, `mShiftHours` TEXT NOT NULL, `mID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "mRestaurantID",
+            "columnName": "mRestaurantID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mServerID",
+            "columnName": "mServerID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mShiftDate",
+            "columnName": "mShiftDate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mShiftDay",
+            "columnName": "mShiftDay",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mStartTimeStamp",
+            "columnName": "mStartTimeStamp",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mEndTimeStamp",
+            "columnName": "mEndTimeStamp",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mShiftHours",
+            "columnName": "mShiftHours",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mID",
+            "columnName": "mID",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ServerLoginModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mServerID` TEXT NOT NULL, `mServerName` TEXT NOT NULL, `mDateTime` INTEGER NOT NULL, `mLogInFlag` TEXT NOT NULL, `mID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "mServerID",
+            "columnName": "mServerID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mServerName",
+            "columnName": "mServerName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDateTime",
+            "columnName": "mDateTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mLogInFlag",
+            "columnName": "mLogInFlag",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mID",
+            "columnName": "mID",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "LocalTableGroupModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mGroupName` TEXT, `isSelected` INTEGER NOT NULL, `mTableNO` INTEGER NOT NULL, `mTableID` TEXT, `mLocationID` TEXT, `mSeatList` TEXT, `mID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "mGroupName",
+            "columnName": "mGroupName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isSelected",
+            "columnName": "isSelected",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTableNO",
+            "columnName": "mTableNO",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTableID",
+            "columnName": "mTableID",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mLocationID",
+            "columnName": "mLocationID",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mSeatList",
+            "columnName": "mSeatList",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mID",
+            "columnName": "mID",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "FavoriteItemsModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mGroupID` TEXT NOT NULL, `mGroupName` TEXT NOT NULL, `mCategoryID` TEXT NOT NULL, `mCategoryName` TEXT NOT NULL, `mCategorySequence` INTEGER NOT NULL, `mLocationID` TEXT NOT NULL, `mProductArrayList` TEXT NOT NULL, `mID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "mGroupID",
+            "columnName": "mGroupID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mGroupName",
+            "columnName": "mGroupName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCategoryID",
+            "columnName": "mCategoryID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCategoryName",
+            "columnName": "mCategoryName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCategorySequence",
+            "columnName": "mCategorySequence",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mLocationID",
+            "columnName": "mLocationID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductArrayList",
+            "columnName": "mProductArrayList",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mID",
+            "columnName": "mID",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "CartProductModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mLocationID` TEXT NOT NULL, `mTableID` TEXT NOT NULL, `mTableNO` INTEGER NOT NULL, `mGroupName` TEXT NOT NULL, `mTotalGuestsCount` INTEGER NOT NULL, `mAssignedSeats` TEXT, `mCartID` TEXT NOT NULL, `mCartNO` TEXT NOT NULL, `mCartProductID` TEXT NOT NULL, `mOrderType` INTEGER NOT NULL, `mServerID` TEXT NOT NULL, `mServerName` TEXT NOT NULL, `mProductID` TEXT, `mProductCategoryID` TEXT NOT NULL, `mProductCategoryName` TEXT NOT NULL, `mProductGroupID` TEXT NOT NULL, `mProductGroupName` TEXT NOT NULL, `mCourseType` TEXT NOT NULL, `mProductType` INTEGER NOT NULL, `mProductName` TEXT NOT NULL, `mProductUnitPrice` TEXT NOT NULL, `mProductQuantity` TEXT NOT NULL, `mProductTotalPrice` TEXT NOT NULL, `mSpecialInstruction` TEXT NOT NULL, `mSpecialInstructionPrice` TEXT NOT NULL, `mEditModifierList` TEXT, `mShowModifierList` TEXT, `mSubProductCategoryList` TEXT, `mSubProductsList` TEXT NOT NULL, `mDateInMillis` INTEGER NOT NULL, `mDate` TEXT NOT NULL, `mKitchenPrintFlag` INTEGER NOT NULL, `mPrinterID` TEXT NOT NULL, `mSequenceNO` INTEGER NOT NULL, `isSelectedForRepeatOrder` INTEGER NOT NULL, `taxName` TEXT NOT NULL, `taxPercentage` REAL NOT NULL, `tableOrderId` TEXT NOT NULL, `mID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "mLocationID",
+            "columnName": "mLocationID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTableID",
+            "columnName": "mTableID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTableNO",
+            "columnName": "mTableNO",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mGroupName",
+            "columnName": "mGroupName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTotalGuestsCount",
+            "columnName": "mTotalGuestsCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mAssignedSeats",
+            "columnName": "mAssignedSeats",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCartID",
+            "columnName": "mCartID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCartNO",
+            "columnName": "mCartNO",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCartProductID",
+            "columnName": "mCartProductID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOrderType",
+            "columnName": "mOrderType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mServerID",
+            "columnName": "mServerID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mServerName",
+            "columnName": "mServerName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductID",
+            "columnName": "mProductID",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mProductCategoryID",
+            "columnName": "mProductCategoryID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductCategoryName",
+            "columnName": "mProductCategoryName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductGroupID",
+            "columnName": "mProductGroupID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductGroupName",
+            "columnName": "mProductGroupName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCourseType",
+            "columnName": "mCourseType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductType",
+            "columnName": "mProductType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductName",
+            "columnName": "mProductName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductUnitPrice",
+            "columnName": "mProductUnitPrice",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductQuantity",
+            "columnName": "mProductQuantity",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductTotalPrice",
+            "columnName": "mProductTotalPrice",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mSpecialInstruction",
+            "columnName": "mSpecialInstruction",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mSpecialInstructionPrice",
+            "columnName": "mSpecialInstructionPrice",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mEditModifierList",
+            "columnName": "mEditModifierList",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mShowModifierList",
+            "columnName": "mShowModifierList",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mSubProductCategoryList",
+            "columnName": "mSubProductCategoryList",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mSubProductsList",
+            "columnName": "mSubProductsList",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDateInMillis",
+            "columnName": "mDateInMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDate",
+            "columnName": "mDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mKitchenPrintFlag",
+            "columnName": "mKitchenPrintFlag",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPrinterID",
+            "columnName": "mPrinterID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mSequenceNO",
+            "columnName": "mSequenceNO",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isSelectedForRepeatOrder",
+            "columnName": "isSelectedForRepeatOrder",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "taxName",
+            "columnName": "taxName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "taxPercentage",
+            "columnName": "taxPercentage",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tableOrderId",
+            "columnName": "tableOrderId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mID",
+            "columnName": "mID",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "CheckoutModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mTableNO` INTEGER NOT NULL, `mTableID` TEXT NOT NULL, `mGroupName` TEXT NOT NULL, `mCartID` TEXT NOT NULL, `mCartNO` TEXT NOT NULL, `mCartPaymentID` TEXT NOT NULL, `mCartTotal` TEXT NOT NULL, `mTaxAmount` TEXT NOT NULL, `mTaxPercent` TEXT NOT NULL, `mTaxList` TEXT NOT NULL, `mTipAmount` TEXT NOT NULL, `mTipPercent` TEXT NOT NULL, `mServiceChargeAmount` TEXT NOT NULL, `mServiceChargePercent` TEXT NOT NULL, `mDiscountAmount` TEXT NOT NULL, `mDiscountPercent` TEXT NOT NULL, `mVoucherCode` TEXT NOT NULL, `mVoucherAmount` TEXT NOT NULL, `mVoucherPercent` TEXT NOT NULL, `mOrderTotal` TEXT NOT NULL, `mOrderType` INTEGER NOT NULL, `mPaymentSelectionType` INTEGER NOT NULL, `mFullyPaid` INTEGER NOT NULL, `mAmountPaid` TEXT NOT NULL, `mAmountRemaining` TEXT NOT NULL, `mTimeStamp` INTEGER NOT NULL, `mCheckoutTransaction` TEXT NOT NULL, `mID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "mTableNO",
+            "columnName": "mTableNO",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTableID",
+            "columnName": "mTableID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mGroupName",
+            "columnName": "mGroupName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCartID",
+            "columnName": "mCartID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCartNO",
+            "columnName": "mCartNO",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCartPaymentID",
+            "columnName": "mCartPaymentID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCartTotal",
+            "columnName": "mCartTotal",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTaxAmount",
+            "columnName": "mTaxAmount",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTaxPercent",
+            "columnName": "mTaxPercent",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTaxList",
+            "columnName": "mTaxList",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTipAmount",
+            "columnName": "mTipAmount",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTipPercent",
+            "columnName": "mTipPercent",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mServiceChargeAmount",
+            "columnName": "mServiceChargeAmount",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mServiceChargePercent",
+            "columnName": "mServiceChargePercent",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDiscountAmount",
+            "columnName": "mDiscountAmount",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDiscountPercent",
+            "columnName": "mDiscountPercent",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mVoucherCode",
+            "columnName": "mVoucherCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mVoucherAmount",
+            "columnName": "mVoucherAmount",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mVoucherPercent",
+            "columnName": "mVoucherPercent",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOrderTotal",
+            "columnName": "mOrderTotal",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOrderType",
+            "columnName": "mOrderType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPaymentSelectionType",
+            "columnName": "mPaymentSelectionType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mFullyPaid",
+            "columnName": "mFullyPaid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mAmountPaid",
+            "columnName": "mAmountPaid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mAmountRemaining",
+            "columnName": "mAmountRemaining",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTimeStamp",
+            "columnName": "mTimeStamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCheckoutTransaction",
+            "columnName": "mCheckoutTransaction",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mID",
+            "columnName": "mID",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ReportModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mRestaurantID` TEXT NOT NULL, `mPaymentSelectionType` TEXT NOT NULL, `mTableNO` INTEGER NOT NULL, `mCartID` TEXT NOT NULL, `mCartNO` TEXT NOT NULL, `mCartTotal` REAL NOT NULL, `mTableID` TEXT NOT NULL, `mDiscountType` TEXT NOT NULL, `mDiscountPercent` REAL NOT NULL, `mDiscountAmount` REAL NOT NULL, `mTaxPercent` REAL NOT NULL, `mTaxAmount` REAL NOT NULL, `mAmountPaid` REAL NOT NULL, `mOrderTotal` REAL NOT NULL, `mDateTime` TEXT NOT NULL, `mDateTimeInTimeStamp` INTEGER NOT NULL, `mOrderType` INTEGER NOT NULL, `mServerName` TEXT NOT NULL, `mPaymentList` TEXT NOT NULL, `mProductList` TEXT NOT NULL, `id` TEXT NOT NULL, `mID` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "mRestaurantID",
+            "columnName": "mRestaurantID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPaymentSelectionType",
+            "columnName": "mPaymentSelectionType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTableNO",
+            "columnName": "mTableNO",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCartID",
+            "columnName": "mCartID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCartNO",
+            "columnName": "mCartNO",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCartTotal",
+            "columnName": "mCartTotal",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTableID",
+            "columnName": "mTableID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDiscountType",
+            "columnName": "mDiscountType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDiscountPercent",
+            "columnName": "mDiscountPercent",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDiscountAmount",
+            "columnName": "mDiscountAmount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTaxPercent",
+            "columnName": "mTaxPercent",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTaxAmount",
+            "columnName": "mTaxAmount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mAmountPaid",
+            "columnName": "mAmountPaid",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOrderTotal",
+            "columnName": "mOrderTotal",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDateTime",
+            "columnName": "mDateTime",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDateTimeInTimeStamp",
+            "columnName": "mDateTimeInTimeStamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mOrderType",
+            "columnName": "mOrderType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mServerName",
+            "columnName": "mServerName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mPaymentList",
+            "columnName": "mPaymentList",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mProductList",
+            "columnName": "mProductList",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mID",
+            "columnName": "mID",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "SelectablePinPad",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mPinPadName` TEXT NOT NULL, `mConnectionType` TEXT NOT NULL, `mLocationID` TEXT NOT NULL, `mID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "mPinPadName",
+            "columnName": "mPinPadName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mConnectionType",
+            "columnName": "mConnectionType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mLocationID",
+            "columnName": "mLocationID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mID",
+            "columnName": "mID",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '557783ed645e4ee77341e5430f7e8a36')"
+    ]
+  }
+}
