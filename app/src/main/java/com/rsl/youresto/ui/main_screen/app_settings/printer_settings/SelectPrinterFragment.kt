@@ -34,18 +34,6 @@ class SelectPrinterFragment : Fragment() {
         return mView
     }
 
-    //TODO: HANDLE BACK PRESS
-//    override fun handleOnBackPressed(): Boolean {
-//        val mDrawerVisibility = (activity as MainScreenActivity).checkNavigationDrawerVisibility()
-//
-//        if (!mDrawerVisibility){
-//            val action = SelectPrinterFragmentDirections.actionSelectPrinterFragmentToSettingsFragment(1)
-//            findNavController().navigate(action)
-//        }
-//
-//        return true
-//    }
-
     @Subscribe
     fun openSettingsFragment(mEvent: OpenSettingEvent) {
         val action = SelectPrinterFragmentDirections.actionSelectPrinterFragmentToSettingsFragment(mEvent.mTabNo)

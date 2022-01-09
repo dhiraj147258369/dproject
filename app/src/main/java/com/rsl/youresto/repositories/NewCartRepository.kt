@@ -39,6 +39,8 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
         }
     }
 
+    fun getCartsById(cartId: String) = cartDao.getCartsById(cartId)
+
     suspend fun getPaymentMethods() = withContext(Dispatchers.IO) {cartDao.getPaymentMethods()}
 
     suspend fun updateQuantity(rowId: Int, qty: BigDecimal, totalPrice: BigDecimal, tableId: String) {
@@ -48,7 +50,7 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
 
         val carts = if (remoteSource.prefs.getLocationServiceType() == SERVICE_QUICK_SERVICE){
             withContext(Dispatchers.IO) {
-                cartDao.getCartsById(tableId)
+                cartDao.getCartsById(remoteSource.prefs.selectedQuickServiceCartId())
             }
         } else {
             withContext(Dispatchers.IO) {
@@ -250,23 +252,23 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
 
     fun getPendingOrderCartData() = cartDao.getLocationPendingOrders(remoteSource.prefs.getSelectedLocation())
 
-    suspend fun checkoutOrder(checkout: PostCheckout, mTableId: String): Resource<NetworkCheckoutResponse>  {
+    suspend fun checkoutOrder(checkout: PostCheckout, orderId: String): Resource<NetworkCheckoutResponse>  {
          val resource = withContext(Dispatchers.IO) {
              remoteSource.checkoutOrder(checkout)
          }
 
         if (resource.status == Resource.Status.SUCCESS){
             resource.data?.let {
-                withContext(Dispatchers.IO){
-                    cartDao.deleteCart(mTableId)
-                }
+//                withContext(Dispatchers.IO){
+//                    cartDao.deleteCart(orderId)
+//                }
             }
         }
 
         return resource
     }
 
-    fun getKitchens() = cartDao.getKitchens()
+    suspend fun deleteCart(orderId: String) = withContext(Dispatchers.IO) {cartDao.deleteCart(orderId)}
 
     suspend fun syncCarts(){
         val resource = withContext(Dispatchers.IO) {

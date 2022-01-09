@@ -49,15 +49,13 @@ class NewCartViewModel(private val repo: NewCartRepository): ViewModel() {
         }
     }
 
-    fun getKitchens() = repo.getKitchens()
-
     private val _checkoutData = MutableLiveData<Event<NetworkCheckoutResponse>>()
     val checkoutData: LiveData<Event<NetworkCheckoutResponse>> get() = _checkoutData
 
-    fun checkoutOrder(checkout: PostCheckout, mTableId: String) {
+    fun checkoutOrder(checkout: PostCheckout, orderId: String) {
         viewModelScope.launch {
             val resource = withContext(Dispatchers.IO) {
-                repo.checkoutOrder(checkout, mTableId)
+                repo.checkoutOrder(checkout, orderId)
             }
 
             if (resource.status == Resource.Status.SUCCESS){
@@ -65,6 +63,12 @@ class NewCartViewModel(private val repo: NewCartRepository): ViewModel() {
             } else {
                 _checkoutData.value = Event(NetworkCheckoutResponse())
             }
+        }
+    }
+
+    fun deleteCart(orderId: String){
+        viewModelScope.launch {
+            repo.deleteCart(orderId)
         }
     }
 

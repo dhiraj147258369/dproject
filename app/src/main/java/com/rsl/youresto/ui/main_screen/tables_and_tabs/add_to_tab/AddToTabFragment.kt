@@ -34,7 +34,6 @@ import com.rsl.youresto.utils.AppConstants
 import com.rsl.youresto.utils.AppConstants.LOCATION_SERVICE_TYPE
 import com.rsl.youresto.utils.AppConstants.LOGGED_IN_SERVER_ID
 import com.rsl.youresto.utils.AppConstants.LOGGED_IN_SERVER_NAME
-import com.rsl.youresto.utils.AppConstants.SEAT_SELECTION_ENABLED
 import com.rsl.youresto.utils.AppConstants.SELECTED_LOCATION_ID
 import com.rsl.youresto.utils.AppConstants.SELECTED_TABLE_ID
 import com.rsl.youresto.utils.AppConstants.SELECTED_TABLE_NO
@@ -60,7 +59,6 @@ class AddToTabFragment : Fragment() {
     private lateinit var mTableID: String
     private var mTableNO: Int = 0
     private lateinit var mLocationID: String
-    private var isSeatSelectionEnabled: Boolean = false
     private var mSelectedLocationType: Int? = null
 
     private var isTablet: Boolean = false
@@ -83,7 +81,6 @@ class AddToTabFragment : Fragment() {
 
         mSharedPrefs = requireActivity().getSharedPreferences(AppConstants.MY_PREFERENCES, Context.MODE_PRIVATE)
 
-        isSeatSelectionEnabled = mSharedPrefs.getBoolean(SEAT_SELECTION_ENABLED, false)
         mSelectedLocationType = mSharedPrefs.getInt(LOCATION_SERVICE_TYPE, 0)
 
         mLocationID = mSharedPrefs.getString(SELECTED_LOCATION_ID, "")!!

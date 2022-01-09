@@ -7,7 +7,6 @@ import android.content.SharedPreferences
 import android.text.TextUtils
 import android.util.Log.e
 import android.view.LayoutInflater
-import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +18,6 @@ import com.rsl.youresto.ui.main_screen.cart.event.DeleteCartProductEvent
 import com.rsl.youresto.ui.main_screen.cart.event.UpdateCartProductQuantityEvent
 import com.rsl.youresto.utils.AppConstants
 import com.rsl.youresto.utils.AppConstants.LOCATION_SERVICE_TYPE
-import com.rsl.youresto.utils.AppConstants.SEAT_SELECTION_ENABLED
 import com.rsl.youresto.utils.AppConstants.SERVICE_DINE_IN
 import com.rsl.youresto.utils.custom_views.CustomToast
 import org.greenrobot.eventbus.EventBus
@@ -134,10 +132,6 @@ class CartRecyclerAdapter(var mContext: Context, private var mCartProductList: A
 
                 val mCart = mCartProductList[mPosition]
                 mCartHolder.setCartModel(mCart, mPosition, holder)
-
-                when {
-                    !mSharedPrefs.getBoolean(SEAT_SELECTION_ENABLED, true) -> mCartHolder.mBinding.recyclerViewAssignedSeats.visibility = GONE
-                }
 
 
                 when {

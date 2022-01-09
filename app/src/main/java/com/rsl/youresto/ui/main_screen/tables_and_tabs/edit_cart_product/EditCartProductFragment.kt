@@ -11,7 +11,6 @@ import android.text.TextWatcher
 import android.util.Log.e
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -60,7 +59,6 @@ class EditCartProductFragment : Fragment() {
     private var mTableNO: Int = 0
     private lateinit var mLocationID: String
     private var mGroupName: String? = null
-    private var isSeatSelectionEnabled: Boolean = false
     private val productViewModel: NewProductViewModel by viewModel()
 
     override fun onCreateView(
@@ -72,7 +70,6 @@ class EditCartProductFragment : Fragment() {
         val mView = mBinding.root
 
         mSharedPrefs = requireActivity().getSharedPreferences(AppConstants.MY_PREFERENCES, Context.MODE_PRIVATE)
-        isSeatSelectionEnabled = mSharedPrefs.getBoolean(AppConstants.SEAT_SELECTION_ENABLED, false)
         mTableID = mSharedPrefs.getString(AppConstants.SELECTED_TABLE_ID, "")!!
         mTableNO = mSharedPrefs.getInt(AppConstants.SELECTED_TABLE_NO, 0)
         mLocationID = mSharedPrefs.getString(AppConstants.SELECTED_LOCATION_ID, "")!!
@@ -133,14 +130,6 @@ class EditCartProductFragment : Fragment() {
         }
 
         manageQuantity()
-
-        when (SERVICE_QUICK_SERVICE) {
-            mSharedPrefs.getInt(LOCATION_SERVICE_TYPE, 0) -> mBinding.imageViewSeats.visibility = INVISIBLE
-        }
-
-        when {
-            !isSeatSelectionEnabled -> mBinding.imageViewSeats.visibility = INVISIBLE
-        }
 
 
         mBinding.imageViewInstruction.setOnClickListener {

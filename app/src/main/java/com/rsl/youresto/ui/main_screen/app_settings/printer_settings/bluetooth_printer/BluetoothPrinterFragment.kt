@@ -10,39 +10,33 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log.e
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.rsl.youresto.R
-import com.rsl.youresto.data.database_download.models.KitchenModel
 import com.rsl.youresto.databinding.FragmentBluetoothPrinterBinding
 import com.rsl.youresto.ui.main_screen.app_settings.AppSettingsViewModel
 import com.rsl.youresto.ui.main_screen.app_settings.event.ShowBluetoothDevicesEvent
 import com.rsl.youresto.ui.main_screen.app_settings.printer_settings.event.OpenSettingEvent
 import com.rsl.youresto.utils.AppConstants
 import com.rsl.youresto.utils.AppConstants.BILL_PRINTER
-import com.rsl.youresto.utils.AppConstants.BILL_PRINTER_OR_KITCHEN_PRINTER
 import com.rsl.youresto.utils.AppConstants.BLUETOOTH_PRINTER
-import com.rsl.youresto.utils.AppConstants.KITCHEN_PRINTER
+import com.rsl.youresto.utils.AppConstants.NO_TYPE
 import com.rsl.youresto.utils.AppConstants.SELECTED_BILL_PRINTER_NAME
 import com.rsl.youresto.utils.AppConstants.SELECTED_BILL_PRINTER_NETWORK_IP
 import com.rsl.youresto.utils.AppConstants.SELECTED_BILL_PRINTER_NETWORK_PORT
 import com.rsl.youresto.utils.AppConstants.SELECTED_BILL_PRINTER_TYPE
-import com.rsl.youresto.utils.AppConstants.SELECTED_KITCHEN_PRINTER_ID
+import com.rsl.youresto.utils.AppPreferences
 import com.rsl.youresto.utils.InjectorUtils
 import com.rsl.youresto.utils.custom_views.CustomToast
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.koin.android.ext.android.inject
 import java.util.*
 
 @SuppressLint("LogNotTimber")
@@ -51,6 +45,7 @@ class BluetoothPrinterFragment : Fragment() {
     private lateinit var mBinding: FragmentBluetoothPrinterBinding
     private lateinit var mSharedPrefs: SharedPreferences
     private lateinit var mViewModel: AppSettingsViewModel
+    private val prefs: AppPreferences by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -112,7 +107,7 @@ class BluetoothPrinterFragment : Fragment() {
                 mBinding.recyclerViewBluetoothPrinter.layoutManager = LinearLayoutManager(requireActivity())
                 mBinding.recyclerViewBluetoothPrinter.adapter = mBAdapter
                 e(javaClass.simpleName, "printer size: " + mBluetoothDevices.size)
-                checkIfOtherPrinterIsSelected()
+//                checkIfOtherPrinterIsSelected()
             }
             else -> CustomToast.makeText(requireActivity(), "Printer not found", Toast.LENGTH_SHORT).show()
         }
@@ -120,77 +115,15 @@ class BluetoothPrinterFragment : Fragment() {
         mBinding.buttonSetBluetoothPrinter.setOnClickListener {
             mSelectedBluetoothPrinter = mBAdapter?.getSelectedBluetooth()
             when {
-                mSelectedBluetoothPrinter != null -> if(mSharedPrefs.getString(BILL_PRINTER_OR_KITCHEN_PRINTER,"")!! == BILL_PRINTER)
-                    updateBillPrinter()
-                else
-                    updateKitchenPrinter()
+                mSelectedBluetoothPrinter != null ->
+                    if(prefs.getSelectedPrinterForSetting() == BILL_PRINTER)
+                        updateBillPrinter()
+                    else
+                        updateKitchenPrinter()
                 else -> CustomToast.makeText(
                     requireActivity(),
                     "Please Select Bluetooth Printer", Toast.LENGTH_SHORT
                 ).show()
-            }
-        }
-
-        when (BILL_PRINTER) {
-            mSharedPrefs.getString(BILL_PRINTER_OR_KITCHEN_PRINTER,"")!! -> mBinding.buttonOpenLogwood.visibility = GONE
-        }
-
-        mBinding.buttonOpenLogwood.setOnClickListener {
-            Navigation.findNavController(requireActivity(),R.id.main_screen_host_fragment).navigate(R.id.logwoodSettingFragment)
-        }
-    }
-
-    private fun checkIfOtherPrinterIsSelected() {
-
-        when (KITCHEN_PRINTER) {
-            mSharedPrefs.getString(BILL_PRINTER_OR_KITCHEN_PRINTER, "") -> {
-
-                e(javaClass.simpleName,"Kitchen Printer")
-
-                val mKitchenData: LiveData<KitchenModel> =
-                    mViewModel.getKitchenPrinter(mSharedPrefs.getString(SELECTED_KITCHEN_PRINTER_ID, "")!!)
-                val mKitchenObserver: Observer<KitchenModel> = Observer {
-                    when {
-                        it != null -> {
-                            when (it.mPrinterType) {
-                                BLUETOOTH_PRINTER -> {
-                                    var mPosition = -1
-
-                                    loop@ for (i in mBluetoothDevices.indices) {
-                                        when (mBluetoothDevices[i].name) {
-                                            it.mSelectedKitchenPrinterName -> {
-                                                mSelectedBluetoothPrinter = mBluetoothDevices[i]
-                                                mPosition = i
-                                                break@loop
-                                            }
-                                        }
-                                    }
-
-                                    e(javaClass.simpleName, "checkIfOtherPrinterIsSelected: $mPosition")
-                                    mBAdapter!!.setSelectedBluetooth(mPosition)
-                                }
-                            }
-
-                            mKitchenData.removeObservers(this)
-                        }
-                    }
-                }
-                mKitchenData.observe(viewLifecycleOwner, mKitchenObserver)
-            } else -> {
-                e(javaClass.simpleName,"Bill Printer")
-
-                val mBluetoothName = mSharedPrefs.getString(SELECTED_BILL_PRINTER_NAME, "")
-                var mPosition = -1
-                loop@ for (i in mBluetoothDevices.indices) {
-                    when (mBluetoothName) {
-                        mBluetoothDevices[i].name -> {
-                            mSelectedBluetoothPrinter = mBluetoothDevices[i]
-                            mPosition = i
-                            break@loop
-                        }
-                    }
-                }
-                mBAdapter!!.setSelectedBluetooth(mPosition)
             }
         }
     }
@@ -214,18 +147,9 @@ class BluetoothPrinterFragment : Fragment() {
     }
 
     private fun updateKitchenPrinter() {
-        val mUpdatePrinterData: LiveData<Int> = mViewModel.updateKitchenBluetoothPrinter(
-            mSharedPrefs.getString(SELECTED_KITCHEN_PRINTER_ID,"")!!, mSelectedBluetoothPrinter!!.name, BLUETOOTH_PRINTER)
-
-        val mUpdatePrinterObserver: Observer<Int> = Observer {
-            if(it != null && it > 0) {
-                CustomToast.makeText(requireActivity(), mSelectedBluetoothPrinter!!.name + " selected", Toast.LENGTH_SHORT).show()
-//                Navigation.findNavController(requireActivity(),R.id.main_screen_host_fragment).navigate(R.id.logwoodSettingFragment)
-                mUpdatePrinterData.removeObservers(this)
-            }
-        }
-        mUpdatePrinterData.observe(viewLifecycleOwner,mUpdatePrinterObserver)
-
+        prefs.setKitchenPrinter(mSelectedBluetoothPrinter?.name ?: NO_TYPE, BLUETOOTH_PRINTER, "", "")
+        CustomToast.makeText(requireActivity(), mSelectedBluetoothPrinter?.name + " selected", Toast.LENGTH_SHORT).show()
+        EventBus.getDefault().post(OpenSettingEvent(1))
     }
 
     @Subscribe

@@ -9,16 +9,11 @@ object AppConstants {
     const val RESTAURANT_ID = "RESTAURANT_ID"
     const val RESTAURANT_USER_NAME = "RESTAURANT_USER_NAME"
     const val RESTAURANT_PASSWORD = "RESTAURANT_PASSWORD"
-    const val MERCHANT_TID = "MERCHANT_TID"
-    const val MERCHANT_TK = "MERCHANT_TK"
     const val RESTAURANT_LOGO = "RESTAURANT_LOGO"
 
 
     //shared preferences - settings
     const val AUTO_LOGOUT_ENABLED = "AUTO_LOGOUT_ENABLED"
-    const val SEAT_SELECTION_ENABLED = "SEAT_SELECTION_ENABLED"
-    const val ENABLE_KITCHEN_PRINT = "ENABLE_KITCHEN_PRINT"
-    const val ENABLE_LOGWOOD = "ENABLE_LOGWOOD"
 
     //shared preferences - location
     const val SELECTED_LOCATION_NAME = "SELECTED_LOCATION_NAME"
@@ -40,22 +35,16 @@ object AppConstants {
     const val SELECTED_BILL_PRINTER_NETWORK_PORT = "SELECTED_BILL_PRINTER_NETWORK_PORT"
     const val SELECTED_BILL_PRINTER_TYPE = "SELECTED_BILL_PRINTER_TYPE"
 
-    const val PAYMENT_TERMINAL_ENABLED = "PAYMENT_TERMINAL_ENABLED"
-    const val PAYMENT_TERMINAL_NAME = "PAYMENT_TERMINAL_NAME"
-    const val PAYMENT_TERMINAL_CONNECTION_TYPE = "PAYMENT_TERMINAL_CONNECTION_TYPE"
-
-    const val ZERO_SEAT_LIST_COUNT = "ZERO_SEAT_LIST_COUNT"
+    const val SELECTED_KITCHEN_PRINTER_NAME = "SELECTED_KITCHEN_PRINTER_NAME"
+    const val SELECTED_KITCHEN_PRINT_PAPER_SIZE = "SELECTED_KITCHEN_PRINT_PAPER_SIZE"
+    const val SELECTED_KITCHEN_PRINTER_NETWORK_IP = "SELECTED_KITCHEN_PRINTER_NETWORK_IP"
+    const val SELECTED_KITCHEN_PRINTER_NETWORK_PORT = "SELECTED_KITCHEN_PRINTER_NETWORK_PORT"
+    const val SELECTED_KITCHEN_PRINTER_TYPE = "SELECTED_KITCHEN_PRINTER_TYPE"
 
     const val QUICK_SERVICE_FRAGMENT_TAB_SELECTED = "QUICK_SERVICE_FRAGMENT_TAB_SELECTED"
 
     //intents
     const val INTENT_FROM = "INTENT_FROM"
-    const val ORDER_TYPE = "ORDER_TYPE"
-    const val ORDER_NO = "ORDER_NO"
-    const val TABLE_NO = "TABLE_NO"
-    const val TABLE_ID = "TABLE_ID"
-
-    const val SEAT_SELECTION_GROUP = "SEAT_SELECTION_GROUP"
 
     //arguments
     const val GROUP_ID = "GROUP_ID"
@@ -63,8 +52,6 @@ object AppConstants {
     const val SELECTED_GROUP_NAME = "SELECTED_GROUP_NAME"
     const val CATEGORY_ID = "CATEGORY_ID"
     const val PRODUCT_ID = "PRODUCT_ID"
-    const val PRODUCT_TYPE = "PRODUCT_TYPE"
-    const val CHECKOUT_ROW_ID = "CHECKOUT_ROW_ID"
 
     const val DIALOG_ID = "DIALOG_ID"
     const val DIALOG_SOURCE = "DIALOG_SOURCE"
@@ -111,15 +98,8 @@ object AppConstants {
 
     const val API_USER_ID = "user_id"
     const val API_DATE = "date"
-    const val API_SHIFT_STATUS = "shift_status"
-
-    const val API_SHIFT_START = "start"
-    const val API_SHIFT_END = "end"
 
     const val API_TIME = "time"
-    const val API_LOGIN_FLAG = "log_in_flag"
-    const val API_LOG_IN = "log in"
-    const val API_LOG_OUT = "log out"
 
     const val API_LOCATION_ID = "location_id"
     const val API_PRODUCT_LIST = "product_list"
@@ -130,46 +110,14 @@ object AppConstants {
     const val API_OCCUPY_TABLE_ID = "occupy_table_id"
     const val API_OCCUPIED_CHAIRS = "occupiedchairs"
     const val API_TABLE_ID = "table_id"
-    const val FROM_TABLE_ID = "from_table_id"
-    const val TO_TABLE_ID = "to_table_id"
     const val API_AMOUNT = "amount"
     const val API_GROUP_NAME = "group_name"
     const val API_SEATS = "seats"
-    const val API_SEAT = "seat"
     const val API_CART_ID = "cart_id"
-    const val API_CART_PAYMENT_ID = "cart_payment_id"
     const val API_CART_NO = "cart_no"
     const val API_PRODUCTS = "products"
 
-    const val API_CART_TOTAL = "cart_total"
-    const val API_TAX_AMOUNT = "tax_amount"
-    const val API_TAX_PERCENT = "tax_percent"
-    const val API_SERVICE_CHARGE = "service_charge_amount"
-    const val API_SERVICE_CHARGE_PERCENT = "service_charge_percentage"
-    const val API_DISCOUNT_AMOUNT = "discount_amount"
-    const val API_DISCOUNT_PERCENT = "discount_percent"
-    const val API_DISCOUNT_TYPE = "discount_type"
-    const val API_ORDER_TOTAL = "order_total"
     const val API_ORDER_TYPE = "order_type"
-    const val API_PAYMENT_SELECTION_TYPE = "payment_selection_type"
-    const val API_FULL_PAID = "full_paid"
-    const val API_AMOUNT_PAID = "amount_paid"
-
-    const val API_REFERENCE_NO = "reference_no"
-    const val API_TRANSACTION_ID = "transaction_id"
-    const val API_PAYMENT_METHOD_NAME = "payment_method_name"
-    const val API_PAYMENT_METHOD_TYPE = "payment_method_type"
-    const val API_PAYMENT_METHOD_ID = "payment_method_id"
-    const val API_CASH_GIVEN = "cash_given"
-    const val API_CHANGE_GIVEN = "change_given"
-    const val API_WALLET_NAME = "wallet_name"
-    const val API_CARD_NO = "card_no"
-    const val API_CARD_TYPE = "card_type"
-    const val API_CARD_PROVIDER = "card_provider"
-    const val API_ENTRY_MODE = "entry_mode"
-
-
-    const val API_PAYMENT_ARRAY = "payments"
 
 
     const val API_CART_PRODUCT_ID = "cart_product_id"
@@ -204,13 +152,9 @@ object AppConstants {
     const val API_PRODUCT_SEND_TO_KITCHEN_FLAG = "send_to_kitchen_flag"
     const val API_PRODUCT_PRINTER_ID = "printer_id"
 
-    const val API_ORDER_ID = "order_id"
-
     //service type constants
     const val SERVICE_DINE_IN = 1
     const val SERVICE_QUICK_SERVICE = 2
-    const val SERVICE_DELIVERY = 3
-    const val SERVICE_DINE_IN_WITHOUT_SEATS = 4
 
     //quick service ids
     const val QUICK_SERVICE_TABLE_ID = "QUICK_SERVICE_TABLE_ID"
@@ -236,45 +180,11 @@ object AppConstants {
 
     //modifiers
     const val MULTIPLE_SELECTION_COUNT = "MULTIPLE_SELECTION_COUNT"
-    const val SINGLE_SELECTION_COUNT = "SINGLE_SELECTION_COUNT"
 
     const val SINGLE_SELECTION = 1
     const val MULTIPLE_SELECTION = 2
 
-    //Payment Method
-    const val YOYO_WALLET = "YOYO_WALLET"
-
-    //Submit Cart Constants
-    const val INSERT_CART = 1
-    const val UPDATE_CART = 2
-
-    //Payment Methods
-    const val CASH = "Cash"
-    const val CARD = "Card"
-    const val WALLET = "Wallet"
-    const val DISCOUNT = "Discount"
-    const val VOUCHER = "Voucher"
-    const val TIP = "Tip"
-    const val SERVICE_CHARGE = "Service Charge"
-
-    const val TYPE_CASH = 1
-    const val TYPE_CARD = 2
-    const val TYPE_WALLET = 3
-    const val TYPE_TIP = 4
-    const val TYPE_VOUCHER = 0
-
-    //Checkout Navigation Constants
-    const val DETAIL_NAVIGATION = 0
-    const val PAYMENT_NAVIGATION = 1
-    const val DISOUNT_NAVIGATION = 2
-
     //Fragment TAG
     const val CUSTOM_DIALOG_FRAGMENT = "CUSTOM_DIALOG_FRAGMENT"
-    const val SEATS_CHECKOUT_FRAGMENT = "SEATS_CHECKOUT_FRAGMENT"
-    const val PENDING_ORDER_FRAGMENT = "PENDING_ORDER_FRAGMENT"
-    const val MAIN_PRODUCT_FRAGMENT = "MAIN_PRODUCT_FRAGMENT"
-    const val QUICK_FAV_ITEM_FRAGMENT = "QUICK_FAV_ITEM_FRAGMENT"
-    const val CHECKOUT_FRAGMENT = "CHECKOUT_FRAGMENT"
-    const val EDIT_CART_FRAGMENT = "EDIT_CART_FRAGMENT"
     const val CUSTOM_PROGRESS_DIALOG_FRAGMENT = "CUSTOM_PROGRESS_DIALOG_FRAGMENT"
 }

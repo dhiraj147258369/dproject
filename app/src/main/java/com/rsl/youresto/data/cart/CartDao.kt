@@ -56,8 +56,8 @@ interface CartDao {
     @Query("UPDATE CartProductModel SET mProductQuantity =:qty, mProductTotalPrice =:totalPrice WHERE mID =:rowId")
     fun updateQuantity(rowId: Int, qty: BigDecimal, totalPrice: BigDecimal): Int
 
-    @Query("DELETE FROM CartProductModel WHERE mTableID =:mTableNO")
-    fun deleteCart(mTableNO: String): Int
+    @Query("DELETE FROM CartProductModel WHERE mCartID =:orderId")
+    fun deleteCart(orderId: String): Int
 
     @Query("SELECT * FROM PaymentMethodModel")
     fun getPaymentMethods(): List<PaymentMethodModel>

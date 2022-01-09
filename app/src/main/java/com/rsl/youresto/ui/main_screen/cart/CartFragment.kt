@@ -2,14 +2,12 @@ package com.rsl.youresto.ui.main_screen.cart
 
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log.e
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -21,29 +19,29 @@ import com.rsl.youresto.R
 import com.rsl.youresto.data.cart.models.CartProductModel
 import com.rsl.youresto.databinding.FragmentCartBinding
 import com.rsl.youresto.ui.main_screen.cart.adapter.CartRecyclerAdapter
-import com.rsl.youresto.ui.main_screen.cart.event.*
+import com.rsl.youresto.ui.main_screen.cart.event.CartFragmentTouchEvent
+import com.rsl.youresto.ui.main_screen.cart.event.DeleteCartProductEvent
+import com.rsl.youresto.ui.main_screen.cart.event.RefreshCartEvent
+import com.rsl.youresto.ui.main_screen.cart.event.UpdateCartProductQuantityEvent
 import com.rsl.youresto.ui.main_screen.checkout.CheckoutDialog
 import com.rsl.youresto.ui.main_screen.checkout.events.DrawerEvent
 import com.rsl.youresto.ui.main_screen.checkout.payment_options.events.PaymentCompletedEvent
-import com.rsl.youresto.ui.main_screen.estimate_bill_print.EstimateBillPrint50Activity
-import com.rsl.youresto.ui.main_screen.kitchen_print.KitchenPrint50Activity
-import com.rsl.youresto.ui.main_screen.kitchen_print.KitchenPrint80Activity
 import com.rsl.youresto.ui.main_screen.tables_and_tabs.edit_cart_product.tabs.EditCartDialog
 import com.rsl.youresto.ui.tab_specific.QuickServiceTabFragment
 import com.rsl.youresto.ui.tab_specific.TablesTabFragment
-import com.rsl.youresto.utils.*
+import com.rsl.youresto.utils.Animations
 import com.rsl.youresto.utils.AppConstants.CUSTOM_DIALOG_FRAGMENT
 import com.rsl.youresto.utils.AppConstants.GROUP_NAME
 import com.rsl.youresto.utils.AppConstants.PAPER_SIZE_50
 import com.rsl.youresto.utils.AppConstants.SELECTED_GROUP_NAME
 import com.rsl.youresto.utils.AppConstants.SERVICE_DINE_IN
 import com.rsl.youresto.utils.AppConstants.SERVICE_QUICK_SERVICE
+import com.rsl.youresto.utils.AppPreferences
+import com.rsl.youresto.utils.Utils
 import com.rsl.youresto.utils.custom_dialog.AlertDialogEvent
 import com.rsl.youresto.utils.custom_dialog.CustomAlertDialogFragment
-import com.rsl.youresto.utils.custom_views.CustomToast
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.rsl.youresto.utils.new_print.BillPrint
+import com.rsl.youresto.utils.new_print.KitchenPrint
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.koin.android.ext.android.inject
@@ -61,10 +59,8 @@ import kotlin.collections.ArrayList
 class CartFragment : Fragment() {
 
     private lateinit var mBinding: FragmentCartBinding
-    private var mGroupName: String? = null
     private lateinit var mTableID: String
     private var mTableNO: Int = 0
-    private var mCartNO: String? = null
     private var mSelectedLocationType: Int? = null
 
     private val cartViewModel: NewCartViewModel by viewModel()
@@ -134,8 +130,8 @@ class CartFragment : Fragment() {
 
     private fun showActionBarOptions() {
         Animations.rotateClockwise(mBinding.imageViewAction)
-        mBinding.constraintLayoutActionOptions.visibility = View.VISIBLE
-        mBinding.viewBackgroundBlur.visibility = View.VISIBLE
+        mBinding.constraintLayoutActionOptions.visibility = VISIBLE
+        mBinding.viewBackgroundBlur.visibility = VISIBLE
         Animations.slideUp(mBinding.constraintLayoutActionOptions)
         mActionBarHiddenState = false
         Utils.disableAllViews(mBinding.recyclerViewCartList, true)
@@ -209,39 +205,13 @@ class CartFragment : Fragment() {
     }
 
     private fun estimateBillPrint() {
-        val mEstimate50Intent = Intent(requireActivity(), EstimateBillPrint50Activity::class.java)
-        mEstimate50Intent.putExtra(AppConstants.TABLE_NO, mTableNO)
-        mEstimate50Intent.putExtra(AppConstants.ORDER_NO, mCartNO)
-//        mEstimate50Intent.putExtra(AppConstants.API_CART_ID, mCartID)
-        if (mTableNO != 100)
-            mEstimate50Intent.putExtra(AppConstants.ORDER_TYPE, 1)
-        else
-            mEstimate50Intent.putExtra(AppConstants.ORDER_TYPE, 2)
-
-        startActivity(mEstimate50Intent)
+        val print = BillPrint(lifecycleScope, requireActivity(), cartId)
+        if (prefs.getSelectedBillPrinterPaperSize() == PAPER_SIZE_50) print.print50() else print.print80()
     }
 
     private fun kotSend() {
-
-        if (prefs.getKitchenPrintEnableFlag()){
-            lifecycleScope.launch {
-                val kitchens = withContext(Dispatchers.IO){
-                    cartViewModel.getKitchens()
-                }
-
-                if (kitchens.isNotEmpty()){
-                    val mKitchenPrintIntent = if (kitchens[0].mSelectedKitchenPrinterSize == PAPER_SIZE_50){
-                        Intent(requireActivity(), KitchenPrint50Activity::class.java)
-                    } else {
-                        Intent(requireActivity(), KitchenPrint80Activity::class.java)
-                    }
-                    mKitchenPrintIntent.putExtra("CART_ID", cartId)
-                    startActivity(mKitchenPrintIntent)
-                }
-            }
-        } else {
-            CustomToast.makeText(requireActivity(), "Please enable kitchen print from settings", Toast.LENGTH_SHORT).show()
-        }
+        val print = KitchenPrint(lifecycleScope, requireActivity(), cartId)
+        if (prefs.getSelectedKitchenPrinterPaperSize() == PAPER_SIZE_50) print.print50() else print.print80()
     }
 
     private fun close() {

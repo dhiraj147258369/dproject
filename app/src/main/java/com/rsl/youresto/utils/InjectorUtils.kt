@@ -3,19 +3,13 @@ package com.rsl.youresto.utils
 import android.content.Context
 import com.rsl.youresto.data.AppDatabase
 import com.rsl.youresto.data.cart.CartDataSource
-import com.rsl.youresto.data.checkout.CheckoutDataSource
-import com.rsl.youresto.data.database_download.network.DatabaseDownloadDataSource
 import com.rsl.youresto.data.favorite_items.network.FavoriteItemsNetworkDataSource
-import com.rsl.youresto.data.tables.TableDataSource
 import com.rsl.youresto.repositories.*
-import com.rsl.youresto.ui.database_download.DatabaseDownloadViewModelFactory
 import com.rsl.youresto.ui.main_screen.app_settings.AppSettingsViewModelFactory
 import com.rsl.youresto.ui.main_screen.cart.CartViewModelFactory
-import com.rsl.youresto.ui.main_screen.checkout.CheckoutViewModelFactory
 import com.rsl.youresto.ui.main_screen.favorite_items.FavoriteItemsViewModelFactory
 import com.rsl.youresto.ui.main_screen.main_product_flow.MainProductViewModelFactory
 import com.rsl.youresto.ui.main_screen.order_history.OrderHistoryViewModelFactory
-import com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.TablesViewModelFactory
 
 object InjectorUtils {
     // This will be called from QuotesActivity
@@ -34,26 +28,6 @@ object InjectorUtils {
 //            )
 //        return MainLoginViewModelFactory(mainLoginRepository)
 //    }
-
-    fun provideDatabaseDownloadViewModelFactory(context: Context): DatabaseDownloadViewModelFactory {
-
-        val database: AppDatabase? = AppDatabase.getInstance(context)
-        val databaseDownloadDataSource: DatabaseDownloadDataSource? = DatabaseDownloadDataSource.getInstance(context)
-        val appExecutors = AppExecutors.getInstance()
-
-        val databaseDownloadRepository =
-            DatabaseDownloadRepository.getInstance(database!!.databaseDownloadDao(), databaseDownloadDataSource, appExecutors)
-
-        return DatabaseDownloadViewModelFactory(databaseDownloadRepository)
-    }
-
-    fun provideTablesViewModelFactory(context: Context) : TablesViewModelFactory {
-        val database: AppDatabase? = AppDatabase.getInstance(context)
-        val tablesDataSource: TableDataSource? = TableDataSource.getInstance(context)
-        val tablesRepository: TablesRepository = TablesRepository.getInstance(database!!.tablesDao(), tablesDataSource)
-
-        return TablesViewModelFactory(tablesRepository)
-    }
 
     fun provideMainProductViewModelFactory(context: Context) : MainProductViewModelFactory {
         val database : AppDatabase? = AppDatabase.getInstance(context)
@@ -83,14 +57,6 @@ object InjectorUtils {
         val cartRepository = CartRepository.getInstance(database!!.cartDao(), cartDataSource!!)
 
         return CartViewModelFactory(cartRepository)
-    }
-
-    fun provideCheckoutViewModelFactory(context: Context) : CheckoutViewModelFactory {
-        val database  = AppDatabase.getInstance(context)
-        val checkoutDataSource: CheckoutDataSource = CheckoutDataSource.getInstance(context)!!
-        val checkoutRepository = CheckoutRepository.getInstance(database!!.checkoutDao(), checkoutDataSource)
-
-        return CheckoutViewModelFactory(checkoutRepository)
     }
 
     fun provideOrderHistoryViewModelFactory(context: Context) : OrderHistoryViewModelFactory {

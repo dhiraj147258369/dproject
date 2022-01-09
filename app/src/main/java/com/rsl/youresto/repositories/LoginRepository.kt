@@ -31,6 +31,8 @@ class LoginRepository(private val loginDao: MainLoginDao, private val dataSource
         return resource
     }
 
+    fun getRestaurantData() = loginDao.getRestaurantData()
+
     suspend fun getData(): Resource<NetworkRestaurantData>  {
         val resource = withContext(Dispatchers.IO) {
             dataSource.getData()

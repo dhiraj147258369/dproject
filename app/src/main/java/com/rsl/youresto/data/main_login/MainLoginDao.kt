@@ -13,6 +13,9 @@ interface MainLoginDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLoginData(login: Login)
 
+    @Query("SELECT * FROM Login")
+    fun getRestaurantData(): Login
+
 
     @Insert
     fun insertProductGroups(groupModels: List<ProductGroupModel>)

@@ -30,7 +30,6 @@ import com.rsl.youresto.utils.AppConstants.RESTAURANT_LOGO
 import com.rsl.youresto.utils.AppConstants.RESTAURANT_NAME
 import com.rsl.youresto.utils.AppConstants.RESTAURANT_PASSWORD
 import com.rsl.youresto.utils.AppConstants.RESTAURANT_USER_NAME
-import com.rsl.youresto.utils.AppConstants.SEAT_SELECTION_ENABLED
 import com.rsl.youresto.utils.custom_views.CustomToast
 import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
@@ -144,7 +143,6 @@ class MainLoginFragment : Fragment() {
         mEditor.putString(RESTAURANT_PASSWORD, mBinding.editTextPassword.text.toString())
 
         mEditor.putBoolean(AUTO_LOGOUT_ENABLED, true)
-        mEditor.putBoolean(SEAT_SELECTION_ENABLED, true)
         mEditor.apply()
     }
 
@@ -253,12 +251,12 @@ class MainLoginFragment : Fragment() {
                         Manifest.permission.CAMERA
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
-                    showMessageOKCancel("You need to allow access permissions",
-                        { _, _ ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                requestPermission()
-                            }
-                        })
+                    showMessageOKCancel("You need to allow access permissions"
+                    ) { _, _ ->
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            requestPermission()
+                        }
+                    }
                 }
             }
         }

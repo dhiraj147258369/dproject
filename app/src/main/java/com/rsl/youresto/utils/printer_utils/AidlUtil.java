@@ -24,36 +24,70 @@ public class AidlUtil {
     private static final String SERVICE＿PACKAGE = "woyou.aidlservice.jiuiv5";
     private static final String SERVICE＿ACTION = "woyou.aidlservice.jiuiv5.IWoyouService";
 
+    private Context mContext;
     private IWoyouService woyouService;
+    private ICallback mICallback;
     private static AidlUtil mAidlUtil = new AidlUtil();
-    private Context context;
 
-    private AidlUtil() {
+
+    public AidlUtil() {
+
+    }
+
+    public AidlUtil(Context context) {
+        mContext = context;
+        connectPrinterService(mContext);
     }
 
     public static AidlUtil getInstance() {
         return mAidlUtil;
     }
 
-    /**
-     * 连接服务
-     *
-     * @param context context
-     */
-    public void connectPrinterService(Context context) {
-        this.context = context.getApplicationContext();
+    public void connectPrinterService(Context context)
+    {
+        this.mContext = context.getApplicationContext();
         Intent intent = new Intent();
         intent.setPackage(SERVICE＿PACKAGE);
         intent.setAction(SERVICE＿ACTION);
         context.getApplicationContext().startService(intent);
         context.getApplicationContext().bindService(intent, connService, Context.BIND_AUTO_CREATE);
+//        initPrinter();
     }
 
-    /**
-     * 断开服务
-     *
-     * @param context context
-     */
+    public void initPrinter() {
+        if (woyouService == null) {
+//            Toast.makeText(context,R.string.toast_2,Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        try {
+            woyouService.printerInit(null);
+            Toast.makeText(mContext, "initialised", Toast.LENGTH_LONG).show();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public interface PrinterCallback {
+        String getResult();
+        void onReturnString(String result);
+    }
+
+    private PrinterCallback mPrinterCallback;
+
+    private ServiceConnection connService = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder service) {
+            woyouService = IWoyouService.Stub.asInterface(service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            woyouService = null;
+        }
+    };
+
     public void disconnectPrinterService(Context context) {
         if (woyouService != null) {
             context.getApplicationContext().unbindService(connService);
@@ -65,165 +99,58 @@ public class AidlUtil {
         return woyouService != null;
     }
 
-    private ServiceConnection connService = new ServiceConnection() {
+//    public ICallback generateCB(final PrinterCallback printerCallback){
+//        return new ICallback.Stub(){
+//            @Override
+//            public void  onRunResult(boolean isSuccess, int code, String msg) throws RemoteException {
+//
+//            }
+//
+//        };
+//    }
 
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            woyouService = null;
-        }
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            woyouService = IWoyouService.Stub.asInterface(service);
-        }
-    };
-
-    public ICallback generateCB(final PrinterCallback printerCallback){
-        return new ICallback.Stub(){
-
-
-            @Override
-            public void onRunResult(boolean isSuccess) throws RemoteException {
-
-            }
-
-            @Override
-            public void onReturnString(String result) throws RemoteException {
-                printerCallback.onReturnString(result);
-            }
-
-            @Override
-            public void onRaiseException(int code, String msg) throws RemoteException {
-
-            }
-
-            @Override
-            public void onPrintResult(int code, String msg) throws RemoteException {
-
-            }
-        };
-    }
-
-    /**
-     * 设置打印浓度
-     */
-    private int[] darkness = new int[]{0x0600, 0x0500, 0x0400, 0x0300, 0x0200, 0x0100, 0,
-            0xffff, 0xfeff, 0xfdff, 0xfcff, 0xfbff, 0xfaff};
-
-    public void setDarkness(int index) {
+    public void openDrawer(){
         if (woyouService == null) {
-            Toast.makeText(context, R.string.toast_2,Toast.LENGTH_LONG).show();
             return;
         }
 
-        int k = darkness[index];
-        try {
-            woyouService.sendRAWData(ESCUtil.setPrinterDarkness(k), null);
-            woyouService.printerSelfChecking(null);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
+        byte[] mOpenDrawerCommand = new byte[4];
+        mOpenDrawerCommand[0] = 0x10;
+        mOpenDrawerCommand[1] = 0x14;
+        mOpenDrawerCommand[2] = 0x00;
+        mOpenDrawerCommand[3] = 0x00;
 
-    /**
-     * 取得打印机系统信息，放在list中
-     *
-     * @return list
-     */
-    public List<String> getPrinterInfo(PrinterCallback printerCallback1, PrinterCallback printerCallback2) {
-        if (woyouService == null) {
-            Toast.makeText(context, R.string.toast_2,Toast.LENGTH_LONG).show();
-            return null;
-        }
-
-        List<String> info = new ArrayList<>();
         try {
-            woyouService.getPrintedLength(generateCB(printerCallback1));
-            woyouService.getPrinterFactory(generateCB(printerCallback2));
-            info.add(woyouService.getPrinterSerialNo());
-            info.add(woyouService.getPrinterModal());
-            info.add(woyouService.getPrinterVersion());
-            info.add(printerCallback1.getResult());
-            info.add(printerCallback2.getResult());
-            //info.add(woyouService.getServiceVersion());
-            PackageManager packageManager = context.getPackageManager();
-            try {
-                PackageInfo packageInfo = packageManager.getPackageInfo(SERVICE＿PACKAGE, 0);
-                if(packageInfo != null){
-                    info.add(packageInfo.versionName);
-                    info.add(packageInfo.versionCode+"");
-                }else{
-                    info.add("");info.add("");
-                }
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
+            woyouService.sendRAWData(mOpenDrawerCommand, null);
+            Toast.makeText(mContext, "Opening Cash Drawer", Toast.LENGTH_SHORT).show();
 
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        return info;
+
     }
 
-    /**
-     * 初始化打印机
-     */
-    public void initPrinter() {
+    public void cutPaper(){
         if (woyouService == null) {
-            Toast.makeText(context, R.string.toast_2, Toast.LENGTH_LONG).show();
             return;
         }
 
+        byte[] mCutPaperCommand = new byte[4];
+        mCutPaperCommand[0] = 0x1d;
+        mCutPaperCommand[1] = 0x56;
+        mCutPaperCommand[2] = 0x42;
+        mCutPaperCommand[3] = 0x00;
+
         try {
-            woyouService.printerInit(null);
+            woyouService.sendRAWData(mCutPaperCommand, null);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
-    /**
-     * 打印二维码
-     */
-    public void printQr(String data, int modulesize, int errorlevel) {
+    public void printTextReceiptHeader(String content, float size, boolean isBold, boolean isUnderLine) {
         if (woyouService == null) {
-            Toast.makeText(context, R.string.toast_2, Toast.LENGTH_LONG).show();
-            return;
-        }
-
-
-        try {
-			woyouService.setAlignment(1, null);
-            woyouService.printQRCode(data, modulesize, errorlevel, null);
-            woyouService.lineWrap(3, null);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 打印条形码
-     */
-    public void printBarCode(String data, int symbology, int height, int width, int textposition) {
-        if (woyouService == null) {
-            Toast.makeText(context, R.string.toast_2, Toast.LENGTH_LONG).show();
-            return;
-        }
-
-
-        try {
-            woyouService.printBarCode(data, symbology, height, width, textposition, null);
-            woyouService.lineWrap(3, null);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 打印文字
-     */
-    public void printText(String content, float size, boolean isBold, boolean isUnderLine) {
-        if (woyouService == null) {
-            Toast.makeText(context, R.string.toast_2, Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "Printing Receipt!", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -240,120 +167,77 @@ public class AidlUtil {
                 woyouService.sendRAWData(ESCUtil.underlineOff(), null);
             }
 
-            woyouService.printTextWithFont(content, null, size, null);
-            woyouService.lineWrap(3, null);
+            woyouService.sendRAWData(ESCUtil.alignCenter(), null);
+
+            /*Bitmap icon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.veeapos_square);
+            woyouService.printBitmap(Bitmap.createScaledBitmap(icon, 170, 180, false), null);*/
+            woyouService.printTextWithFont(content,"fonts/abel.ttf", size, null);
+            //don't forget to change this
+            woyouService.lineWrap(5, null);
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
 
     }
 
-    /*
-    *打印图片
-     */
-    public void printBitmap(Bitmap bitmap) {
-        if (woyouService == null) {
-            Toast.makeText(context, R.string.toast_2,Toast.LENGTH_LONG).show();
-            return;
-        }
-
+    public void printTextReceiptContent(String content, float size, boolean isBold, boolean isUnderLine){
         try {
-            woyouService.setAlignment(1, null);
-            woyouService.printBitmap(bitmap, null);
-            woyouService.lineWrap(3, null);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
 
+            if (woyouService == null) return;
 
-    /**
-     *  打印图片和文字按照指定排列顺序
-     */
-    public void printBitmap(Bitmap bitmap, int orientation) {
-        if (woyouService == null) {
-            Toast.makeText(context,"服务已断开！",Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        try {
-            if(orientation == 0){
-                woyouService.printBitmap(bitmap, null);
-                woyouService.printText("横向排列\n", null);
-                woyouService.printBitmap(bitmap, null);
-                woyouService.printText("横向排列\n", null);
-            }else{
-                woyouService.printBitmap(bitmap, null);
-                woyouService.printText("\n纵向排列\n", null);
-                woyouService.printBitmap(bitmap, null);
-                woyouService.printText("\n纵向排列\n", null);
+            if (isBold) {
+                woyouService.sendRAWData(ESCUtil.boldOn(), null);
+            } else {
+                woyouService.sendRAWData(ESCUtil.boldOff(), null);
             }
-            woyouService.lineWrap(3, null);
+
+            if (isUnderLine) {
+                woyouService.sendRAWData(ESCUtil.underlineWithOneDotWidthOn(), null);
+            } else {
+                woyouService.sendRAWData(ESCUtil.underlineOff(), null);
+            }
+
+            woyouService.sendRAWData(ESCUtil.alignCenter(), null);
+
+            woyouService.printTextWithFont(content, null, size, null);
+            //don't forget to change this
+            woyouService.lineWrap(5, null);
+            cutPaper();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+
     }
 
-//    /**
-//     * 打印表格
-//     */
-//    public void printTable(LinkedList<TableItem> list) {
-//        if (woyouService == null) {
-//            Toast.makeText(context, R.string.toast_2,Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//
-//        try {
-//            for (TableItem tableItem : list) {
-//                Log.i("kaltin", "printTable: "+tableItem.getText()[0]+tableItem.getText()[1]+tableItem.getText()[2]);
-//                woyouService.printColumnsString(tableItem.getText(), tableItem.getWidth(), tableItem.getAlign(), null);
-//            }
-//            woyouService.lineWrap(3, null);
-//        } catch (RemoteException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-    /*
-    * 空打三行！
-     */
-    public void print3Line(){
+    public void printBitmap(Bitmap bitmap, int mLineWrap) {
         if (woyouService == null) {
-            Toast.makeText(context, R.string.toast_2,Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "Printing Receipt!", Toast.LENGTH_LONG).show();
             return;
         }
 
         try {
-            woyouService.lineWrap(3, null);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
+            /*if (isBold) {
+                woyouService.sendRAWData(ESCUtil.boldOn(), null);
+            } else {
+                woyouService.sendRAWData(ESCUtil.boldOff(), null);
+            }
 
+            if (isUnderLine) {
+                woyouService.sendRAWData(ESCUtil.underlineWithOneDotWidthOn(), null);
+            } else {
+                woyouService.sendRAWData(ESCUtil.underlineOff(), null);
+            }*/
 
-    public void sendRawData(byte[] data) {
-        if (woyouService == null) {
-            Toast.makeText(context, R.string.toast_2,Toast.LENGTH_LONG).show();
-            return;
-        }
+            woyouService.sendRAWData(ESCUtil.alignCenter(), null);
 
-        try {
-            woyouService.sendRAWData(data, null);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
+            //Bitmap icon = BitmapFactory.decodeResource(mContext.getResources(), bitmap);
+            //woyouService.printBitmap(Bitmap.createScaledBitmap(bitmap, width, height, false), null);
+            woyouService.printBitmap(bitmap, null);
+            //woyouService.printTextWithFont(content, null, size, null);
+            //don't forget to change this
+            woyouService.lineWrap(mLineWrap, null);
 
-    public void sendRawDatabyBuffer(byte[] data, ICallback iCallback){
-        if (woyouService == null) {
-            Toast.makeText(context, R.string.toast_2,Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        try {
-            woyouService.enterPrinterBuffer(true);
-            woyouService.sendRAWData(data, iCallback);
-            woyouService.exitPrinterBufferWithCallback(true, iCallback);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

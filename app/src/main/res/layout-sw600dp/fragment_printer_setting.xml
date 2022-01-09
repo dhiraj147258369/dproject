@@ -49,7 +49,6 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_margin="0dp"
-
                         android:gravity="center"
                         android:background="@color/white"
                         android:text="@string/printer_settings"
@@ -128,15 +127,73 @@
                         android:background="#ffffff"
                         app:layout_constraintTop_toBottomOf="@+id/checkbox_bill_printer" />
 
-
-                    <com.rsl.youresto.utils.NonScrollRecyclerView
-                        android:id="@+id/recycler_view_kitchen_printers"
+                    <CheckBox
+                        android:id="@+id/kitchenPrinterCheckbox"
                         android:layout_width="0dp"
-                        android:layout_marginTop="0dp"
                         android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="16dp"
+                        android:gravity="start"
+                        android:paddingTop="0dp"
+                        android:text="Kitchen Printer"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        app:layout_constraintEnd_toStartOf="@+id/linear_spinner2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/horizontal_line_2" />
+
+                    <TextView
+                        android:id="@+id/kitchenPrinterNetworkIP"
+                        app:layout_constraintTop_toBottomOf="@+id/kitchenPrinterCheckbox"
+                        app:layout_constraintStart_toStartOf="@+id/kitchenPrinterCheckbox"
+                        android:layout_marginStart="32dp"
+                        tools:text="192.168.0.1"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:id="@+id/linear_spinner2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/background_white_border_black"
+                        android:gravity="center"
+                        android:maxLines="3"
+                        android:padding="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/button_bluetooth_reset_kitchen"
+                        app:layout_constraintEnd_toStartOf="@+id/button_bluetooth_reset_kitchen"
+                        app:layout_constraintTop_toTopOf="@+id/button_bluetooth_reset_kitchen">
+
+                        <Spinner
+                            android:id="@+id/spinnerKitchenPaperSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:dropDownHorizontalOffset="15dp"
+                            android:dropDownVerticalOffset="35dp"
+                            android:imeOptions="flagNoExtractUi"
+                            android:spinnerMode="dropdown" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button_bluetooth_reset_kitchen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/background_primary_without_border"
+                        android:gravity="center"
+                        android:text="@string/string_reset_label"
+                        android:textColor="#FFF"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/kitchenPrinterCheckbox" />
+
+                    <View
+                        android:id="@+id/horizontal_line_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="16dp"
+                        android:background="#ffffff"
+                        app:layout_constraintTop_toBottomOf="@+id/kitchenPrinterCheckbox" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

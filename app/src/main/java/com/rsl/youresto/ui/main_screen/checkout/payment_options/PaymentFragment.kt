@@ -1,9 +1,8 @@
 package com.rsl.youresto.ui.main_screen.checkout.payment_options
 
-import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,11 +17,11 @@ import com.rsl.youresto.databinding.FragmentPaymentBinding
 import com.rsl.youresto.ui.main_screen.cart.NewCartViewModel
 import com.rsl.youresto.ui.main_screen.checkout.CheckoutDialog
 import com.rsl.youresto.ui.main_screen.checkout.SharedCheckoutViewModel
-import com.rsl.youresto.ui.main_screen.checkout.bill_print.ShareBillPrint50Activity
-import com.rsl.youresto.ui.main_screen.checkout.bill_print.ShareBillPrint80Activity
 import com.rsl.youresto.ui.main_screen.checkout.payment_options.events.PaymentCompletedEvent
 import com.rsl.youresto.utils.AppConstants
+import com.rsl.youresto.utils.AppPreferences
 import com.rsl.youresto.utils.custom_views.CustomToast
+import com.rsl.youresto.utils.new_print.BillPrint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -36,7 +35,6 @@ import java.math.BigDecimal
 class PaymentFragment : Fragment() {
 
     private lateinit var binding: FragmentPaymentBinding
-    private lateinit var mSharedPrefs: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,15 +47,10 @@ class PaymentFragment : Fragment() {
 
     private val cartViewModel: NewCartViewModel by viewModel()
     private val sharedCheckoutModel by lazy { requireParentFragment().requireParentFragment().getViewModel<SharedCheckoutViewModel>() }
-    private val sharedPrefs by inject<SharedPreferences>()
+    private val prefs: AppPreferences by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        mSharedPrefs = requireActivity().getSharedPreferences(
-            AppConstants.MY_PREFERENCES,
-            Context.MODE_PRIVATE
-        )
         setupSpinner()
         setViews()
     }
@@ -105,8 +98,6 @@ class PaymentFragment : Fragment() {
 
     fun setViews() {
 
-        val mTableID = sharedPrefs.getString(AppConstants.SELECTED_TABLE_ID, "")
-
         val mOrderTotal = BigDecimal(sharedCheckoutModel.postCheckout.netTotal)
         val mOrderTotalString = String.format("%.2f", mOrderTotal)
         binding.editTextCashValue.setText(mOrderTotalString)
@@ -133,7 +124,7 @@ class PaymentFragment : Fragment() {
                     binding.constraintLayoutMain.isVisible = false
                     binding.progress.isVisible = true
                     sharedCheckoutModel.postCheckout.netTotal -= sharedCheckoutModel.postCheckout.disTotal
-                    cartViewModel.checkoutOrder(sharedCheckoutModel.postCheckout, mTableID ?: "")
+                    cartViewModel.checkoutOrder(sharedCheckoutModel.postCheckout, sharedCheckoutModel.postCheckout.orderId)
                 } else {
                     binding.editTextCashValue.setText("")
                     (requireParentFragment().requireParentFragment() as CheckoutDialog).updateCalculation()
@@ -150,34 +141,25 @@ class PaymentFragment : Fragment() {
             event?.getContentIfNotHandled()?.let {
                 if (it.status) {
                     CustomToast.makeText(requireActivity(), "Order completed!", Toast.LENGTH_SHORT)
-                    (requireParentFragment().requireParentFragment() as CheckoutDialog).dismissDialog()
                     printBill()
 
-                    if (!App.isTablet) {
-                        EventBus.getDefault().post(PaymentCompletedEvent(true))
-                    }
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        cartViewModel.deleteCart(sharedCheckoutModel.postCheckout.orderId)
+                        (requireParentFragment().requireParentFragment() as CheckoutDialog).dismissDialog()
+                        if (!App.isTablet) {
+                            EventBus.getDefault().post(PaymentCompletedEvent(true))
+                        }
+                    }, 3000)
                 }
             }
         }
     }
 
     private fun printBill() {
-        val mShareBillPrintIntent =
-            when {
-                mSharedPrefs.getInt(AppConstants.SELECTED_BILL_PRINT_PAPER_SIZE, 0) == 50 -> Intent(requireActivity(), ShareBillPrint50Activity::class.java)
-                else -> Intent(requireActivity(), ShareBillPrint80Activity::class.java)
-            }
-
-//        mShareBillPrintIntent.putExtra(AppConstants.TABLE_NO, mTableNO)
-//        mShareBillPrintIntent.putExtra(AppConstants.GROUP_NAME, mGroupName)
-//        mShareBillPrintIntent.putExtra(AppConstants.ORDER_NO, mCheckoutModel!!.mCartNO)
-//        mShareBillPrintIntent.putExtra(AppConstants.API_CART_ID, mCheckoutModel!!.mCartID)
-//        mShareBillPrintIntent.putExtra(AppConstants.TABLE_ID, mCheckoutModel!!.mTableID)
-//        when {
-//            mTableNO != 100 -> mShareBillPrintIntent.putExtra(AppConstants.ORDER_TYPE, 1)
-//            else -> mShareBillPrintIntent.putExtra(AppConstants.ORDER_TYPE, 2)
-//        }
-        startActivity(mShareBillPrintIntent)
+        val print = BillPrint(lifecycleScope, requireActivity(), sharedCheckoutModel.postCheckout.orderId)
+        print.finalBill = true
+        print.sharedViewModel = sharedCheckoutModel
+        if (prefs.getSelectedBillPrinterPaperSize() == AppConstants.PAPER_SIZE_50) print.print50() else print.print80()
     }
     
 }

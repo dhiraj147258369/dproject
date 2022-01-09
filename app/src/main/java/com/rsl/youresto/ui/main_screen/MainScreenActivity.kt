@@ -5,8 +5,6 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.util.Log.e
 import android.view.LayoutInflater
@@ -20,7 +18,6 @@ import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
-import com.google.zxing.integration.android.IntentIntegrator
 import com.rsl.youresto.R
 import com.rsl.youresto.SplashActivity
 import com.rsl.youresto.databinding.ActivityMainScreenBinding
@@ -29,7 +26,6 @@ import com.rsl.youresto.ui.database_download.DatabaseDownloadActivity
 import com.rsl.youresto.ui.main_login.MainLoginViewModel
 import com.rsl.youresto.ui.main_screen.app_settings.event.ShowBluetoothDevicesEvent
 import com.rsl.youresto.ui.main_screen.cart.NewCartViewModel
-import com.rsl.youresto.ui.main_screen.checkout.payment_options.wallet.QRCodeScannedEvent
 import com.rsl.youresto.ui.main_screen.main_product_flow.event.MainProductStoreIDEvent
 import com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.NewTablesViewModel
 import com.rsl.youresto.ui.server_login.ServerLoginActivity
@@ -75,6 +71,7 @@ class MainScreenActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         e(javaClass.simpleName, "onActivityResult")
         if(requestCode == 909) {
             if (resultCode == Activity.RESULT_OK) {
@@ -82,22 +79,22 @@ class MainScreenActivity : AppCompatActivity() {
                 EventBus.getDefault().post(ShowBluetoothDevicesEvent(true))
             }
         } else {
-            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-            if (result != null) {
-                if (result.contents == null) {
-                    Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show()
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        EventBus.getDefault().post(QRCodeScannedEvent(false, ""))
-                    }, 200)
-                } else {
-                    e(javaClass.simpleName, "qr: " + result.contents)
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        EventBus.getDefault().post(QRCodeScannedEvent(true, result.contents))
-                    }, 200)
-                }
-            } else {
-                super.onActivityResult(requestCode, resultCode, data)
-            }
+//            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+//            if (result != null) {
+//                if (result.contents == null) {
+//                    Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show()
+//                    Handler(Looper.getMainLooper()).postDelayed({
+//                        EventBus.getDefault().post(QRCodeScannedEvent(false, ""))
+//                    }, 200)
+//                } else {
+//                    e(javaClass.simpleName, "qr: " + result.contents)
+//                    Handler(Looper.getMainLooper()).postDelayed({
+//                        EventBus.getDefault().post(QRCodeScannedEvent(true, result.contents))
+//                    }, 200)
+//                }
+//            } else {
+//                super.onActivityResult(requestCode, resultCode, data)
+//            }
         }
     }
 
