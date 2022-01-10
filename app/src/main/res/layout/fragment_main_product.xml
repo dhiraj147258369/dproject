@@ -30,16 +30,19 @@
                 android:layout_marginStart="4dp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/colorBlack"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Table 1"
-                android:textSize="25dp"/>
+                tools:text="Table 1" />
 
             <TextView
                 android:id="@+id/text_view_guests_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:visibility="gone"
                 android:text="@string/string_guests_label"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/colorGrey"
@@ -55,6 +58,7 @@
                 android:layout_marginStart="4dp"
                 android:background="@drawable/back_white_border_black_"
                 android:gravity="center"
+                android:visibility="gone"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/colorGrey"
                 app:layout_constraintBottom_toBottomOf="@+id/text_view_guests_label"
@@ -64,21 +68,23 @@
 
             <EditText
                 android:id="@+id/edit_text_search_products"
-                android:layout_width="250dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/background_edit_text_table_search"
                 android:drawableStart="@drawable/ic_search_black_24dp"
                 android:drawablePadding="4dp"
                 android:hint="@string/string_search_products_edit_text_hint"
                 android:imeOptions="actionDone"
-                android:inputType="text"
 
+                android:inputType="text"
                 android:padding="10dp"
-                android:textSize="16dp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_view_table_no"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
