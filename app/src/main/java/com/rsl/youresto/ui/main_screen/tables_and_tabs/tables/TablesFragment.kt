@@ -22,7 +22,7 @@ import com.rsl.youresto.ui.main_screen.tables_and_tabs.add_to_tab.ShowCartEvent
 import com.rsl.youresto.ui.tab_specific.TablesTabFragment
 import com.rsl.youresto.utils.AppConstants
 import com.rsl.youresto.utils.AppConstants.MY_PREFERENCES
-import com.rsl.youresto.utils.AppConstants.SEAT_SELECTION_GROUP
+//import com.rsl.youresto.utils.AppConstants.SEAT_SELECTION_GROUP
 import com.rsl.youresto.utils.AppConstants.SELECTED_LOCATION_ID
 import com.rsl.youresto.utils.AppConstants.SELECTED_TABLE_ID
 import com.rsl.youresto.utils.AppConstants.SELECTED_TABLE_NO
