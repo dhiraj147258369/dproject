@@ -183,7 +183,7 @@ class BillPrint(val lifecycleScope: CoroutineScope, val activity: Activity, priv
                 6 -> spaceInBetween = "                "
                 7 -> spaceInBetween = "               "
             }
-            val subTotalString = "\nSub Total:${spaceInBetween}${cartSubTotal}"
+            val subTotalString = "\nSub Total:${spaceInBetween}${cartSubTotalString}"
             printString.append(subTotalString)
 
 
@@ -319,12 +319,12 @@ class BillPrint(val lifecycleScope: CoroutineScope, val activity: Activity, priv
                 val length: Int = productName.length
 
                 if (length >= 24) {
-                    val mLength = 43 - length
+                    val mLength = 47 - length
                     for (j in 0 until mLength) {
                         printString.append(" ")
                     }
                     printString.append("\n")
-                    for (j in 0..28) {
+                    for (j in 0..27) {
                         printString.append(" ")
                     }
                 } else {
@@ -378,11 +378,20 @@ class BillPrint(val lifecycleScope: CoroutineScope, val activity: Activity, priv
 
                     printString.append("\n  - ").append(modifier.mIngredientName)
 
-                    for (k in 0 until 31 - modifier.mIngredientName.length) {
+                    val priceString = String.format(Locale.ENGLISH, "%.2f", modifier.mIngredientPrice)
+
+                    val spaceLength = when (priceString.length) {
+                        4 -> 31
+                        5 -> 30
+                        6 -> 29
+                        else -> 28
+                    }
+
+                    for (k in 0 until spaceLength - modifier.mIngredientName.length) {
                         printString.append(" ")
                     }
 
-                    printString.append(String.format(Locale.ENGLISH, "%.2f", modifier.mIngredientPrice))
+                    printString.append(priceString)
 
                     printString.append("        ")
                 }
@@ -399,7 +408,7 @@ class BillPrint(val lifecycleScope: CoroutineScope, val activity: Activity, priv
                 6 -> spaceInBetween = "                                "
                 7 -> spaceInBetween = "                               "
             }
-            val subTotalString = "\nSub Total:${spaceInBetween}${cartSubTotal}"
+            val subTotalString = "\nSub Total:${spaceInBetween}${cartSubTotalString}"
             printString.append(subTotalString)
 
 

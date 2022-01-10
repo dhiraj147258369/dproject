@@ -149,7 +149,7 @@ class AppPreferences(val context: Context) {
 
     fun resetKitchenPrinter() {
         sharedPrefs.edit().apply {
-            putString(SELECTED_KITCHEN_PRINTER_NAME, AppConstants.NO_TYPE)
+            putString(SELECTED_KITCHEN_PRINTER_NAME, "")
             putInt(SELECTED_KITCHEN_PRINTER_TYPE, 0)
             putString(SELECTED_KITCHEN_PRINTER_NETWORK_IP, "")
             putString(SELECTED_KITCHEN_PRINTER_NETWORK_PORT, "")
@@ -173,7 +173,7 @@ class AppPreferences(val context: Context) {
 
     fun resetBillPrinter() {
         sharedPrefs.edit().apply {
-            putString(SELECTED_BILL_PRINTER_NAME, AppConstants.NO_TYPE)
+            putString(SELECTED_BILL_PRINTER_NAME, "")
             putString(SELECTED_BILL_PRINTER_NETWORK_IP, "")
             putString(SELECTED_BILL_PRINTER_NETWORK_PORT, "")
             putInt(SELECTED_BILL_PRINTER_TYPE, 0)

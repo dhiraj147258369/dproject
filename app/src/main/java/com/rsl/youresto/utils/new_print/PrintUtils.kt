@@ -30,12 +30,12 @@ class PrintUtils(val activity: Activity, private val printerName: String): KoinC
 
         val command = print.toByteArray()
         if (printerType == BLUETOOTH_PRINTER) {
-            if (printerName.equals("InnerPrinter", ignoreCase = true)) {
-                mAidlUtil?.printTextReceiptContent(print, 24f, false, false)
-                mAidlUtil?.cutPaper()
-            } else {
-                connect(command)
-            }
+            connect(command)
+//            if (printerName.equals("InnerPrinter", ignoreCase = true)) {
+//                mAidlUtil?.printTextReceiptContent(print, 24f, false, false)
+//            } else {
+//                connect(command)
+//            }
         } else if (printerType == NETWORK_PRINTER) {
 //            mExecutor.networkIO().execute {
 //                try {

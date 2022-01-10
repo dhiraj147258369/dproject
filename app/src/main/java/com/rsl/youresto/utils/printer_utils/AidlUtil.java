@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.rsl.youresto.R;
@@ -51,7 +52,7 @@ public class AidlUtil {
         intent.setAction(SERVICE＿ACTION);
         context.getApplicationContext().startService(intent);
         context.getApplicationContext().bindService(intent, connService, Context.BIND_AUTO_CREATE);
-//        initPrinter();
+        initPrinter();
     }
 
     public void initPrinter() {
@@ -99,15 +100,29 @@ public class AidlUtil {
         return woyouService != null;
     }
 
-//    public ICallback generateCB(final PrinterCallback printerCallback){
-//        return new ICallback.Stub(){
-//            @Override
-//            public void  onRunResult(boolean isSuccess, int code, String msg) throws RemoteException {
-//
-//            }
-//
-//        };
-//    }
+    public ICallback generateCB(final PrinterCallback printerCallback){
+        return new ICallback.Stub(){
+            @Override
+            public void onRunResult(boolean isSuccess) throws RemoteException {
+
+            }
+
+            @Override
+            public void onReturnString(String result) throws RemoteException {
+
+            }
+
+            @Override
+            public void onRaiseException(int code, String msg) throws RemoteException {
+
+            }
+
+            @Override
+            public void onPrintResult(int code, String msg) throws RemoteException {
+
+            }
+        };
+    }
 
     public void openDrawer(){
         if (woyouService == null) {
@@ -183,7 +198,7 @@ public class AidlUtil {
 
     public void printTextReceiptContent(String content, float size, boolean isBold, boolean isUnderLine){
         try {
-
+            Log.e("TAG", "printTextReceiptContent: " + woyouService );
             if (woyouService == null) return;
 
             if (isBold) {

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -26,6 +27,7 @@ import com.rsl.youresto.ui.main_screen.cart.event.UpdateCartProductQuantityEvent
 import com.rsl.youresto.ui.main_screen.checkout.CheckoutDialog
 import com.rsl.youresto.ui.main_screen.checkout.events.DrawerEvent
 import com.rsl.youresto.ui.main_screen.checkout.payment_options.events.PaymentCompletedEvent
+import com.rsl.youresto.ui.main_screen.tables_and_tabs.add_to_tab.ShowCartEvent
 import com.rsl.youresto.ui.main_screen.tables_and_tabs.edit_cart_product.tabs.EditCartDialog
 import com.rsl.youresto.ui.tab_specific.QuickServiceTabFragment
 import com.rsl.youresto.ui.tab_specific.TablesTabFragment
@@ -40,6 +42,7 @@ import com.rsl.youresto.utils.AppPreferences
 import com.rsl.youresto.utils.Utils
 import com.rsl.youresto.utils.custom_dialog.AlertDialogEvent
 import com.rsl.youresto.utils.custom_dialog.CustomAlertDialogFragment
+import com.rsl.youresto.utils.custom_views.CustomToast
 import com.rsl.youresto.utils.new_print.BillPrint
 import com.rsl.youresto.utils.new_print.KitchenPrint
 import org.greenrobot.eventbus.EventBus
@@ -160,6 +163,8 @@ class CartFragment : Fragment() {
             event.getContentIfNotHandled()?.let {
                 if (!App.isTablet){
                     findNavController().navigate(R.id.tablesFragment)
+                } else {
+                    EventBus.getDefault().post(ShowCartEvent(false))
                 }
             }
         }
@@ -205,13 +210,21 @@ class CartFragment : Fragment() {
     }
 
     private fun estimateBillPrint() {
-        val print = BillPrint(lifecycleScope, requireActivity(), cartId)
-        if (prefs.getSelectedBillPrinterPaperSize() == PAPER_SIZE_50) print.print50() else print.print80()
+        if (prefs.getSelectedBillPrinterName().isNotBlank()) {
+            val print = BillPrint(lifecycleScope, requireActivity(), cartId)
+            if (prefs.getSelectedBillPrinterPaperSize() == PAPER_SIZE_50) print.print50() else print.print80()
+        }else {
+            CustomToast.makeText(requireActivity(), "Please select a bill printer from settings", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun kotSend() {
-        val print = KitchenPrint(lifecycleScope, requireActivity(), cartId)
-        if (prefs.getSelectedKitchenPrinterPaperSize() == PAPER_SIZE_50) print.print50() else print.print80()
+        if (prefs.getSelectedKitchenPrinterName().isNotBlank()) {
+            val print = KitchenPrint(lifecycleScope, requireActivity(), cartId)
+            if (prefs.getSelectedKitchenPrinterPaperSize() == PAPER_SIZE_50) print.print50() else print.print80()
+        } else {
+            CustomToast.makeText(requireActivity(), "Please select a kitchen printer from settings", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun close() {

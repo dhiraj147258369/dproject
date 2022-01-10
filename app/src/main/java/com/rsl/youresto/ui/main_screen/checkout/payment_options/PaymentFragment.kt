@@ -18,6 +18,7 @@ import com.rsl.youresto.ui.main_screen.cart.NewCartViewModel
 import com.rsl.youresto.ui.main_screen.checkout.CheckoutDialog
 import com.rsl.youresto.ui.main_screen.checkout.SharedCheckoutViewModel
 import com.rsl.youresto.ui.main_screen.checkout.payment_options.events.PaymentCompletedEvent
+import com.rsl.youresto.ui.main_screen.tables_and_tabs.add_to_tab.ShowCartEvent
 import com.rsl.youresto.utils.AppConstants
 import com.rsl.youresto.utils.AppPreferences
 import com.rsl.youresto.utils.custom_views.CustomToast
@@ -148,6 +149,8 @@ class PaymentFragment : Fragment() {
                         (requireParentFragment().requireParentFragment() as CheckoutDialog).dismissDialog()
                         if (!App.isTablet) {
                             EventBus.getDefault().post(PaymentCompletedEvent(true))
+                        } else {
+                            EventBus.getDefault().post(ShowCartEvent(false))
                         }
                     }, 3000)
                 }
@@ -156,10 +159,14 @@ class PaymentFragment : Fragment() {
     }
 
     private fun printBill() {
-        val print = BillPrint(lifecycleScope, requireActivity(), sharedCheckoutModel.postCheckout.orderId)
-        print.finalBill = true
-        print.sharedViewModel = sharedCheckoutModel
-        if (prefs.getSelectedBillPrinterPaperSize() == AppConstants.PAPER_SIZE_50) print.print50() else print.print80()
+        if (prefs.getSelectedBillPrinterName().isNotBlank()) {
+            val print = BillPrint(lifecycleScope, requireActivity(), sharedCheckoutModel.postCheckout.orderId)
+            print.finalBill = true
+            print.sharedViewModel = sharedCheckoutModel
+            if (prefs.getSelectedBillPrinterPaperSize() == AppConstants.PAPER_SIZE_50) print.print50() else print.print80()
+        }else {
+            CustomToast.makeText(requireActivity(), "Please select a bill printer from settings", Toast.LENGTH_SHORT).show()
+        }
     }
     
 }
