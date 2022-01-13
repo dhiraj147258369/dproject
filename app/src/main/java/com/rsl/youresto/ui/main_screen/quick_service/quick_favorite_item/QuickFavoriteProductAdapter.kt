@@ -68,13 +68,15 @@ class QuickFavoriteProductAdapter(private val mProductList: ArrayList<FavoritePr
 
     private fun loadImage(mImageURL: String, holder: FavoriteProductHolder) {
 
-        val mAuth = LazyHeaders.Builder() // can be cached in a field and reused
-            .addHeader("Authorization", BasicAuthorization(mUserName, mPassword))
-            .build()
+//        val mAuth = LazyHeaders.Builder() // can be cached in a field and reused
+//            .addHeader("Authorization", BasicAuthorization(mUserName, mPassword))
+//            .build()
 
+        Log.e("mImageURL",mImageURL)
         Glide
             .with(mContext)
-            .load(GlideUrl(mImageURL, mAuth)) // GlideUrl is created anyway so there's no extra objects allocated
+          //  .load(GlideUrl(mImageURL, mAuth)) // GlideUrl is created anyway so there's no extra objects allocated
+            .load(mImageURL)
             .into(holder.mBinding.imageViewProduct)
 
     }

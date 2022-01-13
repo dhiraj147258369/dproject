@@ -9,6 +9,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+        android:background="@color/colorDarkGreen"
             android:onClick="@{v -> adapter.onOrderClick(report)}"
             android:layout_marginTop="4dp">
 
@@ -20,8 +21,8 @@
                 android:paddingBottom="6dp"
                 tools:text="2019051101"
                 android:text="@{report.MCartNO}"
-                android:textColor="@color/colorBlack"
-                android:background="@color/colorWhite"
+                android:textColor="@color/white"
+                android:background="@color/colorDarkGreen"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:gravity="center"
                 android:layout_weight="1"/>
@@ -34,8 +35,8 @@
                 android:paddingBottom="6dp"
                 android:gravity="center"
                 android:text="@{report.MServerName}"
-                android:background="@color/colorWhite"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/white"
+            android:background="@color/colorDarkGreen"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 tools:text="Vishal"
                 android:layout_weight="1"/>
@@ -47,8 +48,8 @@
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp"
                 tools:text="11-05-2019 15:30"
-                android:background="@color/colorWhite"
-                android:textColor="@color/colorBlack"
+            android:textColor="@color/white"
+            android:background="@color/colorDarkGreen"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:gravity="center"
                 android:layout_weight="1"/>

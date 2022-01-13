@@ -168,6 +168,7 @@
                         android:layout_margin="4dp"
                         android:layout_marginTop="10dp"
                         android:padding="4dp"
+                        android:visibility="gone"
                         android:text="@string/str_forgot_password"
                         android:textColor="@color/colorPrimary"
                         app:layout_constraintEnd_toEndOf="@+id/text_input_layout_password"

@@ -5,12 +5,12 @@
             android:checkableBehavior="single">
         <item
                 android:id="@+id/navigate_tables_tab"
-                android:icon="@drawable/table"
+                android:icon="@drawable/table2"
                 android:title="@string/drawer_menu_tables_and_tab"/>
 
         <item
                 android:id="@+id/navigate_quick_service"
-                android:icon="@drawable/ic_quick_service"
+                android:icon="@drawable/ic_quick2_service"
                 android:title="@string/drawer_menu_quick_service"/>
 
         <item
@@ -20,7 +20,7 @@
 
         <item
                 android:id="@+id/navigate_order_history"
-                android:icon="@drawable/nav_past_orders"
+                android:icon="@drawable/nav_past2_orders"
                 android:title="@string/order_history"/>
 
         <item
@@ -33,7 +33,7 @@
         <!--android:title="@string/manager" />-->
         <item
                 android:id="@+id/navigate_settings"
-                android:icon="@drawable/nav_update_database"
+                android:icon="@drawable/nav_update2_database"
                 android:title="@string/app_settings"/>
 <!--        <item-->
 <!--                android:id="@+id/navigate_end_shift"-->

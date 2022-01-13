@@ -7,14 +7,17 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:cardCornerRadius="20dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="90dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="150dp"
+        app:cardCornerRadius="20dp"
+        android:backgroundTint="@color/colorDarkGreen">
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="80dp"
 android:background="@color/colorDarkGreen"
             tools:context=".ui.main_screen.pending_order.PendingOrderFragment">
 
@@ -62,7 +65,8 @@ android:background="@color/colorDarkGreen"
                     />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="150dp"
+                android:id="@+id/constraintLayout5"
+                android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
@@ -76,7 +80,7 @@ android:background="@color/colorDarkGreen"
 
                 <ImageView
                     android:id="@+id/image__view"
-                    android:layout_width="20dp"
+                    android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:src="@drawable/ic_person_black_24dp"
@@ -87,7 +91,7 @@ android:background="@color/colorDarkGreen"
                 <Spinner
                     android:id="@+id/spinner_server"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:backgroundTint="@color/colorWhite"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -105,6 +109,21 @@ android:background="@color/colorDarkGreen"
                     android:layout_height="1dp"
                     app:layout_constraintGuide_percent="0.0"
                     android:orientation="vertical"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Pending Orders"
+                android:textStyle="bold"
+                android:textSize="23dp"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout5"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/image_view_location"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

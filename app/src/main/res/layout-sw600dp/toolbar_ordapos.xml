@@ -11,7 +11,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:background="@color/colorWhite2">
 
 
@@ -27,8 +27,7 @@
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/text_view_date_time"
@@ -122,7 +121,7 @@
                 android:id="@+id/image_view_log_out"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="30dp"
                 android:src="@drawable/ic_exit_to_app_black_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/image_view_menu"
@@ -142,8 +141,9 @@
                 android:id="@+id/imageView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/text_view_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
