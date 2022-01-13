@@ -8,13 +8,15 @@
             android:id="@+id/linear_layout_pending_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
+            android:background="@color/colorDarkGreen"
             android:onClick="@{v -> adapter.onPendingItemClick(cart)}"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
-            android:padding="8dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
             android:orientation="horizontal">
 
         <TextView
@@ -23,7 +25,7 @@
                 android:layout_height="match_parent"
                 tools:text="2019051101"
                 android:text="@{cart.MCartNO}"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:gravity="center"
                 android:layout_weight="1"/>
@@ -34,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@{String.valueOf(cart.MTableNO)}"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 tools:text="15(A)"
                 android:layout_weight="1"/>
@@ -44,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:text="11-05-2019 15:30"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:gravity="center"
                 android:layout_weight="1"/>

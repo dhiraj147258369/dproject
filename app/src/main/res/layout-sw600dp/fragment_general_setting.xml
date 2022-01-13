@@ -13,14 +13,12 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="32dp"
-            app:cardBackgroundColor="@color/colorWhite2"
+            app:cardBackgroundColor="@color/colorDarkGreen"
             app:cardCornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -28,8 +26,9 @@
             <ScrollView
                 android:id="@+id/scroll_view_general_settings"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:background="@color/colorDarkGreen"
                 android:paddingStart="24dp"
                 android:paddingTop="8dp"
                 android:paddingEnd="24dp"
@@ -42,18 +41,18 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/gray_very_light">
+                    android:background="@color/colorDarkGreen">
 
                     <TextView
                         android:id="@+id/text_view_general_settings"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_margin="0dp"
-                        android:gravity="center"
-                        android:background="@color/white"
+                        android:background="@color/colorDarkGreen"
+                        android:gravity="center_vertical"
                         android:text="@string/general_settings"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -63,11 +62,13 @@
                         android:id="@+id/checkbox_auto_logout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:buttonTint="@color/white"
                         android:gravity="start"
                         android:paddingTop="4dp"
-                        android:layout_marginTop="16dp"
                         android:text="@string/string_auto_logout_label"
                         android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_view_general_settings" />
@@ -77,7 +78,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:layout_marginTop="16dp"
-                        android:background="#FFFFFF"
+                        android:background="@color/colorDarkGreen"
                         app:layout_constraintTop_toBottomOf="@+id/checkbox_auto_logout" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,7 +32,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-
+                android:paddingEnd="120dp"
+                android:layout_marginLeft="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -40,7 +41,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -49,7 +51,7 @@
                         android:paddingStart="15dp"
                         android:text="From Date"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                          />
 
                     <TextView
@@ -59,7 +61,7 @@
                         android:paddingStart="15dp"
                         android:text="To Date"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                          />
 
                 </LinearLayout>
@@ -72,9 +74,13 @@
                     <EditText
                         android:id="@+id/edit_text_active_from"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_margin="8dp"
+                        android:layout_height="60dp"
+                        android:paddingStart="10dp"
                         android:layout_weight="1"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginBottom="12dp"
                         android:background="@drawable/background_edit_text_table_search"
 
                         android:drawableTint="@color/colorPrimary"
@@ -85,9 +91,14 @@
                     <EditText
                         android:id="@+id/edit_text_active_to"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_margin="8dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginBottom="12dp"
                         android:layout_weight="1"
+
+                        android:paddingStart="10dp"
                         android:background="@drawable/background_edit_text_table_search"
 
                         android:drawableTint="@color/colorPrimary"
@@ -101,12 +112,49 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                       >
+
+                        <EditText
+                            android:id="@+id/edit_text_search_order_no"
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginLeft="12dp"
+                            android:paddingStart="10dp"
+                            android:background="@drawable/background_edit_text_table_search"
+                            android:drawableStart="@drawable/ic_search_black_24dp"
+                            android:drawablePadding="4dp"
+                            android:hint="@string/search_order_no"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:onTextChanged="@{(text, start, before, count) -> fragment.onTextChanged(text)}"
+
+                            android:padding="2dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout2"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
-                        android:layout_margin="8dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginBottom="12dp"
                         android:background="@drawable/background_edit_text_table_search"
                         >
 
@@ -115,7 +163,7 @@
                             android:id="@+id/image_view_user"
                             android:layout_width="20dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
+                            android:layout_marginStart="12dp"
                             android:src="@drawable/ic_person_black_24dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -135,37 +183,6 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                       >
-
-                        <EditText
-                            android:id="@+id/edit_text_search_order_no"
-                            android:layout_width="0dp"
-                            android:layout_height="50dp"
-                            android:layout_marginBottom="3dp"
-                            android:layout_margin="8dp"
-                            android:background="@drawable/background_edit_text_table_search"
-                            android:drawableStart="@drawable/ic_search_black_24dp"
-                            android:drawablePadding="4dp"
-                            android:hint="@string/search_order_no"
-                            android:imeOptions="actionDone"
-                            android:inputType="number"
-                            android:onTextChanged="@{(text, start, before, count) -> fragment.onTextChanged(text)}"
-
-                            android:padding="2dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:ignore="Autofill" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
                 </LinearLayout>
 
 
@@ -323,7 +340,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:cardCornerRadius="15dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -331,9 +350,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorDarkGreen"
-                    >
+                    android:layout_height="match_parent">
 
                     <LinearLayout
                         android:id="@+id/linear_layout_order_history_titles"
@@ -374,29 +391,18 @@
 
                     </LinearLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout4"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:background="@color/white"
-                        app:layout_constraintTop_toBottomOf="@+id/linear_layout_order_history_titles"></androidx.constraintlayout.widget.ConstraintLayout>
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_view_order_history"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-
+                        android:layout_marginTop="1dp"
                         android:background="@color/colorDarkGreen"
                         android:orientation="vertical"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
-                        app:layout_constraintVertical_bias="0.0"
+                        app:layout_constraintTop_toBottomOf="@+id/linear_layout_order_history_titles"
                         tools:listitem="@layout/recycler_item_order_history" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

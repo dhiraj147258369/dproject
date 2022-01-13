@@ -113,11 +113,14 @@ class LoginRepository(private val loginDao: MainLoginDao, private val dataSource
                                                             product.mCategoryID ?: "",
                                                             product.mCategoryName,
                                                             product.mCategorySequence,
-                                                            it.mLocationID, favoriteProductList)
+                                                            it.mLocationID,
+                                                            favoriteProductList)
                                                     )
                                                 } else {
+                                                    var hasCategory=false
                                                     for (category in categoryList){
                                                         if (product.mCategoryID == category.mCategoryID){
+                                                            hasCategory=true
                                                             category.mProductArrayList.add(FavoriteProductModel(
                                                                 product.mProductID, product.mProductName,
                                                                 product.mProductType, product.mGroupID ?: "",
@@ -129,6 +132,32 @@ class LoginRepository(private val loginDao: MainLoginDao, private val dataSource
                                                             ))
                                                             break
                                                         }
+
+                                                    }
+                                                    if(!hasCategory){
+
+                                                        val favoriteProductList = ArrayList<FavoriteProductModel>().apply {
+                                                            add(FavoriteProductModel(
+                                                                product.mProductID, product.mProductName,
+                                                                product.mProductType, product.mGroupID ?: "",
+                                                                product.mCategoryID ?: "", product.mGroupName,
+                                                                product.mCategoryName, product.mProductImageUrl,
+                                                                product.mProductSequence, product.mCategorySequence,
+                                                                product.mDineInPrice.toDouble(),
+                                                                product.mQuickServicePrice.toDouble(), true
+                                                            ))
+                                                        }
+                                                        categoryList.add(
+                                                            FavoriteItemsModel(
+                                                                product.mGroupID ?: "",
+                                                                product.mGroupName,
+                                                                product.mCategoryID ?: "",
+                                                                product.mCategoryName,
+                                                                product.mCategorySequence,
+                                                                it.mLocationID,
+                                                                favoriteProductList)
+                                                        )
+
                                                     }
                                                 }
                                                 break

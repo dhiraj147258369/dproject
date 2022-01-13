@@ -10,46 +10,89 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         tools:context=".ui.main_screen.app_settings.general_settings.GeneralSettingFragment">
 
-        <ScrollView
-            android:id="@+id/scroll_view_general_settings"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:cardCornerRadius="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="10dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gray_very_light">
+                android:background="@color/colorDarkGreen">
 
-                <CheckBox
-                    android:id="@+id/checkbox_auto_logout"
-                    android:layout_width="0dp"
+                <ScrollView
+                    android:id="@+id/scroll_view_general_settings"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/string_auto_logout_label"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+
+
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <View
-                    android:id="@+id/horizontal_line_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:layout_marginTop="16dp"
-                    android:background="#FFFFFF"
-                    app:layout_constraintTop_toBottomOf="@+id/checkbox_auto_logout" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp"
+                        android:background="@color/colorDarkGreen">
+
+                        <TextView
+                            android:id="@+id/text_view_printer_settings"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:layout_marginTop="68dp"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:background="@color/colorDarkGreen"
+                            android:gravity="center_vertical"
+                            android:text="@string/printer_settings"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_auto_logout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="10dp"
+                            android:buttonTint="@color/white"
+
+                            android:text="@string/string_auto_logout_label"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_printer_settings" />
+
+                        <View
+                            android:id="@+id/horizontal_line_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/colorDarkGreen"
+                            app:layout_constraintTop_toBottomOf="@+id/checkbox_auto_logout" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </ScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

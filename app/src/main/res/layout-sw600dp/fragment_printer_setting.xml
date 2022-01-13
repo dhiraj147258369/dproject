@@ -13,14 +13,12 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="32dp"
-            app:cardBackgroundColor="@color/colorWhite2"
+            app:cardBackgroundColor="@color/colorDarkGreen"
             app:cardCornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -30,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
+                android:background="@color/colorDarkGreen"
                 android:paddingStart="24dp"
                 android:paddingTop="8dp"
                 android:paddingEnd="24dp"
@@ -42,18 +41,21 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/gray_very_light">
+                    android:background="@color/colorDarkGreen">
 
                     <TextView
                         android:id="@+id/text_view_printer_settings"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_margin="0dp"
-                        android:gravity="center"
-                        android:background="@color/white"
+                        android:background="@color/colorDarkGreen"
+
+                        android:paddingStart="10dp"
+                        android:gravity="center_vertical"
                         android:text="@string/printer_settings"
+
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -65,23 +67,25 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="16dp"
-                        android:gravity="start"
+                        android:buttonTint="@color/white"
+
                         android:paddingTop="0dp"
                         android:text="@string/string_bill_printer_label"
                         android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/white"
                         app:layout_constraintEnd_toStartOf="@+id/linear_spinner1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_view_printer_settings" />
 
                     <TextView
                         android:id="@+id/text_view_bill_printer_network_ip"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox_bill_printer"
-                        app:layout_constraintStart_toStartOf="@+id/checkbox_bill_printer"
-                        android:layout_marginStart="32dp"
-                        tools:text="192.168.0.1"
-                        android:visibility="gone"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="@+id/checkbox_bill_printer"
+                        app:layout_constraintTop_toBottomOf="@+id/checkbox_bill_printer"
+                        tools:text="192.168.0.1" />
 
                     <LinearLayout
                         android:id="@+id/linear_spinner1"
@@ -109,7 +113,7 @@
                     <Button
                         android:id="@+id/button_bluetooth_reset"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="36dp"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/background_primary_without_border"
                         android:gravity="center"
@@ -124,7 +128,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="15dp"
                         android:layout_marginTop="16dp"
-                        android:background="#ffffff"
+                        android:background="@color/colorDarkGreen"
                         app:layout_constraintTop_toBottomOf="@+id/checkbox_bill_printer" />
 
                     <CheckBox
@@ -133,23 +137,25 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="16dp"
-                        android:gravity="start"
+                        android:buttonTint="@color/white"
+
                         android:paddingTop="0dp"
                         android:text="Kitchen Printer"
                         android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/white"
                         app:layout_constraintEnd_toStartOf="@+id/linear_spinner2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/horizontal_line_2" />
 
                     <TextView
                         android:id="@+id/kitchenPrinterNetworkIP"
-                        app:layout_constraintTop_toBottomOf="@+id/kitchenPrinterCheckbox"
-                        app:layout_constraintStart_toStartOf="@+id/kitchenPrinterCheckbox"
-                        android:layout_marginStart="32dp"
-                        tools:text="192.168.0.1"
-                        android:visibility="gone"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="@+id/kitchenPrinterCheckbox"
+                        app:layout_constraintTop_toBottomOf="@+id/kitchenPrinterCheckbox"
+                        tools:text="192.168.0.1" />
 
                     <LinearLayout
                         android:id="@+id/linear_spinner2"
@@ -177,7 +183,7 @@
                     <Button
                         android:id="@+id/button_bluetooth_reset_kitchen"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="36dp"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/background_primary_without_border"
                         android:gravity="center"
@@ -192,7 +198,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="15dp"
                         android:layout_marginTop="16dp"
-                        android:background="#ffffff"
+                        android:background="@color/colorDarkGreen"
                         app:layout_constraintTop_toBottomOf="@+id/kitchenPrinterCheckbox" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
