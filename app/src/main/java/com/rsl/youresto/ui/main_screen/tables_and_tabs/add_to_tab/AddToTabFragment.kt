@@ -289,10 +289,13 @@ class AddToTabFragment : Fragment() {
             }
             1 ->
                 when {
+
                     mSharedPrefs.getInt(LOCATION_SERVICE_TYPE, 0) == SERVICE_DINE_IN -> mTotalProductPrice =
                         mProductModel.mDineInPrice * mQuantity
                     mSharedPrefs.getInt(LOCATION_SERVICE_TYPE, 0) == SERVICE_QUICK_SERVICE -> mTotalProductPrice =
-                        mProductModel.mQuickServicePrice * mQuantity
+                        mProductModel.mDineInPrice * mQuantity
+//                    mSharedPrefs.getInt(LOCATION_SERVICE_TYPE, 0) == SERVICE_QUICK_SERVICE -> mTotalProductPrice =
+//                        mProductModel.mQuickServicePrice * mQuantity
                 }
         }
 
