@@ -41,4 +41,5 @@ class QuickServiceFragment : Fragment() {
         return mView
     }
 
+
 }

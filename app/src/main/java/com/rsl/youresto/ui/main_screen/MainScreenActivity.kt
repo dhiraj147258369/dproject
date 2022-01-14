@@ -112,9 +112,13 @@ class MainScreenActivity : AppCompatActivity() {
         val mHeaderView = mBinding.navigationViewDrawer.getHeaderView(0)
         val mImageViewDrawerCancel = mHeaderView.findViewById<ImageView>(R.id.image_view_drawer_cancel)
 
-        mBinding.navigationViewDrawer.setCheckedItem(R.id.navigate_tables_tab)
+        if(prefs.getLocationServiceType()== SERVICE_QUICK_SERVICE){
+            mBinding.navigationViewDrawer.setCheckedItem(R.id.navigate_quick_service)
+        }else {
+            mBinding.navigationViewDrawer.setCheckedItem(R.id.navigate_tables_tab)
+        }
 
-        val navController = (supportFragmentManager.findFragmentById(R.id.main_screen_host_fragment) as NavHostFragment?)?.navController
+         val navController = (supportFragmentManager.findFragmentById(R.id.main_screen_host_fragment) as NavHostFragment?)?.navController
             ?: return
 
         mBinding.navigationViewDrawer.setNavigationItemSelectedListener { item ->
@@ -329,4 +333,14 @@ class MainScreenActivity : AppCompatActivity() {
         EventBus.getDefault().unregister(this)
         super.onStop()
     }
+
+        override fun onBackPressed() {
+
+       if(mBinding.navigationViewDrawer.menu.findItem(R.id.navigate_quick_service).isChecked){
+           // Toast.makeText(applicationContext,"back",Toast.LENGTH_LONG).show()
+       }else{
+           super.onBackPressed()
+       }
+    }
+
 }

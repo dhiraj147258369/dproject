@@ -50,21 +50,25 @@ class NewOrdersRepository(private val remoteSource: OrderHistoryRemoteSource, va
 
                     val ingredientsList = ArrayList<ReportProductIngredientModel>()
                     var addOnPrice = BigDecimal(0)
-                    if (item.addon.isNotEmpty()){
-                        val addOnIdList = ArrayList<String>()
-                        item.addon.map { addOn -> addOnIdList.add(addOn.addonId.toString()) }
-                        val localAddOns = dao.getAddOnsByIds(addOnIdList)
-                        localAddOns.map {localAddOn ->
-                            ingredientsList.add(ReportProductIngredientModel(
-                                localAddOn.mIngredientID,
-                                localAddOn.mIngredientName,
-                                localAddOn.mIngredientQuantity.toInt(),
-                                localAddOn.mCartIngredientID ?: "",
-                                localAddOn.mIngredientPrice.toDouble()
-                            ))
-                            addOnPrice += localAddOn.mIngredientPrice
+                    if (item.addon != null){
+                        if (item.addon.isNotEmpty()) {
+                            val addOnIdList = ArrayList<String>()
+                            item.addon.map { addOn -> addOnIdList.add(addOn.addonId.toString()) }
+                            val localAddOns = dao.getAddOnsByIds(addOnIdList)
+                            localAddOns.map { localAddOn ->
+                                ingredientsList.add(
+                                    ReportProductIngredientModel(
+                                        localAddOn.mIngredientID,
+                                        localAddOn.mIngredientName,
+                                        localAddOn.mIngredientQuantity.toInt(),
+                                        localAddOn.mCartIngredientID ?: "",
+                                        localAddOn.mIngredientPrice.toDouble()
+                                    )
+                                )
+                                addOnPrice += localAddOn.mIngredientPrice
+                            }
                         }
-                    }
+                }
 
                     val totalPrice = (BigDecimal(item.price) + addOnPrice) * BigDecimal(item.qty)
 

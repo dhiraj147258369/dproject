@@ -24,6 +24,7 @@ import com.rsl.youresto.utils.AppConstants
 import com.rsl.youresto.utils.AppConstants.MY_PREFERENCES
 import com.rsl.youresto.utils.AppConstants.SELECTED_LOCATION_ID
 import com.rsl.youresto.utils.AppConstants.SERVICE_DINE_IN
+import com.rsl.youresto.utils.AppConstants.SERVICE_QUICK_SERVICE
 import com.rsl.youresto.utils.AppPreferences
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -36,6 +37,8 @@ class TablesFragment : Fragment() {
     private lateinit var mBinding: FragmentTablesBinding
     private lateinit var mSharedPrefs: SharedPreferences
     private lateinit var mLocationID: String
+
+
 
     private val tablesViewModel: NewTablesViewModel by viewModel()
     private val prefs: AppPreferences by inject()
@@ -51,6 +54,9 @@ class TablesFragment : Fragment() {
         mSharedPrefs = requireActivity().getSharedPreferences(MY_PREFERENCES, MODE_PRIVATE)
 
         mLocationID = mSharedPrefs.getString(SELECTED_LOCATION_ID, "")!!
+        var mLocationType = mSharedPrefs.getInt(AppConstants.LOCATION_SERVICE_TYPE,0)
+
+
 
         showTables()
         initViews()

@@ -3,6 +3,7 @@ package com.rsl.youresto.ui.main_screen.cart
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.util.Log.e
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.rsl.youresto.App
+import com.rsl.youresto.App.Companion.isTablet
 import com.rsl.youresto.R
 import com.rsl.youresto.data.cart.models.CartProductModel
 import com.rsl.youresto.databinding.FragmentCartBinding
@@ -161,11 +163,19 @@ class CartFragment : Fragment() {
 
         cartViewModel.deleteCartData.observe(viewLifecycleOwner) { event ->
             event.getContentIfNotHandled()?.let {
-                if (!App.isTablet){
-                    findNavController().navigate(R.id.tablesFragment)
-                } else {
-                    EventBus.getDefault().post(ShowCartEvent(false))
-                }
+                Log.e("cartViewModel.deleteCar",it.itemIds.size.toString())
+                if (it.itemIds.size == 0)
+                {
+                    if (!App.isTablet) {
+                        if(mSelectedLocationType== SERVICE_QUICK_SERVICE){
+                            findNavController().navigate(if (isTablet) R.id.quickServiceTabFragment else R.id.quickServiceFragment)
+                        }else {
+                            findNavController().navigate(R.id.tablesFragment)
+                        }
+                    } else {
+                        EventBus.getDefault().post(ShowCartEvent(false))
+                    }
+            }
             }
         }
 
@@ -284,7 +294,11 @@ class CartFragment : Fragment() {
 
     @Subscribe
     fun paymentComplete(mEvent: PaymentCompletedEvent) {
-        findNavController().navigate(R.id.tablesFragment)
+        if(mSelectedLocationType== SERVICE_QUICK_SERVICE){
+           findNavController().navigate(if (isTablet) R.id.quickServiceTabFragment else R.id.quickServiceFragment)
+        }else {
+            findNavController().navigate(R.id.tablesFragment)
+        }
     }
 
     override fun onStart() {
