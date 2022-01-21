@@ -4,7 +4,7 @@
         <trust-anchors>
             <certificates src="@raw/youcloudrestossl"/>
 
-            <certificates src="@raw/youcloudcrt"/>
+            <certificates src="@raw/youcloud__crt"/>
             <certificates src="@raw/ca_bundle_client"/>
             <certificates src="system"/>
         </trust-anchors>

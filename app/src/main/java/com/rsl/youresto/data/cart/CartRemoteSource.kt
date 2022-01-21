@@ -1,5 +1,6 @@
 package com.rsl.youresto.data.cart
 
+import android.util.Log
 import com.rsl.youresto.data.checkout.model.NetworkCheckoutResponse
 import com.rsl.youresto.data.checkout.model.PostCheckout
 import com.rsl.youresto.network.*
@@ -29,6 +30,7 @@ class CartRemoteSource(val api: CartApi, val prefs: AppPreferences) {
     }
 
     fun syncCarts(): Resource<List<ReceiveCart>> {
+        Log.e("syncCarts",prefs.getRestaurantId()+","+prefs.getSelectedLocation())
         return when (val res = ApiResponse.create(api.syncCarts(prefs.getRestaurantId(), prefs.getSelectedLocation()))) {
             is ApiSuccessResponse -> Resource.success(res.data)
             is ApiSuccessEmptyResponse -> Resource.success(null)

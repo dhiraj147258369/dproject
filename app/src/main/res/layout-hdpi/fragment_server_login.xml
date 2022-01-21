@@ -84,7 +84,8 @@
                         android:textColor="@color/colorPrimaryLight"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="@string/str_forgot_pin"/>
+                        android:text="@string/str_forgot_pin"
+                    android:visibility="invisible"/>
 
                 <TextView
                         android:id="@+id/text_view_change_location"

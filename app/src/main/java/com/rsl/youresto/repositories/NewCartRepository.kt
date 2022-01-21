@@ -1,5 +1,6 @@
 package com.rsl.youresto.repositories
 
+import android.util.Log
 import androidx.core.text.isDigitsOnly
 import com.rsl.youresto.data.cart.CartDao
 import com.rsl.youresto.data.cart.CartRemoteSource
@@ -281,13 +282,14 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
                 withContext(Dispatchers.IO) {
                     async {
                         val cartProducts = ArrayList<CartProductModel>()
-                        for (cart in receiveCart.cartDetails){
+                        for (cart in receiveCart.cartDetails) {
 
                             val product = cartDao.getProduct(cart.recipeId.toString())
+                            if(product!=null){
                             val table = cartDao.getTable(receiveCart.tableId.toString())
 
                             val mShowModifierList = ArrayList<IngredientsModel>()
-                            if (cart.addon.isNotEmpty()){
+                            if (cart.addon.isNotEmpty()) {
                                 val addOnIdList = ArrayList<String>()
                                 cart.addon.map { addOn -> addOnIdList.add(addOn.addonId.toString()) }
                                 val localAddOns = cartDao.getAddOnsByIds(addOnIdList)
@@ -295,10 +297,18 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
                             }
 
                             var addOnTotal = BigDecimal(0.0)
-                            mShowModifierList.map { modifier -> addOnTotal += (modifier.mIngredientPrice * BigDecimal(cart.qty)) }
+                            mShowModifierList.map { modifier ->
+                                addOnTotal += (modifier.mIngredientPrice * BigDecimal(
+                                    cart.qty
+                                ))
+                            }
 
-                            val cartProductTotalPrice = BigDecimal(cart.price * cart.qty) + addOnTotal
-
+                            val cartProductTotalPrice =
+                                BigDecimal(cart.price * cart.qty) + addOnTotal
+                            Log.e("mCartProduct_", cart.recipeId.toString())
+                            if (product != null) {
+                                Log.e("mCartProduct", product.mCategoryID.toString())
+                            }
                             val mCartProduct = CartProductModel(
                                 remoteSource.prefs.getSelectedLocation(),
                                 receiveCart.tableId.toString(),
@@ -341,6 +351,7 @@ class NewCartRepository(private val remoteSource: CartRemoteSource, private val 
                             )
 
                             cartProducts.add(mCartProduct)
+                        }
                         }
 
                         val ids = cartDao.insertBulkCartProduct(cartProducts)
