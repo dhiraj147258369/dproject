@@ -5,7 +5,7 @@
     <data>
         <variable
                 name="productModel"
-                type="com.rsl.youresto.ui.main_screen.favorite_items.model.FavoriteProductModel" />
+                type="com.rsl.foodnairesto.ui.main_screen.favorite_items.model.FavoriteProductModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout_product_item"

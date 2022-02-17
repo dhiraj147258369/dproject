@@ -5,7 +5,7 @@
     <data>
         <variable
             name="allergenModel"
-            type="com.rsl.youresto.data.database_download.models.AllergenModel"/>
+            type="com.rsl.foodnairesto.data.database_download.models.AllergenModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

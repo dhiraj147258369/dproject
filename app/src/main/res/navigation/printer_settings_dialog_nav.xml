@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/selectPrinterFragment2"
-        android:name="com.rsl.youresto.ui.main_screen.app_settings.printer_settings.SelectPrinterFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.app_settings.printer_settings.SelectPrinterFragment"
         android:label="SelectPrinterFragment" />
 </navigation>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="report" type="com.rsl.youresto.data.database_download.models.ReportModel"/>
-        <variable name="adapter" type="com.rsl.youresto.ui.main_screen.order_history.order_history_list.OrderHistoryListAdapter"/>
+        <variable name="report" type="com.rsl.foodnairesto.data.database_download.models.ReportModel"/>
+        <variable name="adapter" type="com.rsl.foodnairesto.ui.main_screen.order_history.order_history_list.OrderHistoryListAdapter"/>
     </data>
     <LinearLayout
             android:id="@+id/linear_layout_order_history"

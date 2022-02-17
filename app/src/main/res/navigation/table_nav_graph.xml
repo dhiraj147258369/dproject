@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/tablesFragment2"
-        android:name="com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.TablesFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.tables_and_tabs.tables.TablesFragment"
         android:label="fragment_tables"
         tools:layout="@layout/fragment_tables" />
 
     <fragment
         android:id="@+id/seatSelectionFragment"
-        android:name="com.rsl.youresto.ui.main_screen.tables_and_tabs.seat_selection.SeatSelectionFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.tables_and_tabs.seat_selection.SeatSelectionFragment"
         android:label="fragment_seat_selection"
         tools:layout="@layout/fragment_seat_selection" />
 

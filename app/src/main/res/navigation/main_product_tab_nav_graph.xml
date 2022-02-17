@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainProductFragment2"
-        android:name="com.rsl.youresto.ui.main_screen.main_product_flow.MainProductFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.main_product_flow.MainProductFragment"
         android:label="fragment_main_product"
         tools:layout="@layout/fragment_main_product"/>
 

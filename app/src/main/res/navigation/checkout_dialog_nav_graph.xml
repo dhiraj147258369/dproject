@@ -7,6 +7,6 @@
 
     <fragment
         android:id="@+id/checkoutCalculationFragment2"
-        android:name="com.rsl.youresto.ui.main_screen.checkout.calculation_checkout.CheckoutCalculationFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.checkout.calculation_checkout.CheckoutCalculationFragment"
         android:label="CheckoutCalculationFragment" />
 </navigation>

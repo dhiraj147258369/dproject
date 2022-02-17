@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="productModel" type="com.rsl.youresto.data.database_download.models.ProductModel"/>
+        <variable name="productModel" type="com.rsl.foodnairesto.data.database_download.models.ProductModel"/>
     </data>
     <androidx.cardview.widget.CardView
             android:id="@+id/card_view_generic_products"

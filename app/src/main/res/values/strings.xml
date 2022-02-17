@@ -1,7 +1,7 @@
 <resources>
 
     <!--App Level-->
-    <string name="app_name">YouResto</string>
+    <string name="app_name">Foodnai POS</string>
     <!--    <string name="string_currency_sign">\u00a3</string>-->
     <string name="string_currency_sign">₹</string>
 
@@ -133,6 +133,6 @@
     <string name="general_error">Something went wrong, please try again</string>
 
     <string name="youresto_">
-        \u00A9 2021 YouResto.
+        \u00A9 Foodnai POS.
     </string>
 </resources>

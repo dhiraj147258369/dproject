@@ -42,7 +42,7 @@
                     app:civ_shadow="true"
                     app:civ_shadow_color="@color/colorPrimary"
                     app:civ_shadow_radius="10"
-                    android:src="@drawable/y_c_logo"
+                    android:src="@drawable/foodnai_logo_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>

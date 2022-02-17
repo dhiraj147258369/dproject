@@ -122,7 +122,7 @@
 
             </androidx.cardview.widget.CardView>
 
-            <com.rsl.youresto.utils.NonScrollRecyclerView
+            <com.rsl.foodnairesto.utils.NonScrollRecyclerView
                     android:id="@+id/recycler_view_generic_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

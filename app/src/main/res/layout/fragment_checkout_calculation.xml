@@ -15,6 +15,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="15dp"
             tools:context=".ui.main_screen.checkout.calculation_checkout.CheckoutCalculationFragment">
 
             <TextView
@@ -288,6 +289,128 @@
                     app:layout_constraintTop_toBottomOf="@+id/text_view_paid_label" />
 
                 <TextView
+                    android:id="@+id/text_view_paid_cash_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+
+                    android:text="Paid by Cash"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_horizontal_line_7" />
+
+                <TextView
+                    android:id="@+id/text_view_paid_cash_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="0.00"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/text_view_paid_cash_label" />
+
+                <View
+                    android:id="@+id/view_horizontal_line_cash"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/colorBlack"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_paid_cash_label" />
+
+                <TextView
+                    android:id="@+id/text_view_paid_UPI_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+
+                    android:text="Paid via UPI"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_horizontal_line_cash" />
+
+                <TextView
+                    android:id="@+id/text_view_paid_UPI_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="0.00"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/text_view_paid_UPI_label" />
+
+                <View
+                    android:id="@+id/view_horizontal_line_upi"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/colorBlack"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_paid_UPI_label" />
+                <TextView
+                    android:id="@+id/text_view_paid_card_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+
+                    android:text="Paid via Card"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_horizontal_line_upi" />
+
+                <TextView
+                    android:id="@+id/text_view_paid_card_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="0.00"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/text_view_paid_card_label" />
+
+                <View
+                    android:id="@+id/view_horizontal_line_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/colorBlack"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_paid_card_label" />
+                <TextView
+                    android:id="@+id/text_view_paid_bank_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+
+                    android:text="Paid via netBanking"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_horizontal_line_card" />
+
+                <TextView
+                    android:id="@+id/text_view_paid_bank_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="0.00"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/text_view_paid_bank_label" />
+
+                <View
+                    android:id="@+id/view_horizontal_line_bank"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/colorBlack"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_paid_bank_label" />
+
+                <TextView
                     android:id="@+id/text_view_remaining_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -296,7 +419,7 @@
                     android:text="Remaining"
                     android:textColor="@color/colorBlack"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view_horizontal_line_7" />
+                    app:layout_constraintTop_toBottomOf="@+id/view_horizontal_line_bank" />
 
                 <TextView
                     android:id="@+id/text_view_remaining_amount"

@@ -147,7 +147,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/text_view_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/y_c_logo" />
+                app:srcCompat="@drawable/foodnai_logo_small" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>

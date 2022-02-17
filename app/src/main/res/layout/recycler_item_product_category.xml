@@ -3,9 +3,9 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="android.view.View"/>
-        <variable name="category" type="com.rsl.youresto.data.database_download.models.ProductCategoryModel"/>
+        <variable name="category" type="com.rsl.foodnairesto.data.database_download.models.ProductCategoryModel"/>
         <variable name="adapter"
-                  type="com.rsl.youresto.ui.main_screen.main_product_flow.product_category.ProductCategoryRecyclerAdapter"/>
+                  type="com.rsl.foodnairesto.ui.main_screen.main_product_flow.product_category.ProductCategoryRecyclerAdapter"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="150dp"

@@ -163,7 +163,7 @@
                         android:paddingEnd="8dp"
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
-                        android:text="Done"/>
+                        android:text="KOT"/>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/image_view_done"

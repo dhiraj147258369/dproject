@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/editCartProductFragment2"
-        android:name="com.rsl.youresto.ui.main_screen.tables_and_tabs.edit_cart_product.EditCartProductFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.tables_and_tabs.edit_cart_product.EditCartProductFragment"
         android:label="EditCartProductFragment" />
 
 </navigation>

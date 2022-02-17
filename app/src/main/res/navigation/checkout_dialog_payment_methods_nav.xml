@@ -6,19 +6,19 @@
 
     <fragment
         android:id="@+id/paymentMethodFragment2"
-        android:name="com.rsl.youresto.ui.main_screen.checkout.payment_options.PaymentMethodFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.checkout.payment_options.PaymentMethodFragment"
         android:label="PaymentMethodFragment" />
     <fragment
         android:id="@+id/cashFragment2"
-        android:name="com.rsl.youresto.ui.main_screen.checkout.payment_options.cash.CashFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.checkout.payment_options.cash.CashFragment"
         android:label="CashFragment" />
     <fragment
         android:id="@+id/cardFragment2"
-        android:name="com.rsl.youresto.ui.main_screen.checkout.payment_options.card.CardFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.checkout.payment_options.card.CardFragment"
         android:label="CardFragment" />
 
     <fragment
         android:id="@+id/paymentFragment"
-        android:name="com.rsl.youresto.ui.main_screen.checkout.payment_options.PaymentFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.checkout.payment_options.PaymentFragment"
         android:label="PaymentFragment" />
 </navigation>

@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.thealeksandr:PFLockScreen-Android:1.0.0-beta7@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7b1cf0b925aebf6ef88002c17614bd1b/jetified-PFLockScreen-Android-1.0.0-beta7/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7b1cf0b925aebf6ef88002c17614bd1b/jetified-PFLockScreen-Android-1.0.0-beta7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7b1cf0b925aebf6ef88002c17614bd1b/jetified-PFLockScreen-Android-1.0.0-beta7/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7b1cf0b925aebf6ef88002c17614bd1b/jetified-PFLockScreen-Android-1.0.0-beta7/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.thealeksandr/PFLockScreen-Android/1.0.0-beta7/40856a37411e31a07bf809188694e32c0aa49c39/PFLockScreen-Android-1.0.0-beta7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

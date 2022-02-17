@@ -4,7 +4,7 @@
     <data>
         <import type="android.text.Html"/>
         <variable name="ingredientCategory"
-                  type="com.rsl.youresto.data.database_download.models.IngredientCategoryModel"/>
+                  type="com.rsl.foodnairesto.data.database_download.models.IngredientCategoryModel"/>
     </data>
     <androidx.cardview.widget.CardView
             android:id="@+id/card_view_generic_products"

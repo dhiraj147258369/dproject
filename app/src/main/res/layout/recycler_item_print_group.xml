@@ -4,12 +4,12 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.rsl.youresto.R"/>
+        <import type="com.rsl.foodnairesto.R"/>
         <import type="androidx.core.content.ContextCompat"/>
         <variable name="tableGroup"
-                  type="com.rsl.youresto.data.tables.models.ServerTableGroupModel"/>
+                  type="com.rsl.foodnairesto.data.tables.models.ServerTableGroupModel"/>
         <variable name="adapter"
-                  type="com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.PrintGroupRecyclerAdapter"/>
+                  type="com.rsl.foodnairesto.ui.main_screen.tables_and_tabs.tables.PrintGroupRecyclerAdapter"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -37,6 +37,7 @@
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorBlack"
                         android:textStyle="bold"
+                    android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -96,6 +97,7 @@
                         android:background="?android:attr/selectableItemBackground"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                         android:textColor="@color/colorPrimary"
+                    android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:text="@string/str_change_location_label"/>

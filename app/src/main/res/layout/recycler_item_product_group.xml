@@ -3,9 +3,9 @@
         xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable name="group" type="com.rsl.youresto.data.database_download.models.ProductGroupModel"/>
+        <variable name="group" type="com.rsl.foodnairesto.data.database_download.models.ProductGroupModel"/>
         <variable name="adapter"
-                  type="com.rsl.youresto.ui.main_screen.main_product_flow.product_group.ProductGroupRecyclerAdapter"/>
+                  type="com.rsl.foodnairesto.ui.main_screen.main_product_flow.product_group.ProductGroupRecyclerAdapter"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="150dp"

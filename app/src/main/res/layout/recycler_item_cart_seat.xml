@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="seat" type="com.rsl.youresto.data.tables.models.ServerTableSeatModel"/>
+        <variable name="seat" type="com.rsl.foodnairesto.data.tables.models.ServerTableSeatModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

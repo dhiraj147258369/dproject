@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/orderHistoryCartFragment2"
         tools:layout="@layout/fragment_order_history_cart"
-        android:name="com.rsl.youresto.ui.main_screen.order_history.order_history_cart.OrderHistoryCartFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.order_history.order_history_cart.OrderHistoryCartFragment"
         android:label="OrderHistoryCartFragment" />
 </navigation>

@@ -7,7 +7,7 @@
 
         <variable
             name="kitchenModel"
-            type="com.rsl.youresto.data.database_download.models.KitchenModel" />
+            type="com.rsl.foodnairesto.data.database_download.models.KitchenModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

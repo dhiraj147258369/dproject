@@ -308,7 +308,7 @@
                         android:src="@drawable/dotted_line"
                         app:layout_constraintTop_toBottomOf="@+id/linear_layout_product_detail_header" />
 
-                <com.rsl.youresto.utils.NonScrollRecyclerView
+                <com.rsl.foodnairesto.utils.NonScrollRecyclerView
                         android:id="@+id/recycler_view_products"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -840,7 +840,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/view_gif_background"
                 android:paddingHorizontal="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/view_gif_background"
-                android:src="@drawable/y_c_logo"
+                android:src="@drawable/foodnai_logo_small"
                 android:layout_width="0dp"
                 android:layout_height="0dp"/>
 

@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/quickServiceFragment3"
-        android:name="com.rsl.youresto.ui.main_screen.quick_service.QuickServiceFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.quick_service.QuickServiceFragment"
         android:label="QuickServiceFragment" />
 </navigation>

@@ -10,87 +10,145 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/card_view_generic_products"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    app:cardBackgroundColor="@color/colorBlueGrey"
-                    app:cardCornerRadius="2dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view_generic_products"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="4dp">
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        app:cardBackgroundColor="@color/colorBlueGrey"
+                        app:cardCornerRadius="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/add_ons_constraintLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="4dp">
+
+                            <TextView
+                                android:id="@+id/text_view_generic_products_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Add-ons"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycler_view_generic_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/text_view_generic_products_label"
+                                tools:listitem="@layout/recycler_item_variants" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:cardBackgroundColor="@color/colorBlueGrey"
+
+                        app:cardCornerRadius="2dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/card_view_generic_products"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="4dp">
+
+                            <TextView
+                                android:id="@+id/text_view_instructions_label"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Instructions"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <EditText
+                                android:id="@+id/edittext_view_instruction"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_margin="5dp"
+                                android:background="@color/white"
+                                android:gravity="top"
+                                android:hint="Instructions"
+                                android:padding="4dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/text_view_instructions_label"></EditText>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/text_view_selected_variant"
+                        app:layout_constraintTop_toBottomOf="@+id/card_view_generic_products"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="Farm House Small"
+                        android:textColor="@color/colorBlack"
+                        android:background="@color/colorBlueGrey"
+                        android:visibility="gone"
+                        android:padding="4dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
 
                     <TextView
-                            android:id="@+id/text_view_generic_products_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Add-ons"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                        android:id="@+id/text_view_change_variant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Change"
+                        android:layout_marginEnd="8dp"
+                        android:padding="4dp"
+                        android:visibility="gone"
+                        android:textColor="@color/colorLightBlue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/text_view_selected_variant"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_view_selected_variant"
+                        />
 
                     <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycler_view_generic_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:listitem="@layout/recycler_item_variants"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/text_view_generic_products_label"/>
+                        android:id="@+id/recycler_view_generic_2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="4dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_selected_variant"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:paddingBottom="4dp"
+                        android:visibility="gone"
+                        tools:listitem="@layout/recycler_item_variant_modifiers"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            </androidx.cardview.widget.CardView>
 
-            <TextView
-                    android:id="@+id/text_view_selected_variant"
-                    app:layout_constraintTop_toBottomOf="@+id/card_view_generic_products"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="Farm House Small"
-                    android:textColor="@color/colorBlack"
-                    android:background="@color/colorBlueGrey"
-                    android:visibility="gone"
-                    android:padding="4dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:id="@+id/text_view_change_variant"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Change"
-                    android:layout_marginEnd="8dp"
-                    android:padding="4dp"
-                    android:visibility="gone"
-                    android:textColor="@color/colorLightBlue"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/text_view_selected_variant"
-                    app:layout_constraintBottom_toBottomOf="@+id/text_view_selected_variant"
-            />
-
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_generic_2"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="4dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_view_selected_variant"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:paddingBottom="4dp"
-                    tools:listitem="@layout/recycler_item_variant_modifiers"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     <!--</ScrollView>-->
 </layout>

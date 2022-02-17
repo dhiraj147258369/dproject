@@ -3,6 +3,6 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/server_passcode_nav_graph"
             app:startDestination="@id/serverLoginFragment2">
-    <fragment android:id="@+id/serverLoginFragment2" android:name="com.rsl.youresto.ui.server_login.ServerLoginFragment"
+    <fragment android:id="@+id/serverLoginFragment2" android:name="com.rsl.foodnairesto.ui.server_login.ServerLoginFragment"
               android:label="fragment_server_login" tools:layout="@layout/fragment_server_login"/>
 </navigation>

@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.rsl.youresto.R"/>
+        <import type="com.rsl.foodnairesto.R"/>
         <import type="android.view.View"/>
         <variable
             name="cartModel"
-            type="com.rsl.youresto.data.cart.models.CartProductModel"/>
+            type="com.rsl.foodnairesto.data.cart.models.CartProductModel"/>
         <variable
             name="cartAdapter"
-            type="com.rsl.youresto.ui.main_screen.cart.adapter.CartRecyclerAdapter"/>
+            type="com.rsl.foodnairesto.ui.main_screen.cart.adapter.CartRecyclerAdapter"/>
         <variable name="position" type="Integer"/>
         <variable name="cartHolder"
-            type="com.rsl.youresto.ui.main_screen.cart.adapter.CartRecyclerAdapter.CartViewHolder"/>
+            type="com.rsl.foodnairesto.ui.main_screen.cart.adapter.CartRecyclerAdapter.CartViewHolder"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,7 +73,7 @@
                 app:layout_constraintTop_toTopOf="@+id/text_view_cart_product_name"
                 tools:text="36.0 total" />
 
-            <com.rsl.youresto.utils.NonScrollRecyclerView
+            <com.rsl.foodnairesto.utils.NonScrollRecyclerView
                 android:id="@+id/recycler_view_product_types"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -88,15 +88,13 @@
                 android:id="@+id/text_view_special_instruction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
                 android:text="@{`Spl Ins: `+cartModel.MSpecialInstruction}"
                 android:textColor="@color/colorBlack"
                 android:textStyle="bold"
                 android:visibility="@{cartModel.MSpecialInstruction.length() > 0 ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toStartOf="@+id/text_view_special_instruction_price"
                 app:layout_constraintStart_toStartOf="@+id/text_view_cart_product_name"
-                app:layout_constraintTop_toBottomOf="@+id/recycler_view_product_types"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_cart_product_total"
                 tools:text="Spl Ins: " />
 
             <TextView
@@ -108,7 +106,7 @@
                 android:text="@{String.valueOf(cartModel.MSpecialInstructionPrice)}"
                 android:textColor="@color/colorBlack"
                 android:textStyle="bold"
-                android:visibility="@{cartModel.MSpecialInstruction.length() > 0 ? View.VISIBLE : View.GONE}"
+                android:visibility="@{cartModel.MSpecialInstruction.length() > 0 ? View.GONE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="@+id/recycler_view_product_types"
                 app:layout_constraintTop_toBottomOf="@+id/recycler_view_product_types"
                 tools:text="0.0" />

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="cartProductModel" type="com.rsl.youresto.data.cart.models.CartProductModel"/>
+        <variable name="cartProductModel" type="com.rsl.foodnairesto.data.cart.models.CartProductModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

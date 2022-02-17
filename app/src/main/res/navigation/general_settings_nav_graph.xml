@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/generalSettingFragment"
         tools:layout="@layout/fragment_general_setting"
-        android:name="com.rsl.youresto.ui.main_screen.app_settings.general_settings.GeneralSettingFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.app_settings.general_settings.GeneralSettingFragment"
         android:label="GeneralSettingFragment" />
 </navigation>

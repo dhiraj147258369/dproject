@@ -6,7 +6,7 @@
     <data>
         <variable
             name="cartModel"
-            type="com.rsl.youresto.data.cart.models.CartProductModel" />
+            type="com.rsl.foodnairesto.data.cart.models.CartProductModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

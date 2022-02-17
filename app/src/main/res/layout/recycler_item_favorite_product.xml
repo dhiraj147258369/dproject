@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="favoriteModel"
-            type="com.rsl.youresto.ui.main_screen.favorite_items.model.FavoriteProductModel" />
+            type="com.rsl.foodnairesto.ui.main_screen.favorite_items.model.FavoriteProductModel" />
 
         <variable name="favoriteAdapter"
-            type="com.rsl.youresto.ui.main_screen.favorite_items.FavoriteCategoryItemsAdapter" />
+            type="com.rsl.foodnairesto.ui.main_screen.favorite_items.FavoriteCategoryItemsAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

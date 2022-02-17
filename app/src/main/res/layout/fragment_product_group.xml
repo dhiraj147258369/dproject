@@ -9,7 +9,7 @@
             android:layout_height="match_parent"
             tools:context=".ui.main_screen.main_product_flow.product_group.ProductGroupFragment">
 
-        <com.rsl.youresto.utils.custom_views.GridRecyclerView
+        <com.rsl.foodnairesto.utils.custom_views.GridRecyclerView
                 android:id="@+id/recycler_view_product_groups"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

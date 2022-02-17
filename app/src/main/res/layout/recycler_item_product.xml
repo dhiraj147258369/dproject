@@ -2,9 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="product" type="com.rsl.youresto.data.database_download.models.ProductModel"/>
+        <variable name="product" type="com.rsl.foodnairesto.data.database_download.models.ProductModel"/>
         <variable name="adapter"
-                  type="com.rsl.youresto.ui.main_screen.main_product_flow.product.ProductRecyclerAdapter"/>
+                  type="com.rsl.foodnairesto.ui.main_screen.main_product_flow.product.ProductRecyclerAdapter"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout_product_item"

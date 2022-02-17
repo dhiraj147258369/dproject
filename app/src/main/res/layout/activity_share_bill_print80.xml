@@ -814,7 +814,7 @@
                     app:layout_constraintStart_toStartOf="@+id/view_gif_background"
                     app:layout_constraintEnd_toEndOf="@+id/view_gif_background"
                     app:layout_constraintBottom_toBottomOf="@+id/view_gif_background"
-                    android:src="@drawable/y_c_logo"
+                    android:src="@drawable/foodnai_logo_small"
                     android:layout_width="80dp"
                     android:layout_height="80dp"/>
 

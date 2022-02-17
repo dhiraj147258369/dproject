@@ -2,18 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/server_login_nav_graph"
-            app:startDestination="@id/locationFragment">
+            app:startDestination="@id/serverLoginFragment">
 
-    <fragment android:id="@+id/locationFragment" android:name="com.rsl.youresto.ui.server_login.LocationFragment"
-              android:label="fragment_location" tools:layout="@layout/fragment_location">
-        <action android:id="@+id/action_locationFragment_to_serverLoginFragment"
-                app:destination="@id/serverLoginFragment"
-                app:enterAnim="@anim/item_animation_enter_from_bottom" app:exitAnim="@anim/slide_in_up"/>
-        <argument android:name="Data_From" app:argType="integer" android:defaultValue="0"/>
-    </fragment>
-    <fragment android:id="@+id/serverLoginFragment" android:name="com.rsl.youresto.ui.server_login.ServerLoginFragment"
+
+    <fragment android:id="@+id/serverLoginFragment" android:name="com.rsl.foodnairesto.ui.server_login.ServerLoginFragment"
               android:label="fragment_server_login" tools:layout="@layout/fragment_server_login">
         <action android:id="@+id/action_serverLoginFragment_to_locationFragment" app:destination="@id/locationFragment"
                 app:enterAnim="@anim/item_animation_enter_from_bottom" app:exitAnim="@anim/slide_in_up"/>
+    </fragment>
+    <fragment android:id="@+id/locationFragment" android:name="com.rsl.foodnairesto.ui.server_login.LocationFragment"
+        android:label="fragment_location" tools:layout="@layout/fragment_location" >
+        <action android:id="@+id/action_locationFragment_to_serverLoginFragment"
+
+            app:enterAnim="@anim/item_animation_enter_from_bottom" app:exitAnim="@anim/slide_in_up"/>
+        <argument android:name="Data_From" app:argType="integer" android:defaultValue="0"/>
     </fragment>
 </navigation>

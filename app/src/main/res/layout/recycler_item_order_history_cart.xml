@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable name="mProduct" type="com.rsl.youresto.data.database_download.models.ReportProductModel"/>
+        <variable name="mProduct" type="com.rsl.foodnairesto.data.database_download.models.ReportProductModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,7 +62,7 @@
                     app:layout_constraintTop_toTopOf="@+id/text_view_cart_product_name"
                     tools:text="36.0 total"/>
 
-            <com.rsl.youresto.utils.NonScrollRecyclerView
+            <com.rsl.foodnairesto.utils.NonScrollRecyclerView
                     android:id="@+id/recycler_view_product_types"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

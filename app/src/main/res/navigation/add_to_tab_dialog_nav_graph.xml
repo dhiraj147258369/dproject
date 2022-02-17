@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/addToTabFragment2"
-        android:name="com.rsl.youresto.ui.main_screen.tables_and_tabs.add_to_tab.AddToTabFragment"
+        android:name="com.rsl.foodnairesto.ui.main_screen.tables_and_tabs.add_to_tab.AddToTabFragment"
         android:label="AddToTabFragment" />
 </navigation>

@@ -3,12 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+<!--    <data>-->
+<!--        <variable-->
+<!--            name="tablesModel"-->
+<!--            type="com.rsl.foodnairesto.data.database_download.models.TablesModel"/>-->
+<!--        <variable name="tableAdapter"-->
+<!--            type="com.rsl.foodnairesto.ui.main_screen.tables_and_tabs.tables.TableRecyclerAdapter"/>-->
+<!--    </data>-->
     <data>
         <variable
             name="tablesModel"
-            type="com.rsl.youresto.data.database_download.models.TablesModel"/>
-        <variable name="tableAdapter"
-            type="com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.TableRecyclerAdapter"/>
+            type="com.rsl.foodnairesto.data.database_download.models.TablesModel" />
+        <variable
+            name="tableAdapter"
+            type="com.rsl.foodnairesto.ui.main_screen.tables_and_tabs.tables.TableRecyclerAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +53,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:textSize="18dp"
-            android:text='@{"TABLE NO "+String.valueOf(tablesModel.MTableNo)}'
+            android:text='@{String.valueOf(tablesModel.MTitle)}'
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/black"
             android:textStyle="bold"

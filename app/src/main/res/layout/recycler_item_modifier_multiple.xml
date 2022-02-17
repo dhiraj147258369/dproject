@@ -3,10 +3,10 @@
         xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable name="ingredient" type="com.rsl.youresto.data.database_download.models.IngredientsModel"/>
+        <variable name="ingredient" type="com.rsl.foodnairesto.data.database_download.models.IngredientsModel"/>
         <variable name="position" type="Integer"/>
         <variable name="adapter"
-                  type="com.rsl.youresto.ui.main_screen.tables_and_tabs.add_to_tab.tabs.modifier_2.VariantModifierATTRecyclerAdapter"/>
+                  type="com.rsl.foodnairesto.ui.main_screen.tables_and_tabs.add_to_tab.tabs.modifier_2.VariantModifierATTRecyclerAdapter"/>
     </data>
     <androidx.cardview.widget.CardView
             android:id="@+id/card_view_generic_products"

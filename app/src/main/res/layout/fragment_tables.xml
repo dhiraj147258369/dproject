@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="table" type="com.rsl.youresto.ui.main_screen.tables_and_tabs.tables.TablesFragment"/>
+        <variable name="table" type="com.rsl.foodnairesto.ui.main_screen.tables_and_tabs.tables.TablesFragment"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +42,7 @@
                 android:drawablePadding="4dp"
                 android:hint="@string/str_search_tables"
                 android:imeOptions="actionDone"
-                android:inputType="number"
+                android:inputType="text"
                 android:onTextChanged="@{(text, start, before, count) -> table.onTextChanged(text)}"
                 android:textSize="16dp"
                 android:padding="10dp"

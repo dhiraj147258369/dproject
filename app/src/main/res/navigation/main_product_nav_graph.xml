@@ -4,7 +4,7 @@
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/main_product_nav_graph"
             app:startDestination="@id/productGroupFragment">
 
-    <fragment android:id="@+id/productGroupFragment" android:name="com.rsl.youresto.ui.main_screen.main_product_flow.product_group.ProductGroupFragment"
+    <fragment android:id="@+id/productGroupFragment" android:name="com.rsl.foodnairesto.ui.main_screen.main_product_flow.product_group.ProductGroupFragment"
               android:label="fragment_product_group" tools:layout="@layout/fragment_product_group">
         <action android:id="@+id/action_productGroupFragment_to_productCategoryFragment"
                 app:destination="@+id/productCategoryFragment"
@@ -15,7 +15,7 @@
                 app:exitAnim="@anim/item_animation_slide_exit_to_left"/>
     </fragment>
     <fragment android:id="@+id/productCategoryFragment"
-              android:name="com.rsl.youresto.ui.main_screen.main_product_flow.product_category.ProductCategoryFragment"
+              android:name="com.rsl.foodnairesto.ui.main_screen.main_product_flow.product_category.ProductCategoryFragment"
               android:label="fragment_product_category" tools:layout="@layout/fragment_product_category">
         <argument android:name="groupId" app:argType="string" android:defaultValue="null"/>
         <action android:id="@+id/action_productCategoryFragment_to_productFragment"
@@ -26,7 +26,7 @@
                 app:enterAnim="@anim/item_animation_slide_enter_from_left"/>
     </fragment>
     <fragment android:id="@+id/productFragment"
-              android:name="com.rsl.youresto.ui.main_screen.main_product_flow.product.ProductFragment"
+              android:name="com.rsl.foodnairesto.ui.main_screen.main_product_flow.product.ProductFragment"
               android:label="ProductFragment">
         <argument android:name="groupId" app:argType="string"/>
         <argument android:name="categoryId" app:argType="string" android:defaultValue="null"/>

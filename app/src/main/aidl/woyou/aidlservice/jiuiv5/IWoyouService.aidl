@@ -8,7 +8,7 @@ package woyou.aidlservice.jiuiv5;
 import woyou.aidlservice.jiuiv5.ICallback;
 import woyou.aidlservice.jiuiv5.ITax;
 import android.graphics.Bitmap;
-import com.rsl.youresto.utils.trans.TransBean;
+import com.rsl.foodnairesto.utils.trans.TransBean;
 
 interface IWoyouService
 {	

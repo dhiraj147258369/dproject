@@ -4,7 +4,7 @@
     <data>
         <variable
                 name="favoriteGroupModel"
-                type="com.rsl.youresto.data.database_download.models.FavoriteItemsModel"/>
+                type="com.rsl.foodnairesto.data.database_download.models.FavoriteItemsModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

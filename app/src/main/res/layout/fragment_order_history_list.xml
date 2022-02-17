@@ -7,7 +7,7 @@
 
         <variable
             name="fragment"
-            type="com.rsl.youresto.ui.main_screen.order_history.order_history_list.OrderHistoryListFragment" />
+            type="com.rsl.foodnairesto.ui.main_screen.order_history.order_history_list.OrderHistoryListFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
