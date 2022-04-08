@@ -11,6 +11,7 @@ object AppConstants {
     const val RESTAURANT_PASSWORD = "RESTAURANT_PASSWORD"
     const val RESTAURANT_LOGO = "RESTAURANT_LOGO"
 
+    const val BUSSINESS_NAME = "BUSSINESS_NAME"
 
     //shared preferences - settings
     const val AUTO_LOGOUT_ENABLED = "AUTO_LOGOUT_ENABLED"

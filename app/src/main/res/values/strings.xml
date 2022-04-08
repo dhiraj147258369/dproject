@@ -10,18 +10,16 @@
 
     <!--Main Login Screen-->
     <string name="orda_pos_continue_to_login_label">
-        Please login to your business\' YouCloudResto account to continue
+        Please login to your business\' Foodnai POS account to continue
     </string>
     <string name="login_text_view_label">login</string>
-    <string name="login_to_ordapos_label">Login to YouResto POS.</string>
+    <string name="login_to_ordapos_label">Login to Foodnai POS.</string>
     <string name="login_info_text">Please enter your username and password.</string>
     <string name="str_main_login_proceed">PROCEED</string>
     <string name="str_username">Username</string>
     <string name="str_password">Password</string>
     <string name="str_forgot_password">Forgot Password?</string>
-
     <string name="hello_blank_fragment">Hello blank fragmvsent</string>
-
 
     <!--Database Download-->
     <string name="str_downloading_necessary_data">Downloading necessary data.....</string>
@@ -29,7 +27,6 @@
     <string name="string_selected_location_label">Selected Location</string>
     <string name="str_forgot_pin">Forgot Pin?</string>
     <string name="str_change_location_label">Change Location</string>
-
 
     <!--Drawer Menu-->
     <string name="drawer_menu_tables_and_tab">Tables and Tab</string>

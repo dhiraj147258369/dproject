@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -35,7 +34,7 @@
             android:name="com.rsl.foodnairesto.ui.main_screen.MainScreenActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AppCompat.Light.FullScreen.WithActionBar"
-            android:windowSoftInputMode="adjustNothing" />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.rsl.foodnairesto.ui.server_login.ServerLoginActivity"
             android:screenOrientation="fullSensor" />
@@ -56,6 +55,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.rsl.foodnairesto.ui.MainActivity"
             android:screenOrientation="portrait"

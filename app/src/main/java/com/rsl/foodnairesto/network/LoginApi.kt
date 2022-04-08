@@ -18,4 +18,5 @@ interface LoginApi {
 
     @GET("getFavoriteProduct")
     fun getFavorites(@Query("restaurant_id") restaurantId: String, @Query("location_id") locationId: String): Call<NetworkResponseFavorites>
+
 }

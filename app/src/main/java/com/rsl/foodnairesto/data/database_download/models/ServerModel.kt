@@ -29,7 +29,7 @@ class ServerModel(
 
     var mServerAccessList: ArrayList<Int> = ArrayList()
 
-    
+
 )
 data class LocationUserList(
     @SerializedName("location_id")

@@ -197,6 +197,7 @@ class ServerLoginFragment : Fragment() {
             prefs.setIsManager(true)
             prefs.setSelectedLocationType(1)
                     mMainScreenIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+
         startActivity(mMainScreenIntent)
         requireActivity().finish()
         }else{

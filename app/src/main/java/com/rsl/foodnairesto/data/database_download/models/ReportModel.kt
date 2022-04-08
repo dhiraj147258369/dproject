@@ -29,7 +29,9 @@ class ReportModel(
  var mProductList: ArrayList<ReportProductModel> = ArrayList(),
  var deliverCharges: Double = 0.0,
  var paymentMethodsList: ArrayList<NewPaymentMethodModel> = ArrayList()
-) {
+)
+
+{
  @PrimaryKey
  var id: String = ""
  //    @PrimaryKey(autoGenerate = true)

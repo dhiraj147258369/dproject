@@ -25,7 +25,6 @@ class OrderHistoryListAdapter(private val mOrderList: ArrayList<ReportModel>): R
         holder.setOrder(mOrder)
 
         val mDate = DateUtils.getStringFromDate("dd MMM hh:mm a", mOrder.mDateTimeInTimeStamp)!!
-
         holder.mBinding.textViewTime.text = Utils.getSuperScriptForDate(mDate)
     }
 

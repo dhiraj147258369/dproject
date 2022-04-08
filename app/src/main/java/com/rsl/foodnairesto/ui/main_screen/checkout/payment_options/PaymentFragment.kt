@@ -83,8 +83,6 @@ class PaymentFragment : Fragment() {
                 ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, payments)
             binding.paymentMethods.adapter = itemsAdapter
 
-
-
             binding.paymentMethods.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(
@@ -144,7 +142,11 @@ class PaymentFragment : Fragment() {
         binding.editTextCashValue.setSelection(mOrderTotalString.length)
 
         binding.imageViewCancelText.setOnClickListener { binding.editTextCashValue.setText("") }
-        binding.imageDisCancelText.setOnClickListener { binding.editTextDisValue.setText("") }
+
+        binding.imageDisCancelText.setOnClickListener {
+            binding.editTextDisValue.setText("")
+            binding.editTextCashValue.setText(mOrderTotalString)
+        }
 
         binding.buttonCashProceed.setOnClickListener {
 

@@ -3,6 +3,112 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/back_white_border_black_.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/background_accent_round_border.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/background_black_border_black.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/background_custom_toast.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/drawer_item_color.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/drawer_selected_item.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/ic_add_box_primary_24dp.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/ic_add_box_white_36dp.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/ic_arrow_back_primary_24dp.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/ic_arrow_drop_down_black_24dp.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/ic_arrow_drop_up_black_24dp.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/ic_check_black_24dp.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/ic_close_black_24dp.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/ic_exit_to_app_black_24dp.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/ic_tag_faces_black_24dp.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/ic_update_terminal.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/ic_wallet_white.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/nav_item_color_state.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/new_button.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/new_button_pressed.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/new_button_state_back.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/new_item_not_selected.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/new_item_selected.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/shape_circle.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/shape_empty_dot.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/shape_filled_dot.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/shape_filled_down_arrow.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/shape_round_white_background.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/tab_back.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/tab_background_grey.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/drawable/tab_indicator_primary.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout-sw600dp/dialog_checkout.xml" value="0.1" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/activity_database_download.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/activity_estimate_bill_print50.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/activity_estimate_bill_print80.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/activity_kitchen_print50.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/activity_kitchen_print80.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/activity_main.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/activity_main_login.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/activity_main_screen.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/activity_server_login.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/activity_share_bill_print50.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/activity_splash.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/custom_toast.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/dialog_add_to_tab.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/dialog_att_seats.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/dialog_card_payment.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/dialog_checkout.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/dialog_custom_progress.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/dialog_edit_cart.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/dialog_group_list.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/dialog_printer_settings.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/dialog_reset_terminal.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/dialog_select_wallet.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/dialog_special_instruction.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/dialog_table_group.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/drawer_title_layout.xml" value="0.25" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_add_to_tab.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_bluetooth_printer.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_cart.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_checkout.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_checkout_calculation.xml" value="0.25" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_custom_dialog.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_edit_cart_product.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_edit_type2_modifier.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_edit_type3_modifier.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_favorite_category.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_favorite_items.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_forgot_password.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_general_setting.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_location.xml" value="0.47186932849364793" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_logwood_setting.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_main_login.xml" value="0.6649616368286445" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_main_product.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_network_printer.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_order_history.xml" value="0.14" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_order_history_cart.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_order_history_list.xml" value="0.14719202898550723" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_payment.xml" value="0.25" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_payment_method.xml" value="0.33" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_product_allergen.xml" value="0.103125" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_product_description.xml" value="0.103125" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_type1_modifier.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/fragment_type2_modifier.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_order_history.xml" value="0.33" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_product_allergen.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_product_category.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_product_estimate_bill.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_product_group.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_quick_service_favorite_product.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_quick_service_product.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_selected_sub_products.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_share_bill_print_50.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_share_bill_print_50_cart.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_sub_product.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_table_menu_group.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_tables.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/recycler_item_variants.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/spinner_item_pending_order.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/spinner_item_printer_paper_size.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/layout/toolbar_ordapos.xml" value="0.13058764439979909" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/menu/cart_main_menu.xml" value="0.26296296296296295" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/menu/checkout_navigation_menu.xml" value="0.26296296296296295" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/menu/checkout_payment_method_menu.xml" value="0.26296296296296295" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/menu/drawer_menu.xml" value="0.26296296296296295" />
+        <entry key="..\:/DHIRAJ/foodnai-pos-app2/app/src/main/res/menu/menu_table_long_press.xml" value="0.26296296296296295" />
         <entry key="..\:/E Drive work/android projects/foodnai Y POS/foodnai-pos-app2/app/src/main/res/drawable/new_item_selected.xml" value="0.2285" />
         <entry key="..\:/E Drive work/android projects/foodnai Y POS/foodnai-pos-app2/app/src/main/res/layout-hdpi/fragment_location.xml" value="0.15104166666666666" />
         <entry key="..\:/E Drive work/android projects/foodnai Y POS/foodnai-pos-app2/app/src/main/res/layout-hdpi/fragment_server_login.xml" value="0.12291666666666666" />
@@ -73,7 +179,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

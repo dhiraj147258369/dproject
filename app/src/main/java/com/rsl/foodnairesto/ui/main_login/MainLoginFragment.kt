@@ -28,6 +28,7 @@ import com.rsl.foodnairesto.utils.AppConstants.MY_PREFERENCES
 import com.rsl.foodnairesto.utils.AppConstants.RESTAURANT_ID
 import com.rsl.foodnairesto.utils.AppConstants.RESTAURANT_LOGO
 import com.rsl.foodnairesto.utils.AppConstants.RESTAURANT_NAME
+
 import com.rsl.foodnairesto.utils.AppConstants.RESTAURANT_PASSWORD
 import com.rsl.foodnairesto.utils.AppConstants.RESTAURANT_USER_NAME
 import com.rsl.foodnairesto.utils.custom_views.CustomToast
@@ -40,6 +41,7 @@ import com.rsl.foodnairesto.data.main_login.network.Login
 import com.rsl.foodnairesto.network.Resource
 import com.rsl.foodnairesto.network.models.PostLogin
 import com.rsl.foodnairesto.ui.database_download.DatabaseDownloadActivity
+import com.rsl.foodnairesto.utils.AppConstants.BUSSINESS_NAME
 import com.rsl.foodnairesto.utils.Network
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -104,6 +106,7 @@ class MainLoginFragment : Fragment() {
                     Resource.Status.LOADING -> {
 //                        showProgress(true)
                     }
+
                     Resource.Status.SUCCESS -> {
                         it.data?.let { networkLogin ->
                             if (networkLogin.status) {
@@ -126,22 +129,22 @@ class MainLoginFragment : Fragment() {
                     }
                 }
             }
-
         }
     }
 
     private fun setPreferences(restaurantLoginModel: Login) {
         //if response is successful, keep the info of the logged in user in SharedPreferences to faster access
         val mEditor = mSharedPref!!.edit()
+
         mEditor.putBoolean(IS_LOGGED_IN, true)
         mEditor.putString(RESTAURANT_ID, restaurantLoginModel.id)
         mEditor.putString(RESTAURANT_NAME, restaurantLoginModel.name)
+        mEditor.putString(BUSSINESS_NAME, restaurantLoginModel.businessName)
 //        mEditor.putString(MERCHANT_TID, restaurantLoginModel.mMerchantTID)
 //        mEditor.putString(MERCHANT_TK, restaurantLoginModel.mMerchantTK)
         mEditor.putString(RESTAURANT_LOGO, restaurantLoginModel.profilePhoto)
         mEditor.putString(RESTAURANT_USER_NAME, mBinding.editTextUserName.text.toString())
         mEditor.putString(RESTAURANT_PASSWORD, mBinding.editTextPassword.text.toString())
-
         mEditor.putBoolean(AUTO_LOGOUT_ENABLED, true)
         mEditor.apply()
     }

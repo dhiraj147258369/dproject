@@ -1,51 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="wrap_content"
-                                             android:layout_marginTop="24dp"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:text="Menu"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/image_view_drawer_cancel"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
 
-    <ImageView
-            android:id="@+id/image_view_drawer_cancel"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-        android:src="@drawable/carbon_close_outline"
-        />
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/imageView3"
+            android:text="Menu"
+            android:layout_centerVertical="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorBlack" />
+
+        <ImageView
+
+            android:layout_centerVertical="true"
+            android:id="@+id/image_view_drawer_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/carbon_close_outline"
+            />
+
+
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/imageView3"
+            android:layout_width="59dp"
+            android:layout_height="58dp"
+            android:layout_alignParentStart="true"
+             android:padding="5dp"
+            app:srcCompat="@drawable/foodnai_logo_small" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/resto_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView3"
+        android:layout_margin="12dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_toEndOf="@id/imageView3"
+        android:text="Restaurant name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+    <TextView
+        android:id="@+id/captain_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/resto_name_tv"
+        android:layout_marginStart="12dp"
+        android:textSize="14sp"
+        android:layout_marginBottom="12dp"
+        android:textColor="@color/black"
+        android:text="Captain name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
 
     <View
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#BDBDBD" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="59dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:padding="5dp"
+        android:layout_below="@id/captain_name_tv"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/foodnai_logo_small" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BDBDBD" />
+</LinearLayout>

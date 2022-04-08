@@ -8,6 +8,7 @@ import com.rsl.foodnairesto.data.database_download.models.ServerModel
 import com.rsl.foodnairesto.utils.AppConstants.BILL_PRINTER_ENABLED
 import com.rsl.foodnairesto.utils.AppConstants.BILL_PRINTER_OR_KITCHEN_PRINTER
 import com.rsl.foodnairesto.utils.AppConstants.BLUETOOTH_PRINTER
+import com.rsl.foodnairesto.utils.AppConstants.BUSSINESS_NAME
 import com.rsl.foodnairesto.utils.AppConstants.LOCATION_IS_MANAGER
 import com.rsl.foodnairesto.utils.AppConstants.LOCATION_SERVICE_TYPE
 import com.rsl.foodnairesto.utils.AppConstants.LOGGED_IN_SERVER_ID
@@ -18,6 +19,7 @@ import com.rsl.foodnairesto.utils.AppConstants.QUICK_SERVICE_CART_NO
 import com.rsl.foodnairesto.utils.AppConstants.RESTAURANT_ID
 import com.rsl.foodnairesto.utils.AppConstants.RESTAURANT_LOGO
 import com.rsl.foodnairesto.utils.AppConstants.RESTAURANT_PASSWORD
+import com.rsl.foodnairesto.utils.AppConstants.RESTAURANT_NAME
 import com.rsl.foodnairesto.utils.AppConstants.SELECTED_BILL_PRINTER_NAME
 import com.rsl.foodnairesto.utils.AppConstants.SELECTED_BILL_PRINTER_NETWORK_IP
 import com.rsl.foodnairesto.utils.AppConstants.SELECTED_BILL_PRINTER_NETWORK_PORT
@@ -41,6 +43,9 @@ class AppPreferences(val context: Context) {
 
     fun getRestaurantId() = sharedPrefs.getString(RESTAURANT_ID, "") ?: ""
     fun getRestaurantPassword() = sharedPrefs.getString(RESTAURANT_PASSWORD, "") ?: ""
+    fun getRestaurantName() = sharedPrefs.getString(RESTAURANT_NAME, "") ?: ""
+
+    fun getBussinessName() = sharedPrefs.getString(BUSSINESS_NAME, "") ?: ""
 
     fun getRestaurantImage() = sharedPrefs.getString(RESTAURANT_LOGO, "") ?: ""
 
@@ -50,6 +55,7 @@ class AppPreferences(val context: Context) {
     fun getSelectedLocationName() = sharedPrefs.getString(SELECTED_LOCATION_NAME, "") ?: ""
     fun getLocationServiceType() = sharedPrefs.getInt(LOCATION_SERVICE_TYPE, 0)
     fun getServerId()=sharedPrefs.getString(LOGGED_IN_SERVER_ID,"")?:""
+    fun getServerName()=sharedPrefs.getString(LOGGED_IN_SERVER_NAME,"")?:""
 
     fun getIsManager()=sharedPrefs.getBoolean(LOCATION_IS_MANAGER,false)
 

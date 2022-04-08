@@ -14,7 +14,6 @@ class OrderHistoryRepository constructor(private val orderHistoryDao: OrderHisto
             sInstance ?: synchronized(this){
                 sInstance ?: OrderHistoryRepository(orderHistoryDao)
             }
-
     }
 
     fun getReportDataForTimeStamp(mFromDate: Long, mToDate: Long, mLocationTypeID: Int, mServerName: String): LiveData<List<ReportModel>> {

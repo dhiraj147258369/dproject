@@ -25,11 +25,13 @@ import com.rsl.foodnairesto.data.tables.TablesDao
 import com.rsl.foodnairesto.data.tables.models.LocalTableGroupModel
 import com.rsl.foodnairesto.utils.Converters
 
+
 @Database(entities = [Login::class, AllergenModel::class, ProductGroupModel::class, ProductCategoryModel::class, ProductModel::class, IngredientsModel::class,
     LocationModel::class, TablesModel::class, KitchenModel::class, TaxModel::class, ServerModel::class, PaymentMethodModel::class,
     ServerShiftModel::class, ServerLoginModel::class, LocalTableGroupModel::class, FavoriteItemsModel::class,
     CartProductModel::class, CheckoutModel::class, ReportModel::class, SelectablePinPad::class], version = 1)
 @TypeConverters(Converters::class)
+
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun mainLoginDao(): MainLoginDao
@@ -70,7 +72,6 @@ abstract class AppDatabase : RoomDatabase() {
                     ).build()
                 }
             }
-
             return sInstance
         }
     }

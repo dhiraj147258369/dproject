@@ -6,6 +6,7 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.util.Log.e
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ import com.rsl.foodnairesto.App
 import com.rsl.foodnairesto.R
 import com.rsl.foodnairesto.data.database_download.models.ReportModel
 import com.rsl.foodnairesto.data.database_download.models.ServerModel
+import com.rsl.foodnairesto.data.main_login.network.LOG_TAG
 import com.rsl.foodnairesto.databinding.FragmentOrderHistoryListBinding
 import com.rsl.foodnairesto.ui.main_screen.order_history.NewOrdersViewModel
 import com.rsl.foodnairesto.ui.main_screen.order_history.OrderHistoryViewModel
@@ -32,14 +34,12 @@ import com.rsl.foodnairesto.ui.main_screen.order_history.event.OrderHistoryListE
 import com.rsl.foodnairesto.ui.main_screen.order_history.model.LocationTypeModel
 import com.rsl.foodnairesto.ui.main_screen.order_history.order_history_cart.OrderHistoryCartFragment
 import com.rsl.foodnairesto.ui.server_login.ServerLoginViewModel
-import com.rsl.foodnairesto.utils.Animations
-import com.rsl.foodnairesto.utils.AppConstants
-import com.rsl.foodnairesto.utils.InjectorUtils
-import com.rsl.foodnairesto.utils.Utils
+import com.rsl.foodnairesto.utils.*
 import com.rsl.foodnairesto.utils.custom_dialog.CustomProgressDialog
 import com.rsl.foodnairesto.utils.custom_views.CustomToast
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -62,6 +62,7 @@ class OrderHistoryListFragment : Fragment() {
 
     private val ordersViewModel: NewOrdersViewModel by viewModel()
 
+    private val prefs: AppPreferences by inject()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -79,8 +80,11 @@ class OrderHistoryListFragment : Fragment() {
 
         editTextDateFrom()
         editTextDateTo()
-        setUpLocationFilter()
-        setUpServerFilter()
+      //  setUpLocationFilter()
+      //  setUpServerFilter()
+          setUpServerFilterD()
+
+        mBinding.serverNameTv?.text = prefs.getServerName()
 
         if (mIntentFrom != OrderHistoryCartFragment::class.java.simpleName)
             checkForUpdateData()
@@ -141,7 +145,7 @@ class OrderHistoryListFragment : Fragment() {
         mFromDateInMillis = changeDateTimeInMillis(mStringDateFrom)
         mToDateInMillis = Utils.getDate("dd-MM-yyyy HH:mm:ss")!!.time
 
-        setupOrderListRecyclerView("")
+        setupOrderListRecyclerView("")   //1
     }
 
     private fun editTextDateFrom() {
@@ -218,17 +222,22 @@ class OrderHistoryListFragment : Fragment() {
     private var mReportData: LiveData<List<ReportModel>>? = null
     private var mReportObserver: Observer<List<ReportModel>>? = null
 
-    private fun setupOrderListRecyclerView(mSearchText: String) {
+    private fun setupOrderListRecyclerView(mSearchText: String)
+    {
+
+        Log.e("RUN","1");
         e(javaClass.simpleName, "mLocationTypeID: $mLocationTypeID mServerName: $mServerName")
         e(javaClass.simpleName, "mFromDateInMillis: $mFromDateInMillis mToDateInMillis: $mToDateInMillis")
 
         mBinding.progressBarBillReportList.visibility = VISIBLE
+
         mReportData = mOrderHistoryViewModel.getReportDataForTimeStamp(
             mFromDateInMillis,
             mToDateInMillis,
             mLocationTypeID,
             mServerName
         )
+
         mReportObserver = Observer { reportModels ->
             mBinding.progressBarBillReportList.visibility = GONE
             e(javaClass.simpleName, "reportModels: ${reportModels.size}")
@@ -254,9 +263,23 @@ class OrderHistoryListFragment : Fragment() {
 
                             mBinding.textViewNoOrders.visibility = GONE
                             val mListAdapter = OrderHistoryListAdapter(mReportList)
+
+
+                            val x = 0;
+                        //    for(x in 0 until mReportList.size){
+                                e("cart no "+x,mReportList[x].mCartNO)
+                                e("server name "+x,mReportList[x].mServerName)
+                                e("id "+x,mReportList[x].id)
+                                e("cart id "+x,mReportList[x].mCartID)
+                                e("date time "+x,mReportList[x].mDateTime)
+                                e("discount type "+x,mReportList[x].mDiscountType)
+                                e("pay type type "+x,mReportList[x].mPaymentSelectionType)
+                                e("resto id "+x,mReportList[x].mRestaurantID)
+                                e("resto id "+x,mReportList[x].mPaymentList.toString())
+                          //  }
+
                             mBinding.recyclerViewOrderHistory.adapter = mListAdapter
                             Animations.runLayoutAnimationFallDown(mBinding.recyclerViewOrderHistory)
-
                         }
                         else -> {
                             mBinding.textViewNoOrders.visibility = VISIBLE
@@ -285,7 +308,6 @@ class OrderHistoryListFragment : Fragment() {
 
     private fun setUpLocationFilter() {
         mFlagToPopulateList++
-
         mLocationList = ArrayList()
         mLocationModelList!!.add(LocationTypeModel(0, "ALL"))
         mLocationModelList!!.add(LocationTypeModel(1, "Dine In"))
@@ -295,6 +317,7 @@ class OrderHistoryListFragment : Fragment() {
                 "Quick Service"
             )
         )
+
         mLocationModelList!!.add(LocationTypeModel(3, "Delivery"))
         mLocationList!!.add("ALL")
         mLocationList!!.add("Dine In")
@@ -330,6 +353,7 @@ class OrderHistoryListFragment : Fragment() {
                 break
             }
         }
+
         mBinding.spinnerLocation.setSelection(mSelectedLocationPosition)
 
         mBinding.spinnerLocation.onItemSelectedListener = mLocationSelectedListener
@@ -337,12 +361,14 @@ class OrderHistoryListFragment : Fragment() {
 
     private var mServerSelectedListener: AdapterView.OnItemSelectedListener? = null
 
-    private fun setUpServerFilter() {
+    private fun setUpServerFilterD(){
         mServerList = ArrayList()
-        mServerModelList!!.add(ServerModel("", "ALL", "1", "","", ArrayList()))
-        mServerList!!.add("ALL")
+//        mServerModelList!!.add(ServerModel("", "ALL", "1", "","", ArrayList()))
+//        mServerList!!.add("ALL")
 
-        serverViewModel.getServers().observe(viewLifecycleOwner, {
+        serverViewModel.getServers().observe(viewLifecycleOwner) {
+
+
             when {
                 it.isNotEmpty() -> {
                     for (i in it.indices) {
@@ -350,43 +376,77 @@ class OrderHistoryListFragment : Fragment() {
                         mServerList!!.add(it[i].mServerName)
                     }
 
-                    val mServerAdapter =
-                        ArrayAdapter(requireActivity(), R.layout.spinner_item_pending_order, mServerList!!)
-                    mServerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    mBinding.spinnerServer.adapter = mServerAdapter
+                    mServerName = prefs.getServerName();
+                    Log.e("SERVER A",mServerName);
+                    setupOrderListRecyclerView("")
+                }
+            }
+        }
+    }
 
-                    mServerSelectedListener = object : AdapterView.OnItemSelectedListener {
-                        override fun onNothingSelected(parent: AdapterView<*>?) {
-                        }
-
-                        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                            mServerName = mServerModelList!![position].mServerName
-
-                            when {
-                                mFlagToPopulateList >= 1 -> {
-                                    setupOrderListRecyclerView("")
-                                    mFlagToPopulateList++
-                                }
-                            }
-                        }
-                    }
-
-//                    var mSelectedServerPosition = 0
-//                    loop@ for (j in 0 until mServerList!!.size) {
-//                        when {
-//                            mServerList!![j] == mSharedPref!!.getString(AppConstants.LOGGED_IN_SERVER_NAME, "") -> {
-//                                mSelectedServerPosition = j
-//                                break@loop
+//    private fun setUpServerFilter() {
+//        mServerList = ArrayList()
+//        mServerModelList!!.add(ServerModel("", "ALL", "1", "","", ArrayList()))
+//        mServerList!!.add("ALL")
+//
+//
+//        serverViewModel.getServers().observe(viewLifecycleOwner) {
+//            when {
+//                it.isNotEmpty() -> {
+//                    for (i in it.indices) {
+//                        mServerModelList!!.add(it[i])
+//                        mServerList!!.add(it[i].mServerName)
+//                        Log.e("SERVER NAME " + i, mServerModelList!!.get(i).mServerName.toString())
+//                    }
+//
+//                    val mServerAdapter =
+//                        ArrayAdapter(
+//                            requireActivity(),
+//                            R.layout.spinner_item_pending_order,
+//                            mServerList!!
+//                        )
+//
+//                    mServerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//                    mBinding.spinnerServer.adapter = mServerAdapter
+//
+//                    mServerSelectedListener = object : AdapterView.OnItemSelectedListener {
+//                        override fun onNothingSelected(parent: AdapterView<*>?) {
+//                        }
+//
+//                        override fun onItemSelected(
+//                            parent: AdapterView<*>?,
+//                            view: View?,
+//                            position: Int,
+//                            id: Long
+//                        ) {
+//
+//                            mServerName = mServerModelList!![position].mServerName
+//
+//                            when {
+//                                mFlagToPopulateList >= 1 -> {
+//                                    setupOrderListRecyclerView("")
+//                                    mFlagToPopulateList++
+//                                }
 //                            }
 //                        }
 //                    }
-//                    mBinding.spinnerServer.setSelection(mSelectedServerPosition)
-
-                    mBinding.spinnerServer.onItemSelectedListener = mServerSelectedListener
-                }
-            }
-        })
-    }
+//
+////                    var mSelectedServerPosition = 0
+////                    loop@ for (j in 0 until mServerList!!.size) {
+////                        when {
+////                            mServerList!![j] == mSharedPref!!.getString(AppConstants.LOGGED_IN_SERVER_NAME, "") -> {
+////                                mSelectedServerPosition = j
+////                                break@loop
+////                            }
+////                        }
+////                    }
+////                    mBinding.spinnerServer.setSelection(mSelectedServerPosition)
+//
+//                    mBinding.spinnerServer.onItemSelectedListener = mServerSelectedListener
+//                }
+//            }
+//        }
+//    }
 
     fun onTextChanged(mText: CharSequence) {
         setupOrderListRecyclerView(mText.toString())
@@ -426,5 +486,6 @@ class OrderHistoryListFragment : Fragment() {
         EventBus.getDefault().unregister(this)
         super.onStop()
     }
+
 
 }

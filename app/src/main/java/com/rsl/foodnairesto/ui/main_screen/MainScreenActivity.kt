@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -195,6 +196,12 @@ class MainScreenActivity : AppCompatActivity() {
 
             mBinding.drawerLayout.openDrawer(GravityCompat.END)
         }
+
+        mBinding.navigationViewDrawer.getHeaderView(0)
+            .findViewById<TextView>(R.id.resto_name_tv).text = "Restaurant: "+ prefs.getBussinessName()
+
+        mBinding.navigationViewDrawer.getHeaderView(0)
+            .findViewById<TextView>(R.id.captain_name_tv).text = "User : " + prefs.getSelectedWaiterName()
     }
 
     private fun syncCarts() {
@@ -230,8 +237,11 @@ class MainScreenActivity : AppCompatActivity() {
         val mBuilder = AlertDialog.Builder(this)
         mBuilder.setTitle("Update Terminal?")
         mBuilder.setMessage("Do you want to update the terminal?")
-        mBuilder.setPositiveButton("Yes, Update") { dialog, _ ->
+        mBuilder.setPositiveButton("Yes, Update") {
+                dialog, _ ->
+
             confirmPassword(1)
+
             dialog.cancel()
         }
         mBuilder.setNegativeButton("Nope") { dialog, _ -> dialog.cancel() }
@@ -242,23 +252,23 @@ class MainScreenActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun confirmPassword(resetOrUpdate: Int) {
-        val mConfirmDialog = Dialog(this, R.style.DialogTheme)
-        mResetTerminalBinding =
-            DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.dialog_reset_terminal, null, false)
-        mConfirmDialog.setContentView(mResetTerminalBinding.root)
+      //  val mConfirmDialog = Dialog(this, R.style.DialogTheme)
+//        mResetTerminalBinding =
+//            DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.dialog_reset_terminal, null, false)
+//        mConfirmDialog.setContentView(mResetTerminalBinding.root)
 
-        if (resetOrUpdate == 1) {
-            mResetTerminalBinding.textViewResetLabel.text = "Update Terminal"
-            mResetTerminalBinding.buttonReset.text = "Update"
-            mResetTerminalBinding.textViewResetting.text = "Updating Terminal"
-        }
+//        if (resetOrUpdate == 1) {
+//            mResetTerminalBinding.textViewResetLabel.text = "Update Terminal"
+//            mResetTerminalBinding.buttonReset.text = "Update"
+//            mResetTerminalBinding.textViewResetting.text = "Updating Terminal"
+//        }
 
-        mResetTerminalBinding.buttonReset.setOnClickListener {
-            val mPassword = mResetTerminalBinding.editTextPassword.text.toString().trim()
-            if (mPassword == prefs.getRestaurantPassword()) {
-
-                mResetTerminalBinding.constraintLayoutReset.visibility = View.VISIBLE
-                mResetTerminalBinding.buttonReset.visibility = View.GONE
+    //    mResetTerminalBinding.buttonReset.setOnClickListener {
+           // val mPassword = mResetTerminalBinding.editTextPassword.text.toString().trim()
+//            if (mPassword == prefs.getRestaurantPassword()) {
+//
+//                mResetTerminalBinding.constraintLayoutReset.visibility = View.VISIBLE
+//                mResetTerminalBinding.buttonReset.visibility = View.GONE
 
                 if (resetOrUpdate == 0) {
                     resetSharedPreferences()
@@ -284,14 +294,14 @@ class MainScreenActivity : AppCompatActivity() {
                     }
                 }
 
-            } else {
-                CustomToast.makeText(this, "Please enter correct password", Toast.LENGTH_SHORT).show()
-            }
-        }
+//            } else {
+//                CustomToast.makeText(this, "Please enter correct password", Toast.LENGTH_SHORT).show()
+//            }
+       // }
 
-        mConfirmDialog.show()
-        //mConfirmDialog.window!!.setLayout(800, 600)
-        mConfirmDialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+//        mConfirmDialog.show()
+//        //mConfirmDialog.window!!.setLayout(800, 600)
+//        mConfirmDialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
     private fun resetSharedPreferences() {
@@ -341,11 +351,6 @@ class MainScreenActivity : AppCompatActivity() {
         override fun onBackPressed() {
 
 
-
-
-
-
-
        if((mBinding.navigationViewDrawer.menu.findItem(R.id.navigate_quick_service).isChecked) || (mBinding.navigationViewDrawer.menu.findItem(R.id.navigate_tables_tab).isChecked)){
            if (doubleBackToExitPressedOnce) {
                super.onBackPressed()
@@ -365,6 +370,7 @@ class MainScreenActivity : AppCompatActivity() {
         mBinding.navigationViewDrawer.setCheckedItem(R.id.navigate_tables_tab)
 
     }
+
     fun checkquickservicefrag(){
         mBinding.navigationViewDrawer.setCheckedItem(R.id.navigate_quick_service)
 

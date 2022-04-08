@@ -128,12 +128,27 @@
                             android:backgroundTint="@color/black"
                             android:gravity="center"
                             android:paddingEnd="50dp"
-
+                            android:visibility="gone"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/image_view_user"
                             app:layout_constraintTop_toTopOf="parent" />
 
+                        <TextView
+                            android:id="@+id/server_name_tv"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:backgroundTint="@color/black"
+                            android:gravity="center"
+                            android:paddingEnd="50dp"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:text="Server Name"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/image_view_user"
+                            app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
@@ -381,7 +396,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:background="@color/white"
-                        app:layout_constraintTop_toBottomOf="@+id/linear_layout_order_history_titles"></androidx.constraintlayout.widget.ConstraintLayout>
+                        app:layout_constraintTop_toBottomOf="@+id/linear_layout_order_history_titles" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_view_order_history"
